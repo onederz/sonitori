@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../bookingsPopup/booking.css">
+    <title>Activities · Sonitori Phnom Penh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body {
+            background-color: #f5f3f0;
+            color: #2c2b2a;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-size: 1rem;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: #fff;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+            padding: 0.7rem 5%;
+            border-bottom: 1px solid #e2ddd6;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: brightness(0.9);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #3b3a38;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #097684; }
+        .nav-links a.active { 
+            font-weight: 500; 
+            color: #097684;
+            border-bottom: 1px solid #097684;
+            margin-bottom: -1px;
+        }
+        
+        .desktop-book-btn {
+            background: transparent;
+            border: 1px solid #097684;
+            color: #097684;
+            padding: 0.5rem 2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .desktop-book-btn:hover {
+            background: #097684;
+            border-color: #097684;
+            color: white;
+        }
+
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            color: #4a4540;
+            cursor: pointer;
+        }
+
+        /* ===== MOBILE SIDEBAR ===== */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 90%;
+            max-width: 350px;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 2000;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            padding: 3rem 0rem 2rem;
+            overflow-y: auto;
+            border-left: none;
+        }
+
+        .mobile-sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-logo {
+            padding: 0 20px 20px 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .sidebar-logo img {
+            height: 45px;
+            width: auto;
+            filter: brightness(0.9);
+        }
+
+        .sidebar-social {
+            margin-top: 30px;
+            padding: 20px 0 0 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .sidebar-social h4 {
+            color: #3b3a38;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-social .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .sidebar-social .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(9,118,132,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #097684;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 0 !important;
+        }
+
+        .sidebar-social .social-icons a:hover {
+            background: #097684;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(9,118,132,0.3);
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #097684;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+        .close-sidebar:hover { transform: scale(1.1); }
+
+        .mobile-sidebar .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0 0px 0 30px;
+        }
+
+        .mobile-sidebar .sidebar-links a {
+            padding-left: 20px;
+        }
+
+        .mobile-sidebar a, .dropdown-toggle-mobile {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #3b3a38;
+            font-weight: 400;
+            padding: 0.9rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: none;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
+            border-bottom: none;
+        }
+
+        .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
+            width: 1.6rem;
+            font-size: 1rem;
+            color: #097684;
+            text-align: center;
+        }
+
+        .dropdown-toggle-mobile {
+            justify-content: space-between;
+            padding: 0.9rem 20px;
+        }
+        .dropdown-toggle-mobile .dropdown-icon-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .dropdown-toggle-mobile .arrow-icon {
+            font-size: 0.9rem;
+            color: #7b6e61;
+            transition: transform 0.3s ease;
+        }
+        .dropdown-toggle-mobile.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .mobile-sidebar a.active {
+            color: #097684;
+            font-weight: 500;
+            background: rgba(9,118,132,0.08);
+            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 12px 0 0 12px;
+            padding-left: 20px;
+        }
+
+        .dropdown-menu-mobile {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            visibility: hidden;
+            transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
+            margin-left: 2.6rem;
+            padding-left: 0.2rem;
+            background: transparent;
+            border-left: none;
+        }
+
+        .dropdown-menu-mobile.show {
+            grid-template-rows: 1fr;
+            opacity: 1;
+            visibility: visible;
+            transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
+        }
+
+        .dropdown-menu-mobile > div {
+            overflow: hidden;
+        }
+
+        .dropdown-menu-mobile a {
+            padding: 0.7rem 0 0.7rem 0.2rem;
+            font-size: 1.1rem;
+            color: #4f4a44;
+            border-bottom: none;
+            transition: color 0.2s, padding-left 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .dropdown-menu-mobile a i {
+            width: 1.4rem;
+            font-size: 1rem;
+            color: #097684;
+        }
+        .dropdown-menu-mobile a:hover {
+            color: #097684;
+            padding-left: 0.5rem;
+            background: none;
+        }
+
+        .mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
+            color: #097684;
+            background: rgba(9,118,132,0.04);
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0s 0.4s;
+        }
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease, visibility 0s 0s;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .mobile-menu-icon { display: block; }
+            .desktop-book-btn { display: none; }
+        }
+
+        /* ===== FIXED BOTTOM BOOK NOW BUTTON ===== */
+        .mobile-fixed-book {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: #097684;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
+            z-index: 1500;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(2px);
+            width: auto;
+            max-width: calc(100% - 40px);
+        }
+        .mobile-fixed-book:active {
+            background: #065a66;
+            transform: scale(0.96);
+            box-shadow: 0 6px 20px rgba(9,118,132,0.6);
+        }
+        .mobile-fixed-book i {
+            font-size: 1rem;
+            padding-bottom: 1px;
+        }
+
+        @media (min-width: 901px) {
+            .mobile-fixed-book { display: none; }
+        }
+
+        /* ===== DROPDOWN STYLES (desktop) ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 50px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border: 1px solid #eae6e0;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #3b3a38;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f6f4;
+            color: #097684;
+            padding-left: 2rem;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .activities-page {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 4rem;
+            background: #ffffff;
+            box-shadow: 0 0 40px rgba(0,0,0,0.02);
+            border-radius: 0 0px 20px 20px;
+        }
+
+        .section-heading {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #2f2e2b;
+            border-bottom: 2px solid #097684;
+            padding-bottom: 0.7rem;
+            margin: 0 0 3rem 0;
+        }
+
+        /* ===== TWO COLUMN LAYOUT FOR DESKTOP ===== */
+        .activities-wrapper {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .pdf-sidebar {
+            flex: 0 0 350px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .content-block {
+            color: #4f4942;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .content-block p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .content-block strong {
+            color: #097684;
+        }
+
+        .highlight-box {
+            background: #fcfaf8;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .highlight-box p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .highlight-box i {
+            color: #097684;
+            margin-right: 0.5rem;
+        }
+
+        /* ===== PDF CARD (SINGLE CARD STYLE) ===== */
+        .pdf-card {
+            background: #fcfaf8;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e2ddd6;
+        }
+
+        .pdf-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(9,118,132,0.15);
+        }
+
+        .card-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            background: #f8f6f4;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .pdf-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(9,118,132,0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .pdf-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .download-badge {
+            background: white;
+            color: #097684;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .pdf-card:hover .download-badge {
+            transform: translateY(0);
+        }
+
+        .download-badge i {
+            font-size: 1rem;
+            color: #097684;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            background: #fcfaf8;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2f2e2b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title i {
+            color: #097684;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .pdf-card:hover .card-title i {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #097684;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-description {
+            color: #5f5a54;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #eae6e0;
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #8b7f73;
+            font-size: 0.85rem;
+        }
+
+        .file-info i {
+            font-size: 1rem;
+        }
+
+        .download-link {
+            color: #097684;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.2s ease;
+        }
+
+        .download-link:hover {
+            color: #065a66;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0 1rem;
+        }
+        
+        .back-to-top a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #097684;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top a:hover {
+            background: #065a66;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(9, 118, 132, 0.4);
+        }
+        
+        .back-to-top a i {
+            font-size: 1.2rem;
+        }
+
+        /* scroll animations */
+        .content-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* responsive */
+        @media (max-width: 1024px) {
+            .activities-wrapper {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .pdf-sidebar {
+                flex: auto;
+                position: static;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .card-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .section-heading { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .activities-page { padding: 5rem 1rem 2rem; }
+            .section-heading { font-size: 2rem; }
+            .content-block p { font-size: 1rem; }
+            .highlight-box { padding: 1.2rem; }
+            .card-image { height: 250px; }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #1f2a2e;
+            color: #ddd;
+            padding: 3rem 2rem 1rem;
+            margin-top: 0;
+        }
+        
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        
+        .footer-col {
+            flex: 1 1 200px;
+        }
+        
+        .footer-logo img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .footer h4 {
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .footer a:hover { color: #097684; }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .social-icons a {
+            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        
+        .social-icons a:hover { background: #097684; }
+        
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid #3a4549;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .payment-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .payment-icons img {
+            height: 28px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html">
+                <div class="logo">
+                <img src="../images/logo.png" alt="Sonitori Logo">
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../rooms/index.html">Rooms</a>
+                <a href="../event/index.html">Events</a>
+                <a href="../gallery/index.html">Gallery</a>
+                <div class="dropdown">
+                    <a href="" class="dropdown-trigger">About Us <span class="dropdown-arrow"><i class="fa-solid fa-angle-down"></i></span></a>
+                    <div class="dropdown-menu">
+                        <a href="../about-us/our-story/index.html">Our Story</a>
+                        <a href="../about-us/community/index.html">Community</a>
+                        <a href="../about-us/reviews/index.html">Review</a>
+                        <a href="../about-us/press-library/index.html">Press Library</a>
+                    </div>
+                </div>
+                <a href="../contact-us/index.html">Contact Us</a>
+            </div>
+            <button class="desktop-book-btn" id="desktopBookBtn">Book Now</button>
+            <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <!-- Mobile sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-circle-xmark"></i></button>
+        
+        <div class="sidebar-logo">
+            <img src="../images/logo.png" alt="Sonitori Logo">
+        </div>
+        
+        <div class="sidebar-links">
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="../rooms/index.html"><i class="fa-solid fa-bed"></i> Rooms</a>
+            <a href="../event/index.html"><i class="fa-regular fa-calendar"></i> Events</a>
+            <a href="../gallery/index.html"><i class="fa-regular fa-images"></i> Gallery</a>
+            
+            <div class="mobile-dropdown">
+                <button class="dropdown-toggle-mobile" id="aboutDropdownToggle">
+                    <span class="dropdown-icon-group">
+                        <i class="fa-regular fa-address-card"></i> About Us
+                    </span>
+                    <i class="fa-solid fa-angle-down arrow-icon"></i>
+                </button>
+                <div class="dropdown-menu-mobile" id="aboutMobileMenu">
+                    <div>
+                        <a href="../about-us/our-story/index.html"><i class="fa-regular fa-compass"></i> Our Story</a>
+                        <a href="../about-us/community/index.html"><i class="fa-regular fa-handshake"></i> Community</a>
+                        <a href="../about-us/reviews/index.html"><i class="fa-regular fa-star"></i> Review</a>
+                        <a href="../about-us/press-library/index.html"><i class="fa-regular fa-newspaper"></i> Press Library</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="../contact-us/index.html"><i class="fa-regular fa-envelope"></i> Contact Us</a>
+            
+            <div class="sidebar-social">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="mobile-fixed-book" id="mobileFixedBook"><i class="fa-solid fa-calendar"></i> BOOK NOW</button>
+
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="calendar-popup" id="calendarPopup">
+        <div class="popup-header">
+            <h3>Select dates</h3>
+            <button class="close-popup" id="closePopupBtn"><i class="fa-solid fa-circle-xmark"></i></button>
+        </div>
+        
+        <div class="calendar-container" id="calendarContainer"></div>
+        
+        <div class="popup-footer">
+            <div class="night-count">
+                <span id="nightsValue">0</span> nights
+            </div>
+            <button class="search-btn" id="searchDatesBtn" disabled>Search</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="activities-page">
+        <div class="section-heading content-section" id="mainHeading">Activities</div>
+
+        <!-- Two column layout: Text left, PDF right -->
+        <div class="activities-wrapper">
+            <!-- Left column: Text content -->
+            <div class="text-content">
+                <div class="content-block content-section" id="intro">
+                    <p>At <strong>Sonitori Resort Cambodia</strong>, each day invites you to explore, relax, and connect with the vibrant culture and stunning landscapes of Cambodia.</p>
+                    
+                    <p>From <strong>Khmer cooking classes</strong> and <strong>guided tours of Angkor Wat and local temples</strong>, to <strong>rejuvenating spa treatments</strong> in our tropical garden setting, we offer unique and immersive activities for every type of traveler.</p>
+                    
+                    <p>Guests can <strong>cycle through scenic routes</strong>, <strong>swim in our saltwater pool</strong>, or unwind poolside with a signature cocktail. Families will love our fun and safe <strong>children's programs</strong>, while couples and solo travelers can enjoy peaceful wellness moments.</p>
+                    
+                    <p>As an <strong>LGBTQ+ friendly resort in Cambodia</strong>, Sonitori welcomes everyone into a safe, inclusive, and respectful environment. Whether you're visiting <strong>Phnom Penh</strong>, our team is here to help you plan meaningful experiences — both on-site and off.</p>
+                </div>
+
+                <div class="highlight-box content-section" id="highlight">
+                    <p><i class="fa-regular fa-lightbulb"></i> <strong>Looking for local experiences?</strong> Click the guide on the right for more details on tours, local attractions, and exclusive hotel offerings curated just for you.</p>
+                </div>
+
+                <div class="content-block content-section" id="closing">
+                    <p>Speak with our friendly Sonitori team to discover the best <strong>things to do in Cambodia</strong> during your stay. From cultural adventures to relaxing getaways, Sonitori is your perfect base for unforgettable memories.</p>
+                </div>
+            </div>
+
+            <!-- Right column: Sticky PDF card -->
+            <div class="pdf-sidebar content-section" id="pdfGrid">
+                <a href="https://rambutanphnompenh.com/wp-content/uploads/2025/06/pp-activity.pdf" class="pdf-card" target="_blank" rel="noopener noreferrer">
+                    <div class="card-image">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/pp-activity-727x1024.png" alt="Phnom Penh Activities Guide">
+                        <div class="card-overlay">
+                            <span class="download-badge"><i class="fa-solid fa-download"></i> Download PDF</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">
+                            Best Activities in Phnom Penh
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="card-meta">
+                            <i class="fa-regular fa-file-pdf"></i>
+                            <span>Activity Guide</span>
+                        </div>
+                        <div class="card-description">
+                            Discover top tours, local attractions, and exclusive hotel offerings curated just for you.
+                        </div>
+                        <div class="card-footer">
+                            <span class="file-info">
+                                <i class="fa-regular fa-file"></i>
+                                PDF • 2.8 MB
+                            </span>
+                            <span class="download-link">
+                                Download <i class="fa-solid fa-arrow-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- back to top -->
+    <div class="back-to-top">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col footer-logo">
+                <img src="../images/Logo-white.png" alt="Sonitori">
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINK</h4>
+                <a href="https://maps.app.goo.gl/A1VpfBTSutvgNhrm9">Map</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="../policy-privacy/index.html">Policy Privacy</a>
+            </div>
+            <div class="footer-col">
+                <h4>RESERVATION</h4>
+                <a href="tel:+855011355534">+855(0)11 355 534</a>
+                <a href="mailto:bookings@sonitori.com">bookings@sonitori.com</a>
+            </div>
+            <div class="footer-col">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="payment-icons">
+                <span>Pay way :</span>
+                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
+                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+            </div>
+            <div>Copyright © Sonitori Phnom Penh</div>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        // ===== MOBILE SIDEBAR =====
+        const mobileIcon = document.querySelector('.mobile-menu-icon');
+        const sidebar = document.getElementById('mobileSidebar');
+        const overlay = document.getElementById('mobileOverlay');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const dropdownToggle = document.getElementById('aboutDropdownToggle');
+        const aboutMobileMenu = document.getElementById('aboutMobileMenu');
+
+        function openMobileMenu() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (mobileIcon) mobileIcon.addEventListener('click', openMobileMenu);
+        if (closeSidebar) closeSidebar.addEventListener('click', closeMobileMenu);
+        if (overlay) overlay.addEventListener('click', closeMobileMenu);
+
+        if (dropdownToggle && aboutMobileMenu) {
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.toggle('open');
+                
+                if (aboutMobileMenu.classList.contains('show')) {
+                    aboutMobileMenu.classList.remove('show');
+                } else {
+                    aboutMobileMenu.classList.add('show');
+                }
+            });
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900 && sidebar && sidebar.classList.contains('open')) {
+                closeMobileMenu();
+            }
+        });
+
+        // ===== BOOK NOW BUTTONS =====
+        function openBookingPopup() {
+            const overlay = document.getElementById('popupOverlay');
+            const popup = document.getElementById('calendarPopup');
+            if (overlay && popup) {
+                overlay.classList.add('active');
+                popup.classList.add('active');
+            }
+        }
+
+        document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
+        document.getElementById('mobileFixedBook')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            openBookingPopup();
+        });
+
+        // Close popup
+        document.getElementById('closePopupBtn')?.addEventListener('click', function() {
+            document.getElementById('popupOverlay')?.classList.remove('active');
+            document.getElementById('calendarPopup')?.classList.remove('active');
+        });
+
+        document.getElementById('popupOverlay')?.addEventListener('click', function() {
+            this.classList.remove('active');
+            document.getElementById('calendarPopup')?.classList.remove('active');
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const animatedElements = [
+            document.getElementById('mainHeading'),
+            document.getElementById('intro'),
+            document.getElementById('highlight'),
+            document.getElementById('closing'),
+            document.getElementById('pdfGrid')
+        ].filter(el => el !== null);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
+    })();
+    </script>
+    <script src="../bookingsPopup/booking.js"></script>
+</body>
+</html>

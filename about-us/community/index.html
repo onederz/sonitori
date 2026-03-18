@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Community · Sonitori Phnom Penh | Engage, Contribute, Educate</title>
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../bookingsPopup/booking.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body {
+            background-color: #f5f3f0;
+            color: #2c2b2a;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-size: 1rem;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        /* ===== NAVIGATION (from rooms page) ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: #fff;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+            padding: 0.7rem 5%;
+            border-bottom: 1px solid #e2ddd6;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: brightness(0.9);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #3b3a38;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #097684; }
+        .nav-links a.active { 
+            font-weight: 500; 
+            color: #097684;
+            border-bottom: 1px solid #097684;
+            margin-bottom: -1px;
+        }
+        
+        /* desktop book now button */
+        .desktop-book-btn {
+            background: transparent;
+            border: 1px solid #097684;
+            color: #097684;
+            padding: 0.5rem 2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .desktop-book-btn:hover {
+            background: #097684;
+            border-color: #097684;
+            color: white;
+        }
+
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            color: #4a4540;
+            cursor: pointer;
+        }
+
+        /* ===== MOBILE SIDEBAR ===== */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 90%;
+            max-width: 350px;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 2000;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            padding: 3rem 0rem 2rem;
+            overflow-y: auto;
+            border-left: none;
+        }
+
+        .mobile-sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-logo {
+            padding: 0 20px 20px 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .sidebar-logo img {
+            height: 45px;
+            width: auto;
+            filter: brightness(0.9);
+        }
+
+        .sidebar-social {
+            margin-top: 30px;
+            padding: 20px 0 0 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .sidebar-social h4 {
+            color: #3b3a38;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-social .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .sidebar-social .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(9,118,132,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #097684;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 0 !important;
+        }
+
+        .sidebar-social .social-icons a:hover {
+            background: #097684;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(9,118,132,0.3);
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #097684;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+        .close-sidebar:hover { transform: scale(1.1); }
+
+        .mobile-sidebar .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0 0px 0 30px;
+        }
+
+        .mobile-sidebar .sidebar-links a {
+            padding-left: 20px;
+        }
+
+        .mobile-sidebar a, .dropdown-toggle-mobile {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #3b3a38;
+            font-weight: 400;
+            padding: 0.9rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: none;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
+            border-bottom: none;
+        }
+
+        .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
+            width: 1.6rem;
+            font-size: 1rem;
+            color: #097684;
+            text-align: center;
+        }
+
+        .dropdown-toggle-mobile {
+            justify-content: space-between;
+            padding: 0.9rem 20px;
+        }
+        .dropdown-toggle-mobile .dropdown-icon-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .dropdown-toggle-mobile .arrow-icon {
+            font-size: 0.9rem;
+            color: #7b6e61;
+            transition: transform 0.3s ease;
+        }
+        .dropdown-toggle-mobile.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .mobile-sidebar a.active {
+            color: #097684;
+            font-weight: 500;
+            background: rgba(9,118,132,0.08);
+            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 12px 0 0 12px;
+            padding-left: 20px;
+        }
+
+        .dropdown-menu-mobile {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            visibility: hidden;
+            transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
+            margin-left: 2.6rem;
+            padding-left: 0.2rem;
+            background: transparent;
+            border-left: none;
+        }
+
+        .dropdown-menu-mobile.show {
+            grid-template-rows: 1fr;
+            opacity: 1;
+            visibility: visible;
+            transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
+        }
+
+        .dropdown-menu-mobile > div {
+            overflow: hidden;
+        }
+
+        .dropdown-menu-mobile a {
+            padding: 0.7rem 0 0.7rem 0.2rem;
+            font-size: 1.1rem;
+            color: #4f4a44;
+            border-bottom: none;
+            transition: color 0.2s, padding-left 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .dropdown-menu-mobile a i {
+            width: 1.4rem;
+            font-size: 1rem;
+            color: #097684;
+        }
+        .dropdown-menu-mobile a:hover {
+            color: #097684;
+            padding-left: 0.5rem;
+            background: none;
+        }
+
+        .mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
+            color: #097684;
+            background: rgba(9,118,132,0.04);
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0s 0.4s;
+        }
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease, visibility 0s 0s;
+        }
+
+        /* ===== FIXED BOTTOM BOOK NOW BUTTON ===== */
+        .mobile-fixed-book {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: #097684;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
+            z-index: 1500;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(2px);
+            width: auto;
+            max-width: calc(100% - 40px);
+        }
+        .mobile-fixed-book:active {
+            background: #065a66;
+            transform: scale(0.96);
+            box-shadow: 0 6px 20px rgba(9,118,132,0.6);
+        }
+        .mobile-fixed-book i {
+            font-size: 1rem;
+            padding-bottom: 1px;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .mobile-menu-icon { display: block; }
+            .desktop-book-btn { display: none; }
+        }
+
+        @media (min-width: 901px) {
+            .mobile-fixed-book { display: none; }
+        }
+
+        /* ===== DROPDOWN STYLES (desktop) ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 50px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border: 1px solid #eae6e0;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #3b3a38;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f6f4;
+            color: #097684;
+            padding-left: 2rem;
+        }
+        
+        .dropdown-menu a.active {
+            background: rgba(9,118,132,0.08);
+            color: #097684;
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        /* main container */
+        .community-page {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 3rem;
+            background: #ffffff;
+            box-shadow: 0 0 40px rgba(0,0,0,0.02);
+            border-radius: 0 0px 20px 20px;
+        }
+
+        /* ----- hero slideshow (background) ----- */
+        .hero-slideshow {
+            width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-bottom: 0;
+            transition: background-image 1s ease;
+            background-color: #ccc;
+            border: 1px solid #e2ddd6;
+        }
+
+        .spacer {
+            height: 50px;
+        }
+
+        .section-heading {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #2f2e2b;
+            border-bottom: 2px solid #097684;
+            padding-bottom: 0.7rem;
+            margin: 2rem 0 3rem 0;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-bottom: 4rem;
+        }
+        
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #3b342e;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #097684;
+            padding-left: 1.5rem;
+        }
+
+        .section-description {
+            color: #4f4942;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description p {
+            margin-bottom: 1rem;
+        }
+
+        .section-description ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== PARTNERS CAROUSEL ===== */
+        .partners-section {
+            margin: 3rem 0;
+        }
+
+        .partners-carousel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .partner-item {
+            flex: 0 0 150px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .partner-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .partner-item img {
+            max-width: 120px;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+            filter: grayscale(0%);
+            transition: filter 0.3s ease;
+        }
+
+        .partner-item:hover img {
+            filter: grayscale(0%);
+        }
+
+        .partner-item a {
+            text-decoration: none;
+            color: #4f4942;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .partner-item a span {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .partner-item a:hover {
+            color: #097684;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0 1rem;
+        }
+        
+        .back-to-top a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #097684;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .back-to-top a:hover {
+            background: #065a66;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(9, 118, 132, 0.4);
+        }
+        
+        .back-to-top a i {
+            font-size: 1.2rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .back-to-top a i:first-child {
+            margin-bottom: -6px;
+        }
+        
+        .back-to-top a i:last-child {
+            margin-top: -6px;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        .footer {
+            background: #1f2a2e;
+            color: #ddd;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        
+        .footer-col {
+            flex: 1 1 200px;
+        }
+        
+        .footer-logo img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .footer h4 {
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .footer a:hover { color: #097684; }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .social-icons a {
+            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        
+        .social-icons a:hover { background: #097684; }
+        
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid #3a4549;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .payment-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .payment-icons img {
+            height: 28px;
+        }
+
+        @media (max-width: 900px) {
+            .section-heading { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .partners-carousel { gap: 1rem; }
+            .partner-item { flex: 0 0 120px; }
+            .hero-slideshow { height: 350px; }
+        }
+        
+        @media (max-width: 600px) {
+            .hero-slideshow { height: 250px; }
+            .community-page { padding: 5rem 1rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (from rooms page) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../../index.html">
+                <div class="logo">
+                <img src="../../images/logo.png" alt="Sonitori Logo">
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../rooms/index.html">Rooms</a>
+                <a href="../../event/index.html">Events</a>
+                <a href="../../gallery/index.html">Gallery</a>
+                <div class="dropdown">
+                    <a href="" class="dropdown-trigger active">About Us <span class="dropdown-arrow"><i class="fa-solid fa-angle-down"></i></span></a>
+                    <div class="dropdown-menu">
+                        <a href="../our-story/index.html">Our Story</a>
+                        <a href="" class="active">Community</a>
+                        <a href="../reviews/index.html">Review</a>
+                        <a href="../press-library/index.html">Press Library</a>
+                    </div>
+                </div>
+                <a href="../../contact-us/index.html">Contact Us</a>
+            </div>
+            <!-- desktop book now button -->
+            <button class="desktop-book-btn" id="desktopBookBtn">Book Now</button>
+            <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <!-- Mobile sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-circle-xmark"></i></button>
+        
+        <div class="sidebar-logo">
+            <img src="../../images/logo.png" alt="Sonitori Logo">
+        </div>
+        
+        <div class="sidebar-links">
+            <a href="../../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="../../rooms/index.html"><i class="fa-solid fa-bed"></i> Rooms</a>
+            <a href="../../event/index.html"><i class="fa-regular fa-calendar"></i> Events</a>
+            <a href="../../gallery/index.html"><i class="fa-regular fa-images"></i> Gallery</a>
+            
+            <div class="mobile-dropdown">
+                <button class="dropdown-toggle-mobile open" id="aboutDropdownToggle">
+                    <span class="dropdown-icon-group">
+                        <i class="fa-regular fa-address-card"></i> About Us
+                    </span>
+                    <i class="fa-solid fa-angle-down arrow-icon"></i>
+                </button>
+                <div class="dropdown-menu-mobile show" id="aboutMobileMenu">
+                    <div>
+                        <a href="../our-story/index.html"><i class="fa-regular fa-compass"></i> Our Story</a>
+                        <a href="" class="active"><i class="fa-regular fa-handshake"></i> Community</a>
+                        <a href="../reviews/index.html"><i class="fa-regular fa-star"></i> Review</a>
+                        <a href="../press-library/index.html"><i class="fa-regular fa-newspaper"></i> Press Library</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="../../contact-us/index.html"><i class="fa-regular fa-envelope"></i> Contact Us</a>
+            
+            <div class="sidebar-social">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed bottom Book Now button -->
+    <button class="mobile-fixed-book" id="mobileFixedBook"><i class="fa-solid fa-calendar"></i> BOOK NOW</button>
+
+    <!-- Popup overlay + calendar -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="calendar-popup" id="calendarPopup">
+        <div class="popup-header">
+            <h3>Select dates</h3>
+            <button class="close-popup" id="closePopupBtn"><i class="fa-solid fa-circle-xmark"></i></button>
+        </div>
+        
+        <div class="calendar-container" id="calendarContainer">
+            <!-- dynamic JS will fill two months -->
+        </div>
+        
+        <div class="popup-footer">
+            <div class="night-count">
+                <span id="nightsValue">0</span> nights
+            </div>
+            <button class="search-btn" id="searchDatesBtn" disabled>Search</button>
+        </div>
+    </div>
+
+    <main class="community-page">
+        <!-- hero slideshow section -->
+        <div class="hero-slideshow" id="heroSlideshow"></div>
+        <div class="spacer"></div>
+
+        <!-- main COMMUNITY heading -->
+        <div class="section-heading" id="mainHeading">Community</div>
+
+        <!-- SECTION 1: Engage, contribute, educate -->
+        <div class="content-section" id="section1">
+            <h2 class="section-title">Engage, contribute, educate</h2>
+            <div class="section-description">
+                <p>The management and staff at Sonitori's hotel and resort are not only part of the community they live and work in but strive to be positive, supportive members of their community, dedicated to contributing to the sustainable development of Cambodia and its people. We actively encourage our staff to better themselves, their families and engage in humanitarian projects in our community.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Scholarship programs -->
+        <div class="content-section" id="section2">
+            <h2 class="section-title">Scholarship programs for staff and families</h2>
+            <div class="section-description">
+                <p>Education is the key to breaking the poverty cycle and improving lives but for many of the Sonitori staff and families, higher education was previously out of reach. We are proud to say that through our scholarship program many of our staff and their children have now been enrolled or reintegrated into school. From kindergarten to university, they are studying subjects such as; law, tourism, business, finance, accounting, IT and English. A few of our team members are even studying for their Masters degrees.</p>
+                <p>We are very proud of them and their continued efforts to grow!</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Environmental Mission -->
+        <div class="content-section" id="section3">
+            <h2 class="section-title">Environmental Mission</h2>
+            <div class="section-description">
+                <p>Cambodia is a country with many challenges in the past and even now. A lot of people have hardly the means to survive, electricity is scarce and expensive and even clean water is not available everywhere. We try as a hotel and guest in this country, not to add to the existing problems but to be a part of the solution. That's why we strive to be as clean and as limited as possible in the use of energy and potential pollutions. Together with our staff we strive to make a difference, by:</p>
+                <ul>
+                    <li>Using organic local fruits and vegetables in our kitchen and bar</li>
+                    <li>Recycling our cooking oil to return and transform into bio-diesel for the generator</li>
+                    <li>Use accessories made from recycled plastic bags</li>
+                    <li>Garbage bags, take-away meal boxes and straws made from compostable sugar cane residue</li>
+                    <li>Joining on a regular base the "city clean-up" events</li>
+                    <li>Promoting the usage of reusable aluminum water bottles instead of plastic ones which can be refilled for free at the water stations in our hotels</li>
+                    <li>Using Solar panels to pre-heat the hot water</li>
+                </ul>
+                <p>We hope you will support our efforts to minimize our impact on this beautiful society.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Community partnerships -->
+        <div class="content-section partners-section" id="section4">
+            <h2 class="section-title">Community partnerships</h2>
+            <div class="section-description">
+                <p>At Sonitori Hotel and Resort, we are proud to partner with local organizations that have proven results in within the communities that they work.</p>
+                <p>Here some of our long-standing community partnerships:</p>
+            </div>
+
+            <!-- Partners carousel/grid -->
+            <div class="partners-carousel">
+                <div class="partner-item">
+                    <a href="https://thinkchildsafe.org" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/ChildSafe-Movement.webp" alt="ChildSafe Movement" loading="lazy">
+                        <span>ChildSafe Movement</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://khmerstudies.org" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/CKS-Full-Logo-for-Website-2.svg" alt="Center for Khmer Studies" loading="lazy">
+                        <span>Center for Khmer Studies</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://concertcambodia.org" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/concert-logo.webp" alt="ConCERT Cambodia" loading="lazy">
+                        <span>ConCERT, Cambodia</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://www.greengeckoproject.org/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/gglogo.png" alt="Green Gecko Project" loading="lazy">
+                        <span>The Green Gecko Project</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="http://www.silkscreenprintinglab.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/logo-for-website2.png" alt="Silk Screen Printing Lab" loading="lazy">
+                        <span>Silk Screen Printing Lab</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://thislife.ngo/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/logo-this-life-cambodia.png" alt="This Life Cambodia" loading="lazy">
+                        <span>This Life Cambodia</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://www.plasticfreesea.co/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/PFC-logo-color.png" alt="Plastic Free Cambodia" loading="lazy">
+                        <span>Plastic Free Cambodia</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://www.salabai.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/SB-logo-2021-official-khmer-white-scaled.png" alt="Sala Bai Hotel School" loading="lazy">
+                        <span>Sala Bai Hotel School</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://www.spoonscambodia.org/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/SPOONS_Logo.png" alt="Spoons Cambodia" loading="lazy">
+                        <span>Spoons Cambodia (EGBOK)</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://wrccambodia.org/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/wrc_logo_w360px1.webp" alt="Women's Resource Center" loading="lazy">
+                        <span>Women's Resource Center</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://cambodia.wcs.org/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/wcs_logotype_0-scaled-1.jpg" alt="Wildlife Conservation Society" loading="lazy">
+                        <span>Wildlife Conservation Society</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://onlyoneplanetkh.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/only.webp" alt="Only One Planet" loading="lazy">
+                        <span>Only One Planet</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://refilltheworld.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/refill-not-landfill-high-res_orig.jpg" alt="Refill Not Landfill" loading="lazy">
+                        <span>Refill Not Landfill</span>
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="https://web.facebook.com/giantpuppetproject" target="_blank" rel="noopener noreferrer">
+                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2026/02/Giant-Puppet-Project-Siem-Reap.jpg" alt="Giant Puppet Project" loading="lazy">
+                        <span>Giant Puppet Project</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>
+
+    <!-- back to top -->
+        <div class="back-to-top">
+            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+                <i class="fa-solid fa-chevron-up"></i>
+                <i class="fa-solid fa-chevron-up"></i>
+            </a>
+        </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col footer-logo">
+                <img src="../../images/Logo-white.png" alt="Sonitori">
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINK</h4>
+                <a href="https://maps.app.goo.gl/A1VpfBTSutvgNhrm9">Map</a>
+                <a href="../../faq/index.html">FAQ</a>
+                <a href="../../policy-privacy/index.html">Policy Privacy</a>
+            </div>
+            <div class="footer-col">
+                <h4>RESERVATION</h4>
+                <a href="tel:+855011355534">+855(0)11 355 534</a>
+                <a href="mailto:bookings@sonitori.com">bookings@sonitori.com</a>
+            </div>
+            <div class="footer-col">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="payment-icons">
+                <span>Pay way :</span>
+                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
+                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+            </div>
+            <div>Copyright © Sonitori Phnom Penh</div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // hero slideshow images
+            const heroImages = [
+                'https://rambutanphnompenh.com/wp-content/uploads/2026/02/629893305_907396372157138_6233182403072246871_n.jpg',
+                'https://rambutanphnompenh.com/wp-content/uploads/2026/02/629915524_1178086287735216_5290234593719179986_n.jpg',
+                'https://rambutanphnompenh.com/wp-content/uploads/2026/02/632713270_1578421867107602_7202185901117564219_n.jpg',
+                'https://rambutanphnompenh.com/wp-content/uploads/2026/02/633004088_1600866851040505_2107471150450363726_n.jpg',
+                'https://rambutanphnompenh.com/wp-content/uploads/2025/03/dsc0380.jpg'
+            ];
+            let idx = 0;
+            const hero = document.getElementById('heroSlideshow');
+            if (hero) {
+                hero.style.backgroundImage = `url('${heroImages[0]}')`;
+                setInterval(() => {
+                    idx = (idx + 1) % heroImages.length;
+                    hero.style.backgroundImage = `url('${heroImages[idx]}')`;
+                }, 5000);
+            }
+
+            // ===== MOBILE SIDEBAR FUNCTIONALITY =====
+            const mobileIcon = document.querySelector('.mobile-menu-icon');
+            const sidebar = document.getElementById('mobileSidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const dropdownToggle = document.getElementById('aboutDropdownToggle');
+            const aboutMobileMenu = document.getElementById('aboutMobileMenu');
+
+            function openMobileMenu() {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (mobileIcon) mobileIcon.addEventListener('click', openMobileMenu);
+            if (closeSidebar) closeSidebar.addEventListener('click', closeMobileMenu);
+            if (overlay) overlay.addEventListener('click', closeMobileMenu);
+
+            // SMOOTH DROPDOWN animation - keep open for About Us section
+            if (dropdownToggle && aboutMobileMenu) {
+                dropdownToggle.classList.add('open');
+                aboutMobileMenu.classList.add('show');
+                
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.classList.toggle('open');
+                    
+                    if (aboutMobileMenu.classList.contains('show')) {
+                        aboutMobileMenu.classList.remove('show');
+                    } else {
+                        aboutMobileMenu.classList.add('show');
+                    }
+                });
+            }
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 900 && sidebar && sidebar.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // ===== BOOK NOW BUTTONS =====
+            function openBookingPopup() {
+                const overlay = document.getElementById('popupOverlay');
+                const popup = document.getElementById('calendarPopup');
+                if (overlay && popup) {
+                    overlay.classList.add('active');
+                    popup.classList.add('active');
+                }
+            }
+
+            document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
+            document.getElementById('mobileFixedBook')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                openBookingPopup();
+            });
+
+            // Scroll animations
+            const animatedElements = [
+                document.getElementById('mainHeading'),
+                document.getElementById('section1'),
+                document.getElementById('section2'),
+                document.getElementById('section3'),
+                document.getElementById('section4')
+            ].filter(el => el);
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedElements.forEach(el => observer.observe(el));
+        })();
+    </script>
+    <script src="../../bookingsPopup/booking.js"></script>
+</body>
+</html>

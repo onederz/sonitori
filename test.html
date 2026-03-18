@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Sonitori · amenities · mobile stacked</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f5f3f0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* unified box - desktop style */
+        .amenities-split-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fcfaf8;
+            border-radius: 60px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 8px 22px rgba(9,118,132,0.05);
+            border: 1px solid #e2ddd6;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* left side: title */
+        .amenities-title {
+            flex: 0 0 auto;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #3e3a35;
+            letter-spacing: 2px;
+            border-right: 2px solid #097684;
+            padding-right: 2.5rem;
+            margin-right: 1rem;
+        }
+        .amenities-title h2 {
+            font-weight: 300;
+            font-size: inherit;
+            line-height: 1.2;
+        }
+
+        /* right side: flex container (desktop: column) */
+        .amenities-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .amenities-row {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            margin: 0.5rem 0;
+        }
+
+        .amenity-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 140px;
+            max-width: 160px;
+            text-align: center;
+        }
+
+        .amenity-item i {
+            color: #097684 !important;
+            margin-bottom: 0.6rem;
+            font-size: 2.2rem;
+        }
+        .amenity-item h4 {
+            font-weight: 500;
+            color: #2c2b2a;
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+        }
+        .amenity-item p {
+            font-size: 0.8rem;
+            color: #6b6762;
+            line-height: 1.3;
+            margin: 0 auto;
+        }
+
+        /* ===== MOBILE STYLES (max-width: 900px) ===== */
+        @media (max-width: 900px) {
+            /* remove border, background, shadow for cleaner look */
+            .amenities-split-box {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1.5rem 0;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .amenities-title {
+                border-right: none;
+                border-bottom: 2px solid #097684;
+                padding-right: 0;
+                padding-bottom: 0.8rem;
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                width: 100%;
+                font-size: 1.8rem;
+            }
+            
+            /* amenities-flex becomes normal column layout (no overflow) */
+            .amenities-flex {
+                flex-direction: column;
+                align-items: center;
+                overflow-x: visible;        /* no horizontal scroll */
+                gap: 1rem;
+                padding: 0;
+                width: 100%;
+                background: transparent;
+            }
+            
+            /* rows stack vertically, each row centers its items */
+            .amenities-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;             /* allow wrapping if screen too small */
+                gap: 1rem;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+            }
+            
+            /* smaller amenity items on mobile */
+            .amenity-item {
+                min-width: 100px;
+                max-width: 120px;
+            }
+            
+            .amenity-item i {
+                font-size: 1.8rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            .amenity-item h4 {
+                font-size: 0.9rem;
+                white-space: normal;
+                line-height: 1.2;
+            }
+            
+            .amenity-item p {
+                font-size: 0.7rem;
+                line-height: 1.2;
+            }
+            
+            /* for very small screens, let items take more width */
+            @media (max-width: 480px) {
+                .amenity-item {
+                    min-width: 90px;
+                    max-width: 100px;
+                }
+                .amenity-item i {
+                    font-size: 1.6rem;
+                }
+                .amenity-item h4 {
+                    font-size: 0.8rem;
+                }
+                .amenity-item p {
+                    font-size: 0.65rem;
+                }
+            }
+        }
+
+        /* desktop adjustments */
+        @media (min-width: 901px) {
+            .amenities-flex {
+                flex-direction: column;
+            }
+            .amenities-row {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- unified box with title + amenities -->
+        <div class="amenities-split-box">
+            <div class="amenities-title">
+                <h2>What Sonitori offers</h2>
+            </div>
+            <div class="amenities-flex">
+                <!-- First row - exactly 3 items -->
+                <div class="amenities-row">
+                    <div class="amenity-item">
+                        <i class="fas fa-concierge-bell"></i>
+                        <h4>Room Service</h4>
+                        <p>24/7 in-room dining</p>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-wifi"></i>
+                        <h4>Free Wi‑Fi</h4>
+                        <p>High-speed internet</p>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-parking"></i>
+                        <h4>Parking</h4>
+                        <p>Secure on-site</p>
+                    </div>
+                </div>
+                <!-- Second row - exactly 2 items (centered via flex) -->
+                <div class="amenities-row">
+                    <div class="amenity-item">
+                        <i class="fas fa-shuttle-van"></i>
+                        <h4>Pick up/drop</h4>
+                        <p>Airport transfers</p>
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-shuttle-van"></i>
+                        <h4>City Shuttle</h4>
+                        <p>Free city rides</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

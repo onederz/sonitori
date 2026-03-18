@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Contact Us · Sonitori Phnom Penh</title>
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../bookingsPopup/booking.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body {
+            background-color: #f5f3f0;
+            color: #2c2b2a;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-size: 1rem;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        /* ===== NAVIGATION (from rooms page) ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: #fff;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+            padding: 0.7rem 5%;
+            border-bottom: 1px solid #e2ddd6;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: brightness(0.9);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #3b3a38;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #097684; }
+        .nav-links a.active { 
+            font-weight: 500; 
+            color: #097684;
+            border-bottom: 1px solid #097684;
+            margin-bottom: -1px;
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        /* desktop book now button */
+        .desktop-book-btn {
+            background: transparent;
+            border: 1px solid #097684;
+            color: #097684;
+            padding: 0.5rem 2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .desktop-book-btn:hover {
+            background: #097684;
+            border-color: #097684;
+            color: white;
+        }
+
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            color: #4a4540;
+            cursor: pointer;
+        }
+
+        /* ===== MOBILE SIDEBAR ===== */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 90%;
+            max-width: 350px;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 2000;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            padding: 3rem 0rem 2rem;
+            overflow-y: auto;
+            border-left: none;
+        }
+
+        .mobile-sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-logo {
+            padding: 0 20px 20px 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .sidebar-logo img {
+            height: 45px;
+            width: auto;
+            filter: brightness(0.9);
+        }
+
+        .sidebar-social {
+            margin-top: 30px;
+            padding: 20px 0 0 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .sidebar-social h4 {
+            color: #3b3a38;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-social .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .sidebar-social .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(9,118,132,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #097684;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 0 !important;
+        }
+
+        .sidebar-social .social-icons a:hover {
+            background: #097684;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(9,118,132,0.3);
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #097684;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+        .close-sidebar:hover { transform: scale(1.1); }
+
+        .mobile-sidebar .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0 0px 0 30px;
+        }
+
+        .mobile-sidebar .sidebar-links a {
+            padding-left: 20px;
+        }
+
+        .mobile-sidebar a, .dropdown-toggle-mobile {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #3b3a38;
+            font-weight: 400;
+            padding: 0.9rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: none;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
+            border-bottom: none;
+        }
+
+        .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
+            width: 1.6rem;
+            font-size: 1rem;
+            color: #097684;
+            text-align: center;
+        }
+
+        .dropdown-toggle-mobile {
+            justify-content: space-between;
+            padding: 0.9rem 20px;
+        }
+        .dropdown-toggle-mobile .dropdown-icon-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .dropdown-toggle-mobile .arrow-icon {
+            font-size: 0.9rem;
+            color: #7b6e61;
+            transition: transform 0.3s ease;
+        }
+        .dropdown-toggle-mobile.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .mobile-sidebar a.active {
+            color: #097684;
+            font-weight: 500;
+            background: rgba(9,118,132,0.08);
+            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 12px 0 0 12px;
+            padding-left: 20px;
+        }
+
+        .dropdown-menu-mobile {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            visibility: hidden;
+            transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
+            margin-left: 2.6rem;
+            padding-left: 0.2rem;
+            background: transparent;
+            border-left: none;
+        }
+
+        .dropdown-menu-mobile.show {
+            grid-template-rows: 1fr;
+            opacity: 1;
+            visibility: visible;
+            transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
+        }
+
+        .dropdown-menu-mobile > div {
+            overflow: hidden;
+        }
+
+        .dropdown-menu-mobile a {
+            padding: 0.7rem 0 0.7rem 0.2rem;
+            font-size: 1.1rem;
+            color: #4f4a44;
+            border-bottom: none;
+            transition: color 0.2s, padding-left 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .dropdown-menu-mobile a i {
+            width: 1.4rem;
+            font-size: 1rem;
+            color: #097684;
+        }
+        .dropdown-menu-mobile a:hover {
+            color: #097684;
+            padding-left: 0.5rem;
+            background: none;
+        }
+
+        .mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
+            color: #097684;
+            background: rgba(9,118,132,0.04);
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0s 0.4s;
+        }
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease, visibility 0s 0s;
+        }
+
+        /* ===== FIXED BOTTOM BOOK NOW BUTTON ===== */
+        .mobile-fixed-book {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: #097684;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
+            z-index: 1500;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(2px);
+            width: auto;
+            max-width: calc(100% - 40px);
+        }
+        .mobile-fixed-book:active {
+            background: #065a66;
+            transform: scale(0.96);
+            box-shadow: 0 6px 20px rgba(9,118,132,0.6);
+        }
+        .mobile-fixed-book i {
+            font-size: 1rem;
+            padding-bottom: 1px;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .mobile-menu-icon { display: block; }
+            .desktop-book-btn { display: none; }
+        }
+
+        @media (min-width: 901px) {
+            .mobile-fixed-book { display: none; }
+        }
+
+        /* ===== DROPDOWN STYLES (desktop) ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 50px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border: 1px solid #eae6e0;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #3b3a38;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f6f4;
+            color: #097684;
+            padding-left: 2rem;
+        }
+
+        /* main container */
+        .contact-page {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 4rem;
+            background: #ffffff;
+            box-shadow: 0 0 40px rgba(0,0,0,0.02);
+            border-radius: 0 0px 20px 20px;
+        }
+
+        /* headings */
+        .section-heading {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #2f2e2b;
+            border-bottom: 2px solid #097684;
+            padding-bottom: 0.7rem;
+            margin: 0 0 1rem 0;
+        }
+
+        .sub-heading {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #4a3f36;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* intro text */
+        .intro-text {
+            color: #4f4942;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== CONTACT INFO GRID ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.5rem;
+            margin: 3rem 0 4rem;
+        }
+
+        .contact-card {
+            background: #fcfaf8;
+            border-radius: 16px;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            border: 1px solid #f0ece6;
+            display: flex;
+            flex-direction: column;
+            height: 100%; 
+        }
+
+        .contact-card .contact-link {
+            margin-top: auto;
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(9,118,132,0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .contact-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(0.4);
+            transition: filter 0.3s ease;
+        }
+
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #3b342e;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-detail {
+            color: #5f5a54;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-detail.highlight {
+            color: #097684;
+            font-weight: 500;
+        }
+
+        .contact-link {
+            display: inline-block;
+            color: #097684;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #e0d8d0;
+            border-radius: 40px;
+            transition: all 0.2s ease;
+            margin-top: auto;
+        }
+
+        .contact-link:hover {
+            background: #097684;
+            color: white;
+            border-color: #097684;
+        }
+
+        /* ===== INFO SECTION ===== */
+        .info-section {
+            background: linear-gradient(to right, #f8f6f4, #faf9f7);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .info-title {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #3b342e;
+            margin-bottom: 2rem;
+            border-left: 5px solid #097684;
+            padding-left: 1.5rem;
+        }
+
+        .info-text {
+            color: #4f4942;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            column-count: 2;
+            column-gap: 3rem;
+        }
+
+        .info-text p {
+            margin-bottom: 1rem;
+            break-inside: avoid;
+        }
+
+        /* ===== MAP SECTION ===== */
+        .map-section {
+            margin: 4rem 0;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(9,118,132,0.1);
+            border: 1px solid #e2ddd6;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 450px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0 1rem;
+        }
+        
+        .back-to-top a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #097684;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .back-to-top a:hover {
+            background: #065a66;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(9, 118, 132, 0.4);
+        }
+        
+        .back-to-top a i {
+            font-size: 1.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        .footer {
+            background: #1f2a2e;
+            color: #ddd;
+            padding: 3rem 2rem 1rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        
+        .footer-col {
+            flex: 1 1 200px;
+        }
+        
+        .footer-logo img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .footer h4 {
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .footer a:hover { color: #097684; }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .social-icons a {
+            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        
+        .social-icons a:hover { background: #097684; }
+        
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid #3a4549;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .payment-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .payment-icons img {
+            height: 28px;
+        }
+
+        /* scroll animations */
+        .content-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .section-heading { font-size: 2.5rem; }
+            .info-text { column-count: 1; }
+            .contact-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        }
+
+        @media (max-width: 600px) {
+            .contact-page { padding: 5rem 1rem 2rem; }
+            .info-section { padding: 2rem; }
+            .map-container { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (from rooms page) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html">
+                <div class="logo">
+                <img src="../images/logo.png" alt="Sonitori Logo">
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../rooms/index.html">Rooms</a>
+                <a href="../event/index.html">Events</a>
+                <a href="../gallery/index.html">Gallery</a>
+                <div class="dropdown">
+                    <a href="" class="dropdown-trigger">About Us <span class="dropdown-arrow"><i class="fa-solid fa-angle-down"></i></span></a>
+                    <div class="dropdown-menu">
+                        <a href="../about-us/our-story/index.html">Our Story</a>
+                        <a href="../about-us/community/index.html">Community</a>
+                        <a href="../about-us/reviews/index.html">Review</a>
+                        <a href="../about-us/press-library/index.html">Press Library</a>
+                    </div>
+                </div>
+                <a href="" class="active">Contact Us</a>
+            </div>
+            <!-- desktop book now button -->
+            <button class="desktop-book-btn" id="desktopBookBtn">Book Now</button>
+            <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <!-- Mobile sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-circle-xmark"></i></button>
+        
+        <div class="sidebar-logo">
+            <img src="../images/logo.png" alt="Sonitori Logo">
+        </div>
+        
+        <div class="sidebar-links">
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="../rooms/index.html"><i class="fa-solid fa-bed"></i> Rooms</a>
+            <a href="../event/index.html"><i class="fa-regular fa-calendar"></i> Events</a>
+            <a href="../gallery/index.html"><i class="fa-regular fa-images"></i> Gallery</a>
+            
+            <div class="mobile-dropdown">
+                <button class="dropdown-toggle-mobile" id="aboutDropdownToggle">
+                    <span class="dropdown-icon-group">
+                        <i class="fa-regular fa-address-card"></i> About Us
+                    </span>
+                    <i class="fa-solid fa-angle-down arrow-icon"></i>
+                </button>
+                <div class="dropdown-menu-mobile" id="aboutMobileMenu">
+                    <div>
+                        <a href="../about-us/our-story/index.html"><i class="fa-regular fa-compass"></i> Our Story</a>
+                        <a href="../about-us/community/index.html"><i class="fa-regular fa-handshake"></i> Community</a>
+                        <a href="../about-us/reviews/index.html"><i class="fa-regular fa-star"></i> Review</a>
+                        <a href="../about-us/press-library/index.html"><i class="fa-regular fa-newspaper"></i> Press Library</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="" class="active"><i class="fa-regular fa-envelope"></i> Contact Us</a>
+            
+            <div class="sidebar-social">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed bottom Book Now button -->
+    <button class="mobile-fixed-book" id="mobileFixedBook"><i class="fa-solid fa-calendar"></i> BOOK NOW</button>
+
+    <!-- Popup overlay + calendar -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="calendar-popup" id="calendarPopup">
+        <div class="popup-header">
+            <h3>Select dates</h3>
+            <button class="close-popup" id="closePopupBtn"><i class="fa-solid fa-circle-xmark"></i></button>
+        </div>
+        
+        <div class="calendar-container" id="calendarContainer">
+            <!-- dynamic JS will fill two months -->
+        </div>
+        
+        <div class="popup-footer">
+            <div class="night-count">
+                <span id="nightsValue">0</span> nights
+            </div>
+            <button class="search-btn" id="searchDatesBtn" disabled>Search</button>
+        </div>
+    </div>
+
+    <main class="contact-page">
+        <!-- main heading -->
+        <div class="section-heading content-section" id="mainHeading">Contact Us</div>
+
+        <!-- sub heading -->
+        <div class="sub-heading content-section" id="subHeading">Sonitori Phnom Penh</div>
+
+        <!-- intro text -->
+        <div class="intro-text content-section" id="intro">
+            <p>Contact us by our inquiry form, and we will revert within 12 hours. Or call us or use regular email.</p>
+        </div>
+
+        <!-- contact info grid -->
+        <div class="contact-grid content-section" id="contactGrid">
+            <!-- Address Card -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/location-pin.png" alt="Address">
+                </div>
+                <h3>ADDRESS</h3>
+                <div class="contact-detail">#29 Street 71, BKK1</div>
+                <div class="contact-detail highlight">Phnom Penh, 120102</div>
+                <div class="contact-detail">Cambodia</div>
+                <a href="https://maps.google.com/?q=Rambutan+Resort+Phnom+Penh" class="contact-link" target="_blank">
+                    <i class="fa-regular fa-map"></i> Get Directions
+                </a>
+            </div>
+
+            <!-- Front Desk Card -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/front-desk.png" alt="Front Desk">
+                </div>
+                <h3>FRONT DESK</h3>
+                <div class="contact-detail highlight">
+                    <i class="fa-solid fa-phone"></i> +855 (0)23 993400
+                </div>
+                <div class="contact-detail">24/7 Assistance</div>
+                <a href="tel:+85523993400" class="contact-link">
+                    <i class="fa-solid fa-phone"></i> Call Now
+                </a>
+            </div>
+
+            <!-- Mobile Card -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/mobile.png" alt="Mobile">
+                </div>
+                <h3>MOBILE</h3>
+                <div class="contact-detail highlight">
+                    <i class="fa-solid fa-mobile-screen"></i> +855 (0)17 992 240
+                </div>
+                <div class="contact-detail">WhatsApp Available</div>
+                    <a href="tel:+85517992240" class="contact-link">
+                        <i class="fa-solid fa-phone"></i> Call
+                    </a>
+                    <a href="https://wa.me/85517992240" class="contact-link" target="_blank" style="margin-top: 5px;">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+            </div>
+
+            <!-- Reservation Card -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/reservation.png" alt="Reservation">
+                </div>
+                <h3>RESERVATION</h3>
+                <div class="contact-detail highlight">
+                    <i class="fa-solid fa-phone"></i> +855 (0)11 355 534
+                </div>
+                <div class="contact-detail">Bookings & Inquiries</div>
+                <a href="tel:+85511355534" class="contact-link">
+                    <i class="fa-solid fa-calendar-check"></i> Book Now
+                </a>
+            </div>
+
+            <!-- Email Card -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/email.png" alt="Email">
+                </div>
+                <h3>EMAIL</h3>
+                <div class="contact-detail highlight" style="font-size: 0.9rem;">
+                    bookings@sonitori.com
+                </div>
+                <div class="contact-detail">General Inquiries</div>
+                <a href="mailto:bookings@sonitori.com" class="contact-link">
+                    <i class="fa-regular fa-envelope"></i> Send Email
+                </a>
+            </div>
+        </div>
+
+        <!-- information section -->
+        <div class="info-section content-section" id="infoSection">
+            <h2 class="info-title">About Phnom Penh</h2>
+            <div class="info-text">
+                <p>Phnom Penh is the capital of Cambodia, located in the middle of the country and is the gateway to all different areas of Cambodia, like the coast in the South, the countryside in the North East, the Angkor region in the West and the river area in the middle.</p>
+                
+                <p>Sonitori Resort is settled in a quiet area in the centre of the city, close to many interesting area's like the Toul Sleng Museum, many Pagodas, the Russian Market, The independency Monument, restaurants, bars and coffee places.</p>
+                
+                <p>Phnom Penh is famous for its colonial and Chinese-style, and the world renowed Modern Khmer architectural style of the early 60, the hight of Khmer architecture. Next to the popular temples, royal palace and museum, there are lots of other activities to choose from e.g. visiting the silk Island close to the city, rice-paddy countryside, fishing villages and bird sanctuary near the Mekong.</p>
+                
+                <p>Access to Phnom Penh is easy. Many international and national airlines have regular flights to Phnom Penh airport, just 20 minutes from the Resort. Bus services from all the countryside area go frequently, or taxi or boat services are available.</p>
+            </div>
+        </div>
+
+        <!-- map section -->
+        <div class="map-section content-section" id="mapSection">
+            <div class="map-container">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Rambutan%20Resort%2C%2029%20Street%2071%2C%20Phnom%20Penh%2C%20Cambodia&t=m&z=15&output=embed"
+                    title="Sonitori Resort Location"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+    <!-- back to top -->
+    <div class="back-to-top">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col footer-logo">
+                <img src="../images/Logo-white.png" alt="Sonitori">
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINK</h4>
+                <a href="https://maps.app.goo.gl/A1VpfBTSutvgNhrm9">Map</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="../policy-privacy/index.html">Policy Privacy</a>
+            </div>
+            <div class="footer-col">
+                <h4>RESERVATION</h4>
+                <a href="tel:+855011355534">+855(0)11 355 534</a>
+                <a href="mailto:bookings@sonitori.com">bookings@sonitori.com</a>
+            </div>
+            <div class="footer-col">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="payment-icons">
+                <span>Pay way :</span>
+                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
+                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+            </div>
+            <div>Copyright © Sonitori Phnom Penh</div>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        // ===== MOBILE SIDEBAR FUNCTIONALITY =====
+        const mobileIcon = document.querySelector('.mobile-menu-icon');
+        const sidebar = document.getElementById('mobileSidebar');
+        const overlay = document.getElementById('mobileOverlay');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const dropdownToggle = document.getElementById('aboutDropdownToggle');
+        const aboutMobileMenu = document.getElementById('aboutMobileMenu');
+
+        function openMobileMenu() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (mobileIcon) mobileIcon.addEventListener('click', openMobileMenu);
+        if (closeSidebar) closeSidebar.addEventListener('click', closeMobileMenu);
+        if (overlay) overlay.addEventListener('click', closeMobileMenu);
+
+        // SMOOTH DROPDOWN animation
+        if (dropdownToggle && aboutMobileMenu) {
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.toggle('open');
+                
+                if (aboutMobileMenu.classList.contains('show')) {
+                    aboutMobileMenu.classList.remove('show');
+                } else {
+                    aboutMobileMenu.classList.add('show');
+                }
+            });
+            
+            // start closed
+            aboutMobileMenu.classList.remove('show');
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900 && sidebar && sidebar.classList.contains('open')) {
+                closeMobileMenu();
+            }
+        });
+
+        // ===== BOOK NOW BUTTONS =====
+        function openBookingPopup() {
+            const overlay = document.getElementById('popupOverlay');
+            const popup = document.getElementById('calendarPopup');
+            if (overlay && popup) {
+                overlay.classList.add('active');
+                popup.classList.add('active');
+            }
+        }
+
+        document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
+        document.getElementById('mobileFixedBook')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            openBookingPopup();
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const animatedElements = [
+            document.getElementById('mainHeading'),
+            document.getElementById('subHeading'),
+            document.getElementById('intro'),
+            document.getElementById('contactGrid'),
+            document.getElementById('infoSection'),
+            document.getElementById('mapSection')
+        ].filter(el => el);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        animatedElements.forEach(el => {
+            el.classList.add('content-section');
+            observer.observe(el);
+        });
+
+        console.log('Contact page loaded with Sonitori theme');
+    })();
+    </script>
+    <script src="../bookingsPopup/booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../bookingsPopup/booking.css">
+    <title>Rooms · Sonitori Phnom Penh</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    background-color: #f5f3f0;
+    color: #2c2b2a;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+/* ===== NAVIGATION (unchanged) ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+    padding: 0.7rem 5%;
+    border-bottom: 1px solid #e2ddd6;
+}
+
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    filter: brightness(0.9);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.2rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #3b3a38;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover { color: #097684; }
+.nav-links a.active { 
+    font-weight: 500; 
+    color: #097684;
+    border-bottom: 1px solid #097684;
+    margin-bottom: -1px;
+    pointer-events: none;
+    cursor: default;
+}
+
+.desktop-book-btn {
+    background: transparent;
+    border: 1px solid #097684;
+    color: #097684;
+    padding: 0.5rem 2rem;
+    border-radius: 40px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.desktop-book-btn:hover {
+    background: #097684;
+    border-color: #097684;
+    color: white;
+}
+
+.mobile-menu-icon {
+    display: none;
+    font-size: 1.8rem;
+    color: #4a4540;
+    cursor: pointer;
+}
+
+/* ===== MOBILE SIDEBAR (unchanged) ===== */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 90%;
+    max-width: 350px;
+    height: 100vh;
+    background: #ffffff;
+    z-index: 2000;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+    transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 3rem 0rem 2rem;
+    overflow-y: auto;
+    border-left: none;
+}
+
+.mobile-sidebar.open {
+    right: 0;
+}
+
+.sidebar-logo {
+    padding: 0 20px 20px 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.sidebar-logo img {
+    height: 45px;
+    width: auto;
+    filter: brightness(0.9);
+}
+
+.sidebar-social {
+    margin-top: 30px;
+    padding: 20px 0 0 20px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.sidebar-social h4 {
+    color: #3b3a38;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.sidebar-social .social-icons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.sidebar-social .social-icons a {
+    width: 40px;
+    height: 40px;
+    background: rgba(9,118,132,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #097684;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+}
+
+.sidebar-social .social-icons a:hover {
+    background: #097684;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(9,118,132,0.3);
+}
+
+.close-sidebar {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #097684;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+.close-sidebar:hover { transform: scale(1.1); }
+
+.mobile-sidebar .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0 0px 0 30px;
+}
+
+.mobile-sidebar .sidebar-links a {
+    padding-left: 20px;
+}
+
+.mobile-sidebar a, .dropdown-toggle-mobile {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #3b3a38;
+    font-weight: 400;
+    padding: 0.9rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+    border-bottom: none;
+}
+
+.mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
+    width: 1.6rem;
+    font-size: 1rem;
+    color: #097684;
+    text-align: center;
+}
+
+.dropdown-toggle-mobile {
+    justify-content: space-between;
+    padding: 0.9rem 20px;
+}
+.dropdown-toggle-mobile .dropdown-icon-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.dropdown-toggle-mobile .arrow-icon {
+    font-size: 0.9rem;
+    color: #7b6e61;
+    transition: transform 0.3s ease;
+}
+.dropdown-toggle-mobile.open .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.mobile-sidebar a.active {
+    color: #097684;
+    font-weight: 500;
+    background: rgba(9,118,132,0.08);
+    box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 12px 0 0 12px;
+    padding-left: 20px;
+}
+
+.dropdown-menu-mobile {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
+    margin-left: 2.6rem;
+    padding-left: 0.2rem;
+    background: transparent;
+    border-left: none;
+}
+
+.dropdown-menu-mobile.show {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
+}
+
+.dropdown-menu-mobile > div {
+    overflow: hidden;
+}
+
+.dropdown-menu-mobile a {
+    padding: 0.7rem 0 0.7rem 0.2rem;
+    font-size: 1.1rem;
+    color: #4f4a44;
+    border-bottom: none;
+    transition: color 0.2s, padding-left 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.dropdown-menu-mobile a i {
+    width: 1.4rem;
+    font-size: 1rem;
+    color: #097684;
+}
+.dropdown-menu-mobile a:hover {
+    color: #097684;
+    padding-left: 0.5rem;
+    background: none;
+}
+
+.mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
+    color: #097684;
+    background: rgba(9,118,132,0.04);
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s 0.4s;
+}
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease, visibility 0s 0s;
+}
+
+@media (max-width: 900px) {
+    .nav-links { display: none; }
+    .mobile-menu-icon { display: block; }
+    .desktop-book-btn { display: none; }
+}
+
+.mobile-fixed-book {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: #097684;
+    color: white;
+    border: none;
+    border-radius: 60px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(9,118,132,0.5);
+    z-index: 1500;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    border: 2px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(2px);
+    width: auto;
+    max-width: calc(100% - 40px);
+}
+.mobile-fixed-book:active {
+    background: #065a66;
+    transform: scale(0.96);
+    box-shadow: 0 6px 20px rgba(9,118,132,0.6);
+}
+.mobile-fixed-book i {
+    font-size: 1rem;
+    padding-bottom: 1px;
+}
+
+@media (min-width: 901px) {
+    .mobile-fixed-book { display: none; }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 50px;
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border: 1px solid #eae6e0;
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.7rem 1.5rem;
+    color: #3b3a38;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background: #f8f6f4;
+    color: #097684;
+    padding-left: 2rem;
+}
+
+/* ===== ROOM BLOCK STYLES ===== */
+.room-block {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 1rem;
+    background: #ffffff;
+    box-shadow: 0 0 40px rgba(0,0,0,0.02);
+    border-radius: 0 0px 20px 20px;
+}
+
+.rooms-main-heading {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #2f2e2b;
+    border-bottom: 2px solid #097684;
+    padding-bottom: 0.7rem;
+    margin-bottom: 2rem;
+}
+
+.room-section {
+    scroll-margin-top: 100px;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee7e0;
+    padding-bottom: 2.5rem;
+}
+.room-section:last-of-type {
+    border-bottom: none;
+}
+
+.room-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: #fcfaf8;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.02);
+    transition: box-shadow 0.3s;
+    position: relative;
+}
+.room-card:hover {
+    box-shadow: 0 16px 32px -8px rgba(0,0,0,0.08);
+}
+
+.room-image {
+    flex: 1 1 45%;
+    min-width: 280px;
+    aspect-ratio: 4 / 3;
+    background: #ddd6cc;
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y pinch-zoom;
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+    cursor: grab;
+}
+.carousel-track:active {
+    cursor: grabbing;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    pointer-events: none;
+}
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #3b342e;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 15;
+    transition: opacity 0.2s, background 0.2s;
+    opacity: 0;
+    pointer-events: none;
+}
+.room-image:hover .carousel-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+.carousel-btn:hover {
+    background: #ffffff;
+    color: #097684;
+}
+.prev-btn {
+    left: 12px;
+}
+.next-btn {
+    right: 12px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 15;
+    background: rgba(0,0,0,0.25);
+    padding: 5px;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
+    opacity: 1;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.dot.active {
+    width: 20px;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+.dot:hover {
+    background-color: rgba(255,255,255,0.9);
+}
+
+.room-description {
+    flex: 1 1 45%;
+    padding: 2rem 2rem 2rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.room-title {
+    font-size: 2rem;
+    font-weight: 340;
+    letter-spacing: 1.5px;
+    color: #3b342e;
+    margin-bottom: 1rem;
+    border-left: 5px solid #097684;
+    padding-left: 1.2rem;
+}
+
+.room-text {
+    color: #4f4942;
+    margin-bottom: 1.8rem;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.room-features {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem 2rem;
+    margin-bottom: 2rem;
+}
+.room-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #5e554b;
+}
+.room-features i {
+    color: #097684;
+    width: 1.2rem;
+}
+
+.room-link {
+    text-decoration: none;
+    color: #097684;
+    font-weight: 500;
+    border-bottom: 1px solid #d6cbbc;
+    padding-bottom: 2px;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 1rem;
+}
+.room-link:hover {
+    color: #065a66;
+    border-bottom-color: #065a66;
+}
+
+/* ===== COMPACT DETAIL PANEL ===== */
+.detail-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fcfaf8;
+    padding: 1rem 1.2rem;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    overflow-y: auto;
+}
+
+.detail-panel.active {
+    transform: translateX(0);
+}
+
+.panel-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: #2c2b2a;
+    border-left: 4px solid #097684;
+    padding-left: 0.8rem;
+    line-height: 1.2;
+}
+
+.panel-text {
+    font-size: 1rem;
+    line-height: 1.3;
+    color: #4a433b;
+    margin-bottom: 0.8rem;
+    padding-right: 0.3rem;
+}
+
+.panel-amenities {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.2rem 0.8rem;
+    margin-bottom: 0.8rem;
+    padding: 0.2rem 0;
+}
+
+.panel-amenities li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    color: #5e554b;
+    padding: 0.1rem 0;
+    border-bottom: 1px dotted #e0d9d0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.panel-amenities i {
+    color: #097684;
+    width: 1rem;
+    font-size: 0.75rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.panel-close {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: #097684;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-bottom: 1px solid #d6cbbc;
+    padding-bottom: 2px;
+    margin-top: 0.2rem;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.panel-close:hover {
+    color: #065a66;
+    border-bottom-color: #065a66;
+}
+
+/* ===== BACK TO TOP ===== */
+.back-to-top {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0 1rem;
+}
+
+.back-to-top a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #097684;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(9, 118, 132, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-to-top a:hover {
+    background: #065a66;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(9, 118, 132, 0.4);
+}
+
+.back-to-top a i {
+    font-size: 1.5rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+/* ===== FOOTER (unchanged) ===== */
+.footer {
+    background: #1f2a2e;
+    color: #ddd;
+    padding: 3rem 2rem 1rem;
+    margin-top: 2rem;
+}
+
+.footer-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.footer-col {
+    flex: 1 1 200px;
+}
+
+.footer-logo img {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.footer h4 {
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.footer a {
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.footer a:hover { color: #097684; }
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.social-icons a {
+    background: rgba(255,255,255,0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+
+.social-icons a:hover { background: #097684; }
+
+.footer-bottom {
+    max-width: 1300px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid #3a4549;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.payment-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.payment-icons img {
+    height: 28px;
+}
+
+/* ===== MOBILE RESPONSIVE IMPROVEMENTS (navbar, sidebar, footer unchanged) ===== */
+
+/* Tablet devices (601px to 900px) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    .room-block {
+        padding: 6rem 1.5rem 1rem;
+    }
+
+    .rooms-main-heading {
+        font-size: 2.2rem;
+    }
+
+    .room-card {
+        gap: 1.5rem;
+    }
+
+    .room-description {
+        padding: 1.5rem 1.5rem 1.5rem 0;
+    }
+
+    .room-title {
+        font-size: 1.8rem;
+    }
+
+    .room-text {
+        font-size: 0.95rem;
+    }
+
+    .detail-panel {
+        padding: 1.2rem;
+    }
+
+    .panel-title {
+        font-size: 1.2rem;
+    }
+
+
+    .panel-amenities {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.2rem 0.6rem;
+    }
+
+    .panel-amenities li {
+        font-size: 0.65rem;
+    }
+}
+
+/* Small devices (600px and down) */
+@media only screen and (max-width: 600px) {
+    .room-block {
+        padding: 5rem 1rem 1rem;
+    }
+
+    .rooms-main-heading {
+        font-size: 1.8rem;
+        letter-spacing: 3px;
+        margin-bottom: 1.5rem;
+    }
+
+    .room-card {
+        gap: 1rem;
+        border-radius: 12px;
+    }
+
+    .room-description {
+        padding: 0 1rem 1.5rem 1rem;
+    }
+
+    .room-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+        border-left-width: 4px;
+        padding-left: 0.8rem;
+    }
+
+    .room-text {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1.2rem;
+    }
+
+    .room-features {
+        gap: 0.8rem 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .room-features li {
+        font-size: 0.8rem;
+        gap: 0.4rem;
+    }
+
+    .room-features i {
+        width: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .room-link {
+        font-size: 0.9rem;
+    }
+
+    /* Carousel adjustments for mobile */
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+        opacity: 1;
+        pointer-events: auto;
+        background: rgba(255,255,255,0.95);
+    }
+
+    .carousel-dots {
+        bottom: 10px;
+        padding: 4px 8px;
+    }
+
+    .dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .dot.active {
+        width: 16px;
+    }
+
+    /* Detail panel mobile optimization */
+    .detail-panel {
+        padding: 0.8rem;
+    }
+
+    .panel-title {
+        font-size: 1.1rem;
+        padding-left: 0.6rem;
+        margin-bottom: 0.2rem;
+    }
+
+
+    .panel-amenities {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.1rem 0.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .panel-amenities li {
+        font-size: 0.6rem;
+        gap: 0.3rem;
+        padding: 0.05rem 0;
+    }
+
+    .panel-amenities i {
+        width: 0.8rem;
+        font-size: 0.65rem;
+    }
+
+    .panel-close {
+        font-size: 0.7rem;
+        margin-top: 0.1rem;
+    }
+
+    /* Mobile fixed book button adjustments */
+    .mobile-fixed-book {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.8rem;
+        bottom: 15px;
+        right: 15px;
+        border-radius: 50px;
+    }
+
+    /* Back to top button */
+    .back-to-top {
+        margin: 2rem 0 1rem;
+    }
+
+    .back-to-top a {
+        width: 40px;
+        height: 40px;
+    }
+
+    .back-to-top a i {
+        font-size: 1.1rem;
+    }
+}
+
+/* Extra small devices (400px and down) */
+@media only screen and (max-width: 400px) {
+    .rooms-main-heading {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .room-title {
+        font-size: 1.3rem;
+    }
+
+    .room-text {
+        font-size: 0.8rem;
+    }
+
+    .room-features {
+        gap: 0.6rem 1rem;
+    }
+
+    .room-features li {
+        font-size: 0.7rem;
+    }
+
+    .detail-panel {
+        padding: 0.6rem;
+    }
+
+    .panel-title {
+        font-size: 1.2rem;
+    }
+
+    .panel-text {
+        font-size: 0.8rem;
+        padding-bottom: .5rem;
+    }
+
+    .panel-amenities {
+        grid-template-columns:  repeat(2, 1fr);
+        gap: 0.1rem;
+    }
+
+    .panel-amenities li {
+        font-size: 0.6rem;
+    }
+
+    .mobile-fixed-book {
+        padding: 0.7rem 1rem;
+        font-size: 0.75rem;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .mobile-fixed-book i {
+        font-size: 0.8rem;
+    }
+}
+
+/* Landscape mode optimization */
+@media only screen and (max-height: 500px) and (orientation: landscape) {
+    .room-card {
+        flex-direction: row;
+    }
+
+    .room-image {
+        min-width: 200px;
+    }
+
+    .detail-panel {
+        padding: 0.8rem;
+    }
+
+    .panel-amenities {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .room-link,
+    .panel-close,
+    .carousel-btn,
+    .dot,
+    .mobile-menu-icon,
+    .close-sidebar,
+    .dropdown-toggle-mobile,
+    .sidebar-links a,
+    .social-icons a,
+    .footer a,
+    .back-to-top a {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(9, 118, 132, 0.2);
+    }
+
+    .room-card:hover {
+        box-shadow: 0 8px 24px rgba(0,0,0,0.02);
+    }
+
+    .room-link:hover,
+    .panel-close:hover {
+        color: #097684;
+        border-bottom-color: #d6cbbc;
+    }
+
+    .carousel-btn {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .desktop-book-btn:hover {
+        background: transparent;
+        color: #097684;
+    }
+}
+
+/* Fix for notched phones */
+@supports (padding: max(0px)) {
+    .room-block {
+        padding-left: max(1.5rem, env(safe-area-inset-left));
+        padding-right: max(1.5rem, env(safe-area-inset-right));
+    }
+
+    .mobile-fixed-book {
+        bottom: max(10px, env(safe-area-inset-bottom));
+        right: max(10px, env(safe-area-inset-right));
+    }
+}
+
+/* Smooth scrolling for the whole page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Better touch scrolling for panels */
+.detail-panel,
+.panel-text,
+.panel-amenities {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Loading states for better UX */
+.carousel-slide img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-slide img[loading="lazy"] {
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html">
+                <div class="logo">
+                <img src="../images/logo.png" alt="Sonitori Logo">
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="" style="pointer-events: none;" class="active">Rooms</a>
+                <a href="../event/index.html">Events</a>
+                <a href="../gallery/index.html">Gallery</a>
+                <div class="dropdown">
+                    <a href="" class="dropdown-trigger">About Us <span class="dropdown-arrow"><i class="fa-solid fa-angle-down"></i></span></a>
+                    <div class="dropdown-menu">
+                        <a href="../about-us/our-story/index.html">Our Story</a>
+                        <a href="../about-us/community/index.html">Community</a>
+                        <a href="../about-us/reviews/index.html">Review</a>
+                        <a href="../about-us/press-library/index.html">Press Library</a>
+                    </div>
+                </div>
+                <a href="../contact-us/index.html">Contact Us</a>
+            </div>
+            <button class="desktop-book-btn" id="desktopBookBtn">Book Now</button>
+            <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <!-- Mobile sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-circle-xmark"></i></button>
+        <div class="sidebar-logo">
+            <img src="../images/logo.png" alt="Sonitori Logo">
+        </div>
+        <div class="sidebar-links">
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="" class="active"><i class="fa-solid fa-bed"></i> Rooms</a>
+            <a href="../event/index.html"><i class="fa-regular fa-calendar"></i> Events</a>
+            <a href="../gallery/index.html"><i class="fa-regular fa-images"></i> Gallery</a>
+            <div class="mobile-dropdown">
+                <button class="dropdown-toggle-mobile" id="aboutDropdownToggle">
+                    <span class="dropdown-icon-group">
+                        <i class="fa-regular fa-address-card"></i> About Us
+                    </span>
+                    <i class="fa-solid fa-angle-down arrow-icon"></i>
+                </button>
+                <div class="dropdown-menu-mobile" id="aboutMobileMenu">
+                    <div>
+                        <a href="../about-us/our-story/index.html"><i class="fa-regular fa-compass"></i> Our Story</a>
+                        <a href="../about-us/community/index.html"><i class="fa-regular fa-handshake"></i> Community</a>
+                        <a href="../about-us/reviews/index.html"><i class="fa-regular fa-star"></i> Review</a>
+                        <a href="../about-us/press-library/index.html"><i class="fa-regular fa-newspaper"></i> Press Library</a>
+                    </div>
+                </div>
+            </div>
+            <a href="../contact-us/index.html"><i class="fa-regular fa-envelope"></i> Contact Us</a>
+            <div class="sidebar-social">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed bottom Book Now button -->
+    <button class="mobile-fixed-book" id="mobileFixedBook"><i class="fa-solid fa-calendar"></i> BOOK NOW</button>
+
+    <!-- Popup overlay + calendar -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="calendar-popup" id="calendarPopup">
+        <div class="popup-header">
+            <h3>Select dates</h3>
+            <button class="close-popup" id="closePopupBtn"><i class="fa-solid fa-circle-xmark"></i></button>
+        </div>
+        <div class="calendar-container" id="calendarContainer"></div>
+        <div class="popup-footer">
+            <div class="night-count">
+                <span id="nightsValue">0</span> nights
+            </div>
+            <button class="search-btn" id="searchDatesBtn" disabled>Search</button>
+        </div>
+    </div>
+
+    <div class="room-block">
+        <div class="rooms-main-heading">ROOMS</div>
+
+        <!-- Standard Room -->
+        <section id="standard-room" class="room-section">
+            <div class="room-card" id="card-standard">
+                <div class="room-image js-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-04.jpeg" alt="Standard main" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-05-13.39.51.jpeg" alt="Standard extra 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-09.jpg" alt="Standard extra 2" loading="lazy"></div>
+                    </div>
+                    <button class="carousel-btn prev-btn" aria-label="Previous image"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="carousel-btn next-btn" aria-label="Next image"><i class="fa-solid fa-angle-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="room-description">
+                    <h2 class="room-title">Standard Room</h2>
+                    <p class="room-text">Cosy and intimate, our Standard Room offers a peaceful retreat after a Phnom Penh adventure. Warm wooden accents, a comfortable queen bed, and an en‑suite bathroom with rain shower.</p>
+                    <ul class="room-features">
+                        <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
+                        <li><i class="fa-solid fa-recycle"></i> Recycling</li>
+                        <li><i class="fa-solid fa-wifi"></i> Free Wi-Fi</li>
+                        <li><i class="fa-solid fa-wind"></i> A/C + ceiling fan</li>
+                    </ul>
+                    <button class="room-link view-detail-btn" data-room="standard">view details →</button>
+                </div>
+                <div class="detail-panel" id="panel-standard">
+                    <h3 class="panel-title">Standard Room</h3>
+                    <p class="panel-text">Our Standard garden view rooms (28 m²) are located on the first floor of the renovated '60 Khmer Style Villa. It has a large bedroom with 2 beds including a queen-size bed with pocket spring comfort zones mattress, bathroom with Rain-Shower, reading chair and writing desk, daybed, fully stocked fridge and safety. Bathroom.</p>
+                    <ul class="panel-amenities">
+                        <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
+                        <li><i class="fa-solid fa-bottle-water"></i> Reusable Plastic</li>
+                        <li><i class="fa-solid fa-solar-panel"></i> Green Energy</li>
+                        <li><i class="fa-solid fa-recycle"></i> Recycling</li>
+                        <li><i class="fa-solid fa-wifi"></i> Free Wifi</li>
+                        <li><i class="fa-solid fa-tree"></i> Outdoor Seating</li>
+                        <li><i class="fa-regular fa-snowflake"></i> Air-Conditioning</li>
+                        <li><i class="fa-solid fa-fan"></i> Fan</li>
+                        <li><i class="fa-solid fa-bed"></i> Queen Bed</li>
+                        <li><i class="fa-solid fa-wine-bottle"></i> Mini-Bar</li>
+                        <li><i class="fa-solid fa-mug-hot"></i> Tea/Coffee</li>
+                        <li><i class="fa-solid fa-wine-glass"></i> Glassware</li>
+                        <li><i class="fa-solid fa-lock"></i> Electronic Safe</li>
+                        <li><i class="fa-solid fa-tv"></i> TV</li>
+                        <li><i class="fa-solid fa-compact-disc"></i> DVD</li>
+                        <li><i class="fa-solid fa-pump-soap"></i> Shampoo/Gel</li>
+                        <li><i class="fa-solid fa-shower"></i> Rain Shower</li>
+                        <li><i class="fa-solid fa-wardrobe"></i> Wardrobe</li>
+                        <li><i class="fa-solid fa-wind"></i> Hair Dryer</li>
+                        <li><i class="fa-solid fa-bolt"></i> AC 220 Volt</li>
+                        <li><i class="fa-solid fa-chair"></i> Armchair</li>
+                        <li><i class="fa-solid fa-pen"></i> Writing Desk</li>
+                        <li><i class="fa-solid fa-soap"></i> Amenities</li>
+                    </ul>
+                    <button class="panel-close close-panel">← close</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deluxe Garden -->
+        <section id="deluxe-garden" class="room-section">
+            <div class="room-card" id="card-garden">
+                <div class="room-image js-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Rambutan_Resort_PP_High_Res_06411-3.jpg" alt="Garden extra 3" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Photo-Rambutan-PP-16-1.jpg" alt="Garden main" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Photo-Rambutan-PP-23-1.jpg" alt="Garden extra 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Photo-Rambutan-PP-26-1.jpg" alt="Garden extra 2" loading="lazy"></div>
+                    </div>
+                    <button class="carousel-btn prev-btn" aria-label="Previous image"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="carousel-btn next-btn" aria-label="Next image"><i class="fa-solid fa-angle-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="room-description">
+                    <h2 class="room-title">Deluxe Garden</h2>
+                    <p class="room-text">Overlooking the lush tropical garden, this room brings the outdoors in. A private balcony or terrace lets you enjoy the greenery. Furnished with a king bed and soft lighting.</p>
+                    <ul class="room-features">
+                        <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
+                        <li><i class="fa-solid fa-tree"></i> Garden view</li>
+                        <li><i class="fa-solid fa-umbrella-beach"></i> Outdoor tub</li>
+                        <li><i class="fa-solid fa-bath"></i> Bathtub</li>
+                    </ul>
+                    <button class="room-link view-detail-btn" data-room="garden">view details →</button>
+                </div>
+                <div class="detail-panel" id="panel-garden">
+                    <h3 class="panel-title">Deluxe Garden</h3>
+                    <p class="panel-text">The Deluxe Garden rooms (35 m²) are located on the ground floor of the renovated '60 Khmer Style Villa, have 1 bed—a queen size bed with pocket spring comfort zones mattress, bathroom with Rain Shower, a daybed, fully stocked fridge, safety box, complementary coffee and tea facilities, flat screen multi-channel TV and a private outdoor tropical garden space with seating area and an outdoor Terrazzo bathtub. Bathroom. Outside Bath-tub.</p>
+                    <ul class="panel-amenities">
+                        <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
+                        <li><i class="fa-solid fa-bottle-water"></i> Reusable Plastic</li>
+                        <li><i class="fa-solid fa-solar-panel"></i> Green Energy</li>
+                        <li><i class="fa-solid fa-recycle"></i> Recycling</li>
+                        <li><i class="fa-solid fa-wifi"></i> Free Wifi</li>
+                        <li><i class="fa-solid fa-balcony"></i> Balcony</li>
+                        <li><i class="fa-solid fa-tree"></i> Outdoor Seating</li>
+                        <li><i class="fa-regular fa-snowflake"></i> Air-Conditioning</li>
+                        <li><i class="fa-solid fa-fan"></i> Fan</li>
+                        <li><i class="fa-solid fa-bed"></i> Queen Bed</li>
+                        <li><i class="fa-solid fa-wine-bottle"></i> Mini-Bar</li>
+                        <li><i class="fa-solid fa-mug-hot"></i> Tea/Coffee</li>
+                        <li><i class="fa-solid fa-wine-glass"></i> Glassware</li>
+                        <li><i class="fa-solid fa-lock"></i> Electronic Safe</li>
+                        <li><i class="fa-solid fa-tv"></i> TV</li>
+                        <li><i class="fa-solid fa-compact-disc"></i> DVD</li>
+                        <li><i class="fa-solid fa-pump-soap"></i> Shampoo/Gel</li>
+                        <li><i class="fa-solid fa-shower"></i> Rain Shower</li>
+                        <li><i class="fa-solid fa-wardrobe"></i> Wardrobe</li>
+                        <li><i class="fa-solid fa-wind"></i> Hair Dryer</li>
+                        <li><i class="fa-solid fa-bolt"></i> AC 220 Volt</li>
+                        <li><i class="fa-solid fa-chair"></i> Armchair</li>
+                        <li><i class="fa-solid fa-person-walking"></i> Terrace</li>
+                        <li><i class="fa-solid fa-lightbulb"></i> Ambient Light</li>
+                        <li><i class="fa-solid fa-umbrella-beach"></i> Outdoor tub</li>
+                        <li><i class="fa-solid fa-pen"></i> Writing Desk</li>
+                        <li><i class="fa-solid fa-soap"></i> Amenities</li>
+                    </ul>
+                    <button class="panel-close close-panel">← close</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deluxe Pool -->
+        <section id="deluxe-pool" class="room-section">
+            <div class="room-card" id="card-pool">
+                <div class="room-image js-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-17.jpg" alt="Pool main" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Rambutan_Resort_PP_High_Res_06262-1.jpg" alt="Pool extra 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-03.jpg" alt="Pool extra 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Rambutan-Resort-samjamphoto-34-scaled.jpg" alt="Pool extra 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screenshot-2018-12-23-at-14.46.30-1.jpeg" alt="Pool extra 2" loading="lazy"></div>
+                    </div>
+                    <button class="carousel-btn prev-btn" aria-label="Previous image"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="carousel-btn next-btn" aria-label="Next image"><i class="fa-solid fa-angle-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="room-description">
+                    <h2 class="room-title">Deluxe Pool</h2>
+                    <p class="room-text">Steps away from the resort pool, these rooms feature floor‑to‑ceiling windows and direct access to the terrace. Cool tiled floors and a modern bathroom.</p>
+                    <ul class="room-features">
+                        <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
+                        <li><i class="fa-solid fa-water-ladder"></i> Pool access</li>
+                        <li><i class="fa-regular fa-sun"></i> Private terrace</li>
+                        <li><i class="fa-solid fa-wine-glass-empty"></i> Mini‑bar</li>
+                    </ul>
+                    <button class="room-link view-detail-btn" data-room="pool">view details →</button>
+                </div>
+                <div class="detail-panel" id="panel-pool">
+                    <h3 class="panel-title">Deluxe Pool</h3>
+                    <p class="panel-text">The Deluxe Pool rooms (32 m²) are located in the New Wing on the first and second floor, have queen size beds, daybeds, rain showers and all amenities. Large sliding doors give access to a spacious balcony overlooking the pool with a private bathtub and seating area. Every room has a large bedroom, 1 bed—a queen-size bed with pocket spring comfort zones mattress, bathroom with Rain-Shower, reading chair and writing desk, daybed, fully stocked fridge, safety box, complementary coffee and tea facilities and a flat screen multi-channel TV. Bathroom. Outside Bath-tub.</p>
+                    <ul class="panel-amenities">
+                        <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
+                        <li><i class="fa-solid fa-bottle-water"></i> Reusable Plastic</li>
+                        <li><i class="fa-solid fa-solar-panel"></i> Green Energy</li>
+                        <li><i class="fa-solid fa-recycle"></i> Recycling</li>
+                        <li><i class="fa-solid fa-wifi"></i> Free Wifi</li>
+                        <li><i class="fa-solid fa-balcony"></i> Balcony</li>
+                        <li><i class="fa-solid fa-tree"></i> Outdoor Seating</li>
+                        <li><i class="fa-regular fa-snowflake"></i> Air-Conditioning</li>
+                        <li><i class="fa-solid fa-fan"></i> Fan</li>
+                        <li><i class="fa-solid fa-bed"></i> Queen Bed</li>
+                        <li><i class="fa-solid fa-wine-bottle"></i> Mini-Bar</li>
+                        <li><i class="fa-solid fa-mug-hot"></i> Tea/Coffee</li>
+                        <li><i class="fa-solid fa-wine-glass"></i> Glassware</li>
+                        <li><i class="fa-solid fa-lock"></i> Electronic Safe</li>
+                        <li><i class="fa-solid fa-tv"></i> TV</li>
+                        <li><i class="fa-solid fa-compact-disc"></i> DVD</li>
+                        <li><i class="fa-solid fa-pump-soap"></i> Shampoo/Gel</li>
+                        <li><i class="fa-solid fa-shower"></i> Rain Shower</li>
+                        <li><i class="fa-solid fa-wardrobe"></i> Wardrobe</li>
+                        <li><i class="fa-solid fa-wind"></i> Hair Dryer</li>
+                        <li><i class="fa-solid fa-bolt"></i> AC 220 Volt</li>
+                        <li><i class="fa-solid fa-pen"></i> Writing Desk</li>
+                        <li><i class="fa-solid fa-droplet"></i> Daily Water</li>
+                    </ul>
+                    <button class="panel-close close-panel">← close</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Penthouse Suite -->
+        <section id="penthouse" class="room-section">
+            <div class="room-card" id="card-penthouse">
+                <div class="room-image js-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Photo-Rambutan-PP-07.jpg" alt="Penthouse main" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screen-Shot-2018-12-20-at-8.25.13-PM-1-scaled.jpeg" alt="Penthouse extra 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screen-Shot-2018-12-20-at-8.24.36-PM-scaled.jpeg" alt="Penthouse extra 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screen-Shot-2018-12-22-at-12.02.58-PM-1-scaled.jpeg" alt="Penthouse extra 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Penthouse-3-scaled.jpeg" alt="Penthouse extra 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screenshot-2018-12-23-at-14.45.15-1.jpeg" alt="Penthouse extra 2" loading="lazy"></div>
+                    </div>
+                    <button class="carousel-btn prev-btn" aria-label="Previous image"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="carousel-btn next-btn" aria-label="Next image"><i class="fa-solid fa-angle-right"></i></button>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="room-description">
+                    <h2 class="room-title">Penthouse Suite</h2>
+                    <p class="room-text">Expansive and sophisticated, the Penthouse offers a separate living area, a large private terrace with panoramic city views. Curated art and premium amenities.</p>
+                    <ul class="room-features">
+                        <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
+                        <li><i class="fa-solid fa-city"></i> Panoramic view</li>
+                        <li><i class="fa-solid fa-hot-tub"></i> Outdoor tub</li>
+                        <li><i class="fa-solid fa-champagne-glasses"></i> Welcome drink</li>
+                    </ul>
+                    <button class="room-link view-detail-btn" data-room="penthouse">view details →</button>
+                </div>
+                <div class="detail-panel" id="panel-penthouse">
+                    <h3 class="panel-title">Penthouse Suite</h3>
+                    <p class="panel-text">The penthouse suite (70 m2) is a spacious living quarter on the third (top) floor overlooking the surrounding area containing a king size bed with pocket spring comfort zones mattress, bathroom with Rain-Shower and all amenities, reading chair, writing desk, daybed, fully stocked fridge, safety box, complementary espresso and tea facilities, Bluetooth speaker and a flat screen multi-channel TV. Large sliding doors give access to the spacious rooftop terrace with sundeck chairs, seating area and a big Jacuzzi.</p>
+                    <ul class="panel-amenities">
+                        <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
+                        <li><i class="fa-solid fa-bottle-water"></i> Reusable Plastic</li>
+                        <li><i class="fa-solid fa-solar-panel"></i> Green Energy</li>
+                        <li><i class="fa-solid fa-recycle"></i> Recycling</li>
+                        <li><i class="fa-solid fa-wifi"></i> Free Wifi</li>
+                        <li><i class="fa-solid fa-balcony"></i> Balcony</li>
+                        <li><i class="fa-solid fa-tree"></i> Outdoor Seating</li>
+                        <li><i class="fa-regular fa-snowflake"></i> Air-Conditioning</li>
+                        <li><i class="fa-solid fa-fan"></i> Fan</li>
+                        <li><i class="fa-solid fa-bed"></i> Queen Bed</li>
+                        <li><i class="fa-solid fa-wine-bottle"></i> Mini-Bar</li>
+                        <li><i class="fa-solid fa-mug-hot"></i> Tea/Coffee</li>
+                        <li><i class="fa-solid fa-wine-glass"></i> Glassware</li>
+                        <li><i class="fa-solid fa-lock"></i> Electronic Safe</li>
+                        <li><i class="fa-solid fa-tv"></i> TV</li>
+                        <li><i class="fa-solid fa-compact-disc"></i> DVD</li>
+                        <li><i class="fa-solid fa-tower-broadcast"></i> 80 Channels</li>
+                        <li><i class="fa-solid fa-pump-soap"></i> Shampoo/Gel</li>
+                        <li><i class="fa-solid fa-shower"></i> Rain Shower</li>
+                        <li><i class="fa-solid fa-wardrobe"></i> Wardrobe</li>
+                        <li><i class="fa-solid fa-wind"></i> Hair Dryer</li>
+                        <li><i class="fa-solid fa-bolt"></i> AC 220 Volt</li>
+                        <li><i class="fa-solid fa-chair"></i> Armchair</li>
+                        <li><i class="fa-solid fa-person-walking"></i> Terrace</li>
+                        <li><i class="fa-solid fa-lightbulb"></i> Ambient Light</li>
+                        <li><i class="fa-solid fa-hot-tub"></i> Outdoor tub</li>
+                        <li><i class="fa-solid fa-pen"></i> Writing Desk</li>
+                        <li><i class="fa-solid fa-soap"></i> Amenities</li>
+                    </ul>
+                    <button class="panel-close close-panel">← close</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- back to top -->
+    <div class="back-to-top">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col footer-logo">
+                <img src="../images/Logo-white.png" alt="sonitori">
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINK</h4>
+                <a href="https://maps.app.goo.gl/A1VpfBTSutvgNhrm9">Map</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="../policy-privacy/index.html">Policy Privacy</a>
+            </div>
+            <div class="footer-col">
+                <h4>RESERVATION</h4>
+                <a href="tel:+855011355534">+855(0)11 355 534</a>
+                <a href="mailto:bookings@rambutanresort.com">bookings@rambutanresort.com</a>
+            </div>
+            <div class="footer-col">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="payment-icons">
+                <span>Pay way :</span>
+                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
+                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+            </div>
+            <div>Copyright © Sonitori</div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            function initCarousel(container) {
+                const track = container.querySelector('.carousel-track');
+                const slides = Array.from(track.children);
+                const prevBtn = container.querySelector('.prev-btn');
+                const nextBtn = container.querySelector('.next-btn');
+                const dotsContainer = container.querySelector('.carousel-dots');
+                
+                if (!track || slides.length === 0) return;
+
+                let currentIndex = 0;
+                let startX = 0;
+                let isDragging = false;
+
+                dotsContainer.innerHTML = '';
+                slides.forEach((_, idx) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    dot.dataset.index = idx;
+                    dotsContainer.appendChild(dot);
+                });
+                const dots = Array.from(dotsContainer.children);
+
+                function updateDots(index) {
+                    dots.forEach((dot, i) => {
+                        if (i === index) dot.classList.add('active');
+                        else dot.classList.remove('active');
+                    });
+                }
+
+                function moveToSlide(index) {
+                    if (index < 0) index = slides.length - 1;
+                    if (index >= slides.length) index = 0;
+                    currentIndex = index;
+                    const shift = -currentIndex * 100;
+                    track.style.transform = `translateX(${shift}%)`;
+                    updateDots(currentIndex);
+                }
+
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    moveToSlide(currentIndex - 1);
+                });
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    moveToSlide(currentIndex + 1);
+                });
+
+                dots.forEach((dot) => {
+                    dot.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const idx = parseInt(dot.dataset.index);
+                        moveToSlide(idx);
+                    });
+                });
+
+                track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    track.style.transition = 'none';
+                }, { passive: true });
+
+                track.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    const currentX = e.touches[0].clientX;
+                    const diff = currentX - startX;
+                    const shiftPercent = (diff / container.offsetWidth) * 100;
+                    track.style.transform = `translateX(${-currentIndex * 100 + shiftPercent}%)`;
+                }, { passive: true });
+
+                track.addEventListener('touchend', (e) => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    track.style.transition = 'transform 0.3s ease-in-out';
+
+                    const endX = e.changedTouches[0].clientX;
+                    const diff = endX - startX;
+                    const threshold = container.offsetWidth * 0.2;
+
+                    if (Math.abs(diff) > threshold) {
+                        if (diff > 0) moveToSlide(currentIndex - 1);
+                        else moveToSlide(currentIndex + 1);
+                    } else {
+                        moveToSlide(currentIndex);
+                    }
+                });
+
+                track.addEventListener('dragstart', (e) => e.preventDefault());
+                moveToSlide(0);
+            }
+
+            document.querySelectorAll('.js-carousel').forEach(carousel => {
+                initCarousel(carousel);
+            });
+
+            const viewButtons = document.querySelectorAll('.view-detail-btn');
+            const closeButtons = document.querySelectorAll('.close-panel');
+
+            function openPanel(roomId) {
+                document.querySelectorAll('.detail-panel.active').forEach(p => p.classList.remove('active'));
+                const targetPanel = document.getElementById(`panel-${roomId}`);
+                if (targetPanel) targetPanel.classList.add('active');
+            }
+
+            viewButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openPanel(this.dataset.room);
+                });
+            });
+
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.closest('.detail-panel').classList.remove('active');
+                });
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.querySelector('.detail-panel.active')?.classList.remove('active');
+                }
+            });
+
+            const mobileIcon = document.querySelector('.mobile-menu-icon');
+            const sidebar = document.getElementById('mobileSidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const dropdownToggle = document.getElementById('aboutDropdownToggle');
+            const aboutMobileMenu = document.getElementById('aboutMobileMenu');
+
+            function openMobileMenu() {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            mobileIcon.addEventListener('click', openMobileMenu);
+            closeSidebar.addEventListener('click', closeMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+
+            if (dropdownToggle) {
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.classList.toggle('open');
+                    
+                    if (aboutMobileMenu.classList.contains('show')) {
+                        aboutMobileMenu.classList.remove('show');
+                    } else {
+                        aboutMobileMenu.classList.add('show');
+                    }
+                });
+                
+                aboutMobileMenu.classList.remove('show');
+            }
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 900 && sidebar.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            });
+
+            function openBookingPopup() {
+                const overlay = document.getElementById('popupOverlay');
+                const popup = document.getElementById('calendarPopup');
+                if (overlay && popup) {
+                    overlay.classList.add('active');
+                    popup.classList.add('active');
+                }
+            }
+
+            document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
+            document.getElementById('mobileFixedBook')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                openBookingPopup();
+            });
+
+        })();
+    </script>
+    <script src="../bookingsPopup/booking.js"></script>
+</body>
+</html>
