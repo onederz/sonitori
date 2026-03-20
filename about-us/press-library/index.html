@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Press Library · Sonitori Phnom Penh | Media Resources</title>
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,20 +13,24 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
 
         body {
             background-color: #f5f3f0;
             color: #2c2b2a;
-            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
             font-size: 1rem;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale
         }
 
-        /* ===== NAVIGATION (from rooms page) ===== */
+        body.no-scroll {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+
+        /* ===== NAVIGATION ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -77,7 +81,6 @@
             margin-bottom: -1px;
         }
         
-        /* desktop book now button */
         .desktop-book-btn {
             background: transparent;
             border: 1px solid #097684;
@@ -88,7 +91,6 @@
             cursor: pointer;
             transition: 0.2s;
             font-size: 0.95rem;
-            letter-spacing: 0.5px;
         }
 
         .desktop-book-btn:hover {
@@ -118,12 +120,9 @@
             transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             padding: 3rem 0rem 2rem;
             overflow-y: auto;
-            border-left: none;
         }
 
-        .mobile-sidebar.open {
-            right: 0;
-        }
+        .mobile-sidebar.open { right: 0; }
 
         .sidebar-logo {
             padding: 0 20px 20px 20px;
@@ -176,7 +175,6 @@
             background: #097684;
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(9,118,132,0.3);
         }
 
         .close-sidebar {
@@ -188,10 +186,7 @@
             border: none;
             color: #097684;
             cursor: pointer;
-            line-height: 1;
-            transition: transform 0.2s;
         }
-        .close-sidebar:hover { transform: scale(1.1); }
 
         .mobile-sidebar .sidebar-links {
             display: flex;
@@ -201,9 +196,7 @@
             padding: 0 0px 0 30px;
         }
 
-        .mobile-sidebar .sidebar-links a {
-            padding-left: 20px;
-        }
+        .mobile-sidebar .sidebar-links a { padding-left: 20px; }
 
         .mobile-sidebar a, .dropdown-toggle-mobile {
             text-decoration: none;
@@ -219,8 +212,6 @@
             width: 100%;
             cursor: pointer;
             text-align: left;
-            transition: background 0.2s, color 0.2s, padding-left 0.2s;
-            border-bottom: none;
         }
 
         .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
@@ -234,25 +225,25 @@
             justify-content: space-between;
             padding: 0.9rem 20px;
         }
+
         .dropdown-toggle-mobile .dropdown-icon-group {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+
         .dropdown-toggle-mobile .arrow-icon {
             font-size: 0.9rem;
             color: #7b6e61;
             transition: transform 0.3s ease;
         }
-        .dropdown-toggle-mobile.open .arrow-icon {
-            transform: rotate(180deg);
-        }
+
+        .dropdown-toggle-mobile.open .arrow-icon { transform: rotate(180deg); }
 
         .mobile-sidebar a.active {
             color: #097684;
             font-weight: 500;
             background: rgba(9,118,132,0.08);
-            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
             border-radius: 12px 0 0 12px;
             padding-left: 20px;
         }
@@ -264,9 +255,6 @@
             visibility: hidden;
             transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
             margin-left: 2.6rem;
-            padding-left: 0.2rem;
-            background: transparent;
-            border-left: none;
         }
 
         .dropdown-menu-mobile.show {
@@ -276,35 +264,25 @@
             transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
         }
 
-        .dropdown-menu-mobile > div {
-            overflow: hidden;
-        }
+        .dropdown-menu-mobile > div { overflow: hidden; }
 
         .dropdown-menu-mobile a {
             padding: 0.7rem 0 0.7rem 0.2rem;
             font-size: 1.1rem;
             color: #4f4a44;
-            border-bottom: none;
-            transition: color 0.2s, padding-left 0.2s;
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+
         .dropdown-menu-mobile a i {
             width: 1.4rem;
             font-size: 1rem;
             color: #097684;
         }
-        .dropdown-menu-mobile a:hover {
-            color: #097684;
-            padding-left: 0.5rem;
-            background: none;
-        }
 
-        .mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
-            color: #097684;
-            background: rgba(9,118,132,0.04);
-        }
+        .dropdown-menu-mobile a:hover { color: #097684; }
+        .dropdown-menu-mobile a.active { color: #097684; font-weight: 500; }
 
         .mobile-overlay {
             position: fixed;
@@ -319,46 +297,11 @@
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0s 0.4s;
         }
+
         .mobile-overlay.active {
             opacity: 1;
             visibility: visible;
             transition: opacity 0.4s ease, visibility 0s 0s;
-        }
-
-        /* ===== FIXED BOTTOM BOOK NOW BUTTON ===== */
-        .mobile-fixed-book {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background: #097684;
-            color: white;
-            border: none;
-            border-radius: 60px;
-            padding: 1rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
-            z-index: 1500;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            border: 2px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(2px);
-            width: auto;
-            max-width: calc(100% - 40px);
-        }
-        .mobile-fixed-book:active {
-            background: #065a66;
-            transform: scale(0.96);
-            box-shadow: 0 6px 20px rgba(9,118,132,0.6);
-        }
-        .mobile-fixed-book i {
-            font-size: 1rem;
-            padding-bottom: 1px;
         }
 
         @media (max-width: 900px) {
@@ -367,11 +310,28 @@
             .desktop-book-btn { display: none; }
         }
 
-        @media (min-width: 901px) {
-            .mobile-fixed-book { display: none; }
+        .mobile-fixed-book {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #097684;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
+            z-index: 1500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
-        /* ===== DROPDOWN STYLES (desktop) ===== */
+        @media (min-width: 901px) { .mobile-fixed-book { display: none; } }
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -384,14 +344,8 @@
             height: 50px;
         }
 
-        .dropdown-arrow {
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
 
         .dropdown-menu {
             position: absolute;
@@ -421,7 +375,6 @@
             padding: 0.7rem 1.5rem;
             color: #3b3a38;
             font-size: 0.95rem;
-            transition: all 0.2s ease;
             white-space: nowrap;
         }
 
@@ -442,13 +395,11 @@
         .library-page {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 6rem 1.5rem 4rem;
+            padding: 6rem 1.5rem 3rem;
             background: #ffffff;
-            box-shadow: 0 0 40px rgba(0,0,0,0.02);
             border-radius: 0 0px 20px 20px;
         }
 
-        /* headings */
         .section-heading {
             font-size: 3rem;
             font-weight: 300;
@@ -460,7 +411,6 @@
             margin: 0 0 1rem 0;
         }
 
-        /* intro text */
         .intro-text {
             color: #4f4942;
             font-size: 1.1rem;
@@ -482,7 +432,7 @@
 
         .library-card {
             background: #fcfaf8;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
@@ -491,6 +441,7 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #e2ddd6;
+            cursor: pointer;
         }
 
         .library-card:hover {
@@ -499,16 +450,17 @@
         }
 
         .card-image {
-            height: 320px;
+            height: 280px;
             overflow: hidden;
             position: relative;
             background: #f8f6f4;
         }
 
         .card-image img {
-            width: 100%;
+            width: 110%;
             height: 100%;
             object-fit: cover;
+            object-position: -20px;
             transition: transform 0.5s ease;
         }
 
@@ -522,7 +474,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top, rgba(9,118,132,0.7), transparent);
+            background: linear-gradient(to top, rgba(9,118,132,0.8), transparent);
             opacity: 0;
             transition: opacity 0.3s ease;
             display: flex;
@@ -551,11 +503,6 @@
 
         .library-card:hover .download-badge {
             transform: translateY(0);
-        }
-
-        .download-badge i {
-            font-size: 1rem;
-            color: #097684;
         }
 
         .card-content {
@@ -595,10 +542,6 @@
             margin-bottom: 0.8rem;
         }
 
-        .card-meta i {
-            font-size: 0.8rem;
-        }
-
         .card-description {
             color: #5f5a54;
             font-size: 0.95rem;
@@ -623,10 +566,6 @@
             font-size: 0.85rem;
         }
 
-        .file-info i {
-            font-size: 1rem;
-        }
-
         .download-link {
             color: #097684;
             font-size: 0.9rem;
@@ -634,11 +573,7 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
-            transition: color 0.2s ease;
-        }
-
-        .download-link:hover {
-            color: #065a66;
+            cursor: pointer;
         }
 
         /* Stats section */
@@ -681,38 +616,26 @@
         
         .back-to-top a {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: #097684;
             border-radius: 50%;
             color: white;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(9, 118, 132, 0.3);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
         
         .back-to-top a:hover {
             background: #065a66;
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(9, 118, 132, 0.4);
         }
         
         .back-to-top a i {
             font-size: 1.2rem;
             animation: bounce 2s ease-in-out infinite;
-        }
-        
-        .back-to-top a i:first-child {
-            margin-bottom: -6px;
-        }
-        
-        .back-to-top a i:last-child {
-            margin-top: -6px;
         }
         
         @keyframes bounce {
@@ -721,14 +644,14 @@
             60% { transform: translateY(-4px); }
         }
 
-        /* ===== FOOTER STYLES ===== */
+        /* ===== FOOTER ===== */
         .footer {
             background: #1f2a2e;
             color: #ddd;
             padding: 3rem 2rem 1rem;
-            margin-top: 0;
+            margin-top: 2rem;
         }
-        
+
         .footer-content {
             max-width: 1300px;
             margin: 0 auto;
@@ -737,32 +660,11 @@
             justify-content: space-between;
             gap: 2rem;
         }
-        
-        .footer-col {
-            flex: 1 1 200px;
-        }
-        
-        .footer-logo img {
-            max-width: 200px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-        
-        .footer h4 {
-            color: #fff;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-        
-        .footer a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-        
+
+        .footer-col { flex: 1 1 200px; }
+        .footer-logo img { max-width: 200px; height: auto; margin-bottom: 1rem; }
+        .footer h4 { color: #fff; font-weight: 400; margin-bottom: 1rem; letter-spacing: 1px; }
+        .footer a { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5rem; font-size: 0.95rem; }
         .footer a:hover { color: #097684; }
         
         .social-icons {
@@ -781,7 +683,6 @@
             justify-content: center;
             color: white;
             font-size: 1.2rem;
-            transition: 0.2s;
         }
         
         .social-icons a:hover { background: #097684; }
@@ -804,9 +705,7 @@
             gap: 0.5rem;
         }
         
-        .payment-icons img {
-            height: 28px;
-        }
+        .payment-icons img { height: 28px; }
 
         /* scroll animations */
         .content-section {
@@ -820,28 +719,32 @@
             transform: translateY(0);
         }
 
-        /* responsive */
         @media (max-width: 900px) {
-            .section-heading { font-size: 2.5rem; }
-            .library-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-            .card-image { height: 280px; }
+            .section-heading { font-size: 2.2rem; letter-spacing: 4px; }
+            .library-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .card-image { height: 220px; }
+            .stats-section { padding: 2rem 1rem; margin: 2rem 0; }
+            .stat-number { font-size: 2rem; }
         }
 
         @media (max-width: 600px) {
             .library-page { padding: 5rem 1rem 2rem; }
-            .stats-section { padding: 2rem 1rem; }
-            .stat-number { font-size: 2rem; }
+            .section-heading { font-size: 1.8rem; letter-spacing: 3px; }
+            .intro-text { font-size: 0.95rem; margin-bottom: 2rem; }
+            .card-title { font-size: 1.1rem; }
+            .stats-section { flex-direction: column; gap: 1rem; }
+            .social-icons { justify-content: center; }
         }
+
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
-    <!-- Navigation (from rooms page) -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="../../index.html">
-                <div class="logo">
-                <img src="../../images/logo.png" alt="Sonitori Logo">
-                </div>
+                <div class="logo"><img src="../../images/logo.png" alt="Sonitori Logo"></div>
             </a>
             <div class="nav-links">
                 <a href="../../index.html">Home</a>
@@ -859,7 +762,6 @@
                 </div>
                 <a href="../../contact-us/index.html">Contact Us</a>
             </div>
-            <!-- desktop book now button -->
             <button class="desktop-book-btn" id="desktopBookBtn">Book Now</button>
             <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
         </div>
@@ -869,22 +771,15 @@
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-sidebar" id="mobileSidebar">
         <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-circle-xmark"></i></button>
-        
-        <div class="sidebar-logo">
-            <img src="../../images/logo.png" alt="Sonitori Logo">
-        </div>
-        
+        <div class="sidebar-logo"><img src="../../images/logo.png" alt="Sonitori Logo"></div>
         <div class="sidebar-links">
             <a href="../../index.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="../../rooms/index.html"><i class="fa-solid fa-bed"></i> Rooms</a>
             <a href="../../event/index.html"><i class="fa-regular fa-calendar"></i> Events</a>
             <a href="../../gallery/index.html"><i class="fa-regular fa-images"></i> Gallery</a>
-            
             <div class="mobile-dropdown">
                 <button class="dropdown-toggle-mobile open" id="aboutDropdownToggle">
-                    <span class="dropdown-icon-group">
-                        <i class="fa-regular fa-address-card"></i> About Us
-                    </span>
+                    <span class="dropdown-icon-group"><i class="fa-regular fa-address-card"></i> About Us</span>
                     <i class="fa-solid fa-angle-down arrow-icon"></i>
                 </button>
                 <div class="dropdown-menu-mobile show" id="aboutMobileMenu">
@@ -896,9 +791,7 @@
                     </div>
                 </div>
             </div>
-
             <a href="../../contact-us/index.html"><i class="fa-regular fa-envelope"></i> Contact Us</a>
-            
             <div class="sidebar-social">
                 <h4>FOLLOW US</h4>
                 <div class="social-icons">
@@ -922,154 +815,94 @@
             <h3>Select dates</h3>
             <button class="close-popup" id="closePopupBtn"><i class="fa-solid fa-circle-xmark"></i></button>
         </div>
-        
-        <div class="calendar-container" id="calendarContainer">
-            <!-- dynamic JS will fill two months -->
-        </div>
-        
+        <div class="calendar-container" id="calendarContainer"></div>
         <div class="popup-footer">
-            <div class="night-count">
-                <span id="nightsValue">0</span> nights
-            </div>
+            <div class="night-count"><span id="nightsValue">0</span> nights</div>
             <button class="search-btn" id="searchDatesBtn" disabled>Search</button>
         </div>
     </div>
 
     <main class="library-page">
-        <!-- main heading -->
         <div class="section-heading content-section" id="mainHeading">Press Library</div>
 
-        <!-- intro text -->
         <div class="intro-text content-section" id="intro">
             <p>Access Sonitori Phnom Penh's press library — download brochures, media kits, and official documents to explore our story, services, and brand materials.</p>
         </div>
 
-        <!-- library grid -->
+        <!-- library grid with local images and local PDF files - direct download -->
         <div class="library-grid content-section" id="libraryGrid">
             <!-- Khmer Chameleon -->
-            <a href="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Khmer-Chameleon.pdf" class="library-card" target="_blank" rel="noopener noreferrer">
+            <a href="../../images/press-content/Khmer-Chameleon.pdf" class="library-card" target="_blank" data-pdf="../../images/press-content/Khmer-Chameleon.pdf" data-img="../../images/winq-pdf-1.webp" data-title="Khmer Chameleon" data-desc="A deep dive into the unique character and charm of Sonitori Phnom Penh." data-meta="Feature Story" data-size="2.4 MB">
                 <div class="card-image">
-                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/winq-pdf-1.jpg" alt="Khmer Chameleon">
+                    <img src="../../images/winq-pdf-1.webp" alt="Khmer Chameleon">
                     <div class="card-overlay">
                         <span class="download-badge"><i class="fa-solid fa-download"></i> Download PDF</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="card-title">
-                        Khmer Chameleon
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                    <div class="card-meta">
-                        <i class="fa-regular fa-file-pdf"></i>
-                        <span>Feature Story</span>
-                    </div>
-                    <div class="card-description">
-                        A deep dive into the unique character and charm of Sonitori Phnom Penh.
-                    </div>
+                    <div class="card-title">Khmer Chameleon <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="card-meta"><i class="fa-regular fa-file-pdf"></i><span>Feature Story</span></div>
+                    <div class="card-description">A deep dive into the unique character and charm of Sonitori Phnom Penh.</div>
                     <div class="card-footer">
-                        <span class="file-info">
-                            <i class="fa-regular fa-file"></i>
-                            PDF • 2.4 MB
-                        </span>
-                        <span class="download-link">
-                            Download <i class="fa-solid fa-arrow-down"></i>
-                        </span>
+                        <span class="file-info"><i class="fa-regular fa-file"></i> PDF • 2.4 MB</span>
+                        <span class="download-link">Download <i class="fa-solid fa-arrow-down"></i></span>
                     </div>
                 </div>
             </a>
 
             <!-- Passport Magazine -->
-            <a href="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Passport.pdf" class="library-card" target="_blank" rel="noopener noreferrer">
+            <a href="../../images/press-content/Passport.pdf" class="library-card" target="_blank" data-pdf="../../images/press-content/Passport.pdf" data-img="../../images/passport-mag-cambodia-2017-1-pdf-1.webp" data-title="Passport Magazine" data-desc="Cambodia's premier travel publication featuring Sonitori's unique hospitality." data-meta="Magazine Feature • 2017" data-size="3.1 MB">
                 <div class="card-image">
-                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/passport-mag-cambodia-2017-1-pdf-1.jpg" alt="Passport Magazine Cambodia 2017">
+                    <img src="../../images/passport-mag-cambodia-2017-1-pdf-1.webp" alt="Passport Magazine Cambodia 2017">
                     <div class="card-overlay">
                         <span class="download-badge"><i class="fa-solid fa-download"></i> Download PDF</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="card-title">
-                        Passport Magazine
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                    <div class="card-meta">
-                        <i class="fa-regular fa-file-pdf"></i>
-                        <span>Magazine Feature • 2017</span>
-                    </div>
-                    <div class="card-description">
-                        Cambodia's premier travel publication featuring Sonitori's unique hospitality.
-                    </div>
+                    <div class="card-title">Passport Magazine <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="card-meta"><i class="fa-regular fa-file-pdf"></i><span>Magazine Feature • 2017</span></div>
+                    <div class="card-description">Cambodia's premier travel publication featuring Sonitori's unique hospitality.</div>
                     <div class="card-footer">
-                        <span class="file-info">
-                            <i class="fa-regular fa-file"></i>
-                            PDF • 3.1 MB
-                        </span>
-                        <span class="download-link">
-                            Download <i class="fa-solid fa-arrow-down"></i>
-                        </span>
+                        <span class="file-info"><i class="fa-regular fa-file"></i> PDF • 3.1 MB</span>
+                        <span class="download-link">Download <i class="fa-solid fa-arrow-down"></i></span>
                     </div>
                 </div>
             </a>
 
             <!-- Oja Camboja / Feeling 2016 -->
-            <a href="https://rambutanphnompenh.com/wp-content/uploads/2025/03/ojaCamboja.pdf" class="library-card" target="_blank" rel="noopener noreferrer">
+            <a href="../../images/press-content/ojaCamboja.pdf" class="library-card" target="_blank" data-pdf="../../images/press-content/ojaCamboja.pdf" data-img="../../images/feeling-2016-pdf-1.webp" data-title="Oja Camboja" data-desc="A comprehensive guide to Cambodia featuring Sonitori as a must-stay destination." data-meta="Travel Guide • 2016" data-size="2.8 MB">
                 <div class="card-image">
-                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/feeling-2016-pdf-1.jpg" alt="Feeling 2016">
+                    <img src="../../images/feeling-2016-pdf-1.webp" alt="Feeling 2016">
                     <div class="card-overlay">
                         <span class="download-badge"><i class="fa-solid fa-download"></i> Download PDF</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="card-title">
-                        Oja Camboja
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                    <div class="card-meta">
-                        <i class="fa-regular fa-file-pdf"></i>
-                        <span>Travel Guide • 2016</span>
-                    </div>
-                    <div class="card-description">
-                        A comprehensive guide to Cambodia featuring Sonitori as a must-stay destination.
-                    </div>
+                    <div class="card-title">Oja Camboja <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="card-meta"><i class="fa-regular fa-file-pdf"></i><span>Travel Guide • 2016</span></div>
+                    <div class="card-description">A comprehensive guide to Cambodia featuring Sonitori as a must-stay destination.</div>
                     <div class="card-footer">
-                        <span class="file-info">
-                            <i class="fa-regular fa-file"></i>
-                            PDF • 2.8 MB
-                        </span>
-                        <span class="download-link">
-                            Download <i class="fa-solid fa-arrow-down"></i>
-                        </span>
+                        <span class="file-info"><i class="fa-regular fa-file"></i> PDF • 2.8 MB</span>
+                        <span class="download-link">Download <i class="fa-solid fa-arrow-down"></i></span>
                     </div>
                 </div>
             </a>
 
             <!-- The Blue Print / Concept Design -->
-            <a href="https://rambutanphnompenh.com/wp-content/uploads/2025/03/the-blue-print.pdf" class="library-card" target="_blank" rel="noopener noreferrer">
+            <a href="../../images/press-content/the-blue-print.pdf" class="library-card" target="_blank" data-pdf="../../images/press-content/the-blue-print.pdf" data-img="../../images/concept-design-pdf-1.webp" data-title="The Blue Print" data-desc="Behind the scenes look at the architectural vision and design philosophy." data-meta="Concept Design" data-size="4.2 MB">
                 <div class="card-image">
-                    <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/concept-design-pdf-1.jpg" alt="Concept Design">
+                    <img src="../../images/concept-design-pdf-1.webp" alt="Concept Design">
                     <div class="card-overlay">
                         <span class="download-badge"><i class="fa-solid fa-download"></i> Download PDF</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="card-title">
-                        The Blue Print
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                    <div class="card-meta">
-                        <i class="fa-regular fa-file-pdf"></i>
-                        <span>Concept Design</span>
-                    </div>
-                    <div class="card-description">
-                        Behind the scenes look at the architectural vision and design philosophy.
-                    </div>
+                    <div class="card-title">The Blue Print <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="card-meta"><i class="fa-regular fa-file-pdf"></i><span>Concept Design</span></div>
+                    <div class="card-description">Behind the scenes look at the architectural vision and design philosophy.</div>
                     <div class="card-footer">
-                        <span class="file-info">
-                            <i class="fa-regular fa-file"></i>
-                            PDF • 4.2 MB
-                        </span>
-                        <span class="download-link">
-                            Download <i class="fa-solid fa-arrow-down"></i>
-                        </span>
+                        <span class="file-info"><i class="fa-regular fa-file"></i> PDF • 4.2 MB</span>
+                        <span class="download-link">Download <i class="fa-solid fa-arrow-down"></i></span>
                     </div>
                 </div>
             </a>
@@ -1077,41 +910,24 @@
 
         <!-- stats section -->
         <div class="stats-section content-section" id="stats">
-            <div class="stat-item">
-                <div class="stat-number">10+</div>
-                <div class="stat-label">Years of Excellence</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">4</div>
-                <div class="stat-label">Featured Publications</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2011-2021</div>
-                <div class="stat-label">Award Years</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Media Access</div>
-            </div>
+            <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Years of Excellence</div></div>
+            <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Featured Publications</div></div>
+            <div class="stat-item"><div class="stat-number">2011-2021</div><div class="stat-label">Award Years</div></div>
+            <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Media Access</div></div>
         </div>
-
-        
     </main>
 
     <!-- back to top -->
-        <div class="back-to-top">
-            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
-                <i class="fa-solid fa-chevron-up"></i>
-                <i class="fa-solid fa-chevron-up"></i>
-            </a>
-        </div>
+    <div class="back-to-top">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-col footer-logo">
-                <img src="../../images/Logo-white.png" alt="Sonitori">
-            </div>
+            <div class="footer-col footer-logo"><img src="../../images/Logo-white.png" alt="Sonitori"></div>
             <div class="footer-col">
                 <h4>QUICK LINK</h4>
                 <a href="https://maps.app.goo.gl/A1VpfBTSutvgNhrm9">Map</a>
@@ -1137,8 +953,8 @@
         <div class="footer-bottom">
             <div class="payment-icons">
                 <span>Pay way :</span>
-                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
-                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+                <img src="../../images/visa-card.webp" alt="visa">
+                <img src="../../images/master.webp" alt="mastercard">
             </div>
             <div>Copyright © Sonitori Phnom Penh</div>
         </div>
@@ -1146,7 +962,7 @@
 
     <script>
     (function() {
-        // ===== MOBILE SIDEBAR FUNCTIONALITY =====
+        // Mobile sidebar
         const mobileIcon = document.querySelector('.mobile-menu-icon');
         const sidebar = document.getElementById('mobileSidebar');
         const overlay = document.getElementById('mobileOverlay');
@@ -1170,7 +986,6 @@
         if (closeSidebar) closeSidebar.addEventListener('click', closeMobileMenu);
         if (overlay) overlay.addEventListener('click', closeMobileMenu);
 
-        // SMOOTH DROPDOWN animation - keep open for About Us section
         if (dropdownToggle && aboutMobileMenu) {
             dropdownToggle.classList.add('open');
             aboutMobileMenu.classList.add('show');
@@ -1189,28 +1004,26 @@
         }
 
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 900 && sidebar && sidebar.classList.contains('open')) {
-                closeMobileMenu();
-            }
+            if (window.innerWidth > 900 && sidebar.classList.contains('open')) closeMobileMenu();
         });
 
-        // ===== BOOK NOW BUTTONS =====
+        // Booking popup
         function openBookingPopup() {
-            const overlay = document.getElementById('popupOverlay');
+            const popupOverlay = document.getElementById('popupOverlay');
             const popup = document.getElementById('calendarPopup');
-            if (overlay && popup) {
-                overlay.classList.add('active');
+            if (popupOverlay && popup) {
+                popupOverlay.classList.add('active');
                 popup.classList.add('active');
             }
         }
-
+        
         document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
         document.getElementById('mobileFixedBook')?.addEventListener('click', function(e) {
             e.preventDefault();
             openBookingPopup();
         });
 
-        // Scroll animations
+        // Scroll animation observer
         const animatedElements = [
             document.getElementById('mainHeading'),
             document.getElementById('intro'),
@@ -1225,10 +1038,7 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
 
         animatedElements.forEach(el => {
             el.classList.add('content-section');

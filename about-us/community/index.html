@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Community · Sonitori Phnom Penh | Engage, Contribute, Educate</title>
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,20 +13,24 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
 
         body {
             background-color: #f5f3f0;
             color: #2c2b2a;
-            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
             font-size: 1rem;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale
         }
 
-        /* ===== NAVIGATION (from rooms page) ===== */
+        body.no-scroll {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+
+        /* ===== NAVIGATION ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -77,7 +81,6 @@
             margin-bottom: -1px;
         }
         
-        /* desktop book now button */
         .desktop-book-btn {
             background: transparent;
             border: 1px solid #097684;
@@ -88,7 +91,6 @@
             cursor: pointer;
             transition: 0.2s;
             font-size: 0.95rem;
-            letter-spacing: 0.5px;
         }
 
         .desktop-book-btn:hover {
@@ -118,12 +120,9 @@
             transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             padding: 3rem 0rem 2rem;
             overflow-y: auto;
-            border-left: none;
         }
 
-        .mobile-sidebar.open {
-            right: 0;
-        }
+        .mobile-sidebar.open { right: 0; }
 
         .sidebar-logo {
             padding: 0 20px 20px 20px;
@@ -176,7 +175,6 @@
             background: #097684;
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(9,118,132,0.3);
         }
 
         .close-sidebar {
@@ -188,10 +186,7 @@
             border: none;
             color: #097684;
             cursor: pointer;
-            line-height: 1;
-            transition: transform 0.2s;
         }
-        .close-sidebar:hover { transform: scale(1.1); }
 
         .mobile-sidebar .sidebar-links {
             display: flex;
@@ -201,9 +196,7 @@
             padding: 0 0px 0 30px;
         }
 
-        .mobile-sidebar .sidebar-links a {
-            padding-left: 20px;
-        }
+        .mobile-sidebar .sidebar-links a { padding-left: 20px; }
 
         .mobile-sidebar a, .dropdown-toggle-mobile {
             text-decoration: none;
@@ -219,8 +212,6 @@
             width: 100%;
             cursor: pointer;
             text-align: left;
-            transition: background 0.2s, color 0.2s, padding-left 0.2s;
-            border-bottom: none;
         }
 
         .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
@@ -234,25 +225,25 @@
             justify-content: space-between;
             padding: 0.9rem 20px;
         }
+
         .dropdown-toggle-mobile .dropdown-icon-group {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+
         .dropdown-toggle-mobile .arrow-icon {
             font-size: 0.9rem;
             color: #7b6e61;
             transition: transform 0.3s ease;
         }
-        .dropdown-toggle-mobile.open .arrow-icon {
-            transform: rotate(180deg);
-        }
+
+        .dropdown-toggle-mobile.open .arrow-icon { transform: rotate(180deg); }
 
         .mobile-sidebar a.active {
             color: #097684;
             font-weight: 500;
             background: rgba(9,118,132,0.08);
-            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
             border-radius: 12px 0 0 12px;
             padding-left: 20px;
         }
@@ -264,9 +255,6 @@
             visibility: hidden;
             transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
             margin-left: 2.6rem;
-            padding-left: 0.2rem;
-            background: transparent;
-            border-left: none;
         }
 
         .dropdown-menu-mobile.show {
@@ -276,35 +264,25 @@
             transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
         }
 
-        .dropdown-menu-mobile > div {
-            overflow: hidden;
-        }
+        .dropdown-menu-mobile > div { overflow: hidden; }
 
         .dropdown-menu-mobile a {
             padding: 0.7rem 0 0.7rem 0.2rem;
             font-size: 1.1rem;
             color: #4f4a44;
-            border-bottom: none;
-            transition: color 0.2s, padding-left 0.2s;
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+
         .dropdown-menu-mobile a i {
             width: 1.4rem;
             font-size: 1rem;
             color: #097684;
         }
-        .dropdown-menu-mobile a:hover {
-            color: #097684;
-            padding-left: 0.5rem;
-            background: none;
-        }
 
-        .mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
-            color: #097684;
-            background: rgba(9,118,132,0.04);
-        }
+        .dropdown-menu-mobile a:hover { color: #097684; }
+        .dropdown-menu-mobile a.active { color: #097684; font-weight: 500; }
 
         .mobile-overlay {
             position: fixed;
@@ -319,46 +297,11 @@
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0s 0.4s;
         }
+
         .mobile-overlay.active {
             opacity: 1;
             visibility: visible;
             transition: opacity 0.4s ease, visibility 0s 0s;
-        }
-
-        /* ===== FIXED BOTTOM BOOK NOW BUTTON ===== */
-        .mobile-fixed-book {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background: #097684;
-            color: white;
-            border: none;
-            border-radius: 60px;
-            padding: 1rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
-            z-index: 1500;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            border: 2px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(2px);
-            width: auto;
-            max-width: calc(100% - 40px);
-        }
-        .mobile-fixed-book:active {
-            background: #065a66;
-            transform: scale(0.96);
-            box-shadow: 0 6px 20px rgba(9,118,132,0.6);
-        }
-        .mobile-fixed-book i {
-            font-size: 1rem;
-            padding-bottom: 1px;
         }
 
         @media (max-width: 900px) {
@@ -367,11 +310,28 @@
             .desktop-book-btn { display: none; }
         }
 
-        @media (min-width: 901px) {
-            .mobile-fixed-book { display: none; }
+        .mobile-fixed-book {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #097684;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
+            z-index: 1500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
-        /* ===== DROPDOWN STYLES (desktop) ===== */
+        @media (min-width: 901px) { .mobile-fixed-book { display: none; } }
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -384,14 +344,8 @@
             height: 50px;
         }
 
-        .dropdown-arrow {
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
 
         .dropdown-menu {
             position: absolute;
@@ -421,7 +375,6 @@
             padding: 0.7rem 1.5rem;
             color: #3b3a38;
             font-size: 0.95rem;
-            transition: all 0.2s ease;
             white-space: nowrap;
         }
 
@@ -444,26 +397,22 @@
             margin: 0 auto;
             padding: 6rem 1.5rem 3rem;
             background: #ffffff;
-            box-shadow: 0 0 40px rgba(0,0,0,0.02);
             border-radius: 0 0px 20px 20px;
         }
 
-        /* ----- hero slideshow (background) ----- */
         .hero-slideshow {
             width: 100%;
             height: 500px;
             background-size: cover;
             background-position: center;
             position: relative;
-            margin-bottom: 0;
             transition: background-image 1s ease;
             background-color: #ccc;
             border: 1px solid #e2ddd6;
+            border-radius: 20px;
         }
 
-        .spacer {
-            height: 50px;
-        }
+        .spacer { height: 50px; }
 
         .section-heading {
             font-size: 3rem;
@@ -546,12 +495,7 @@
             max-height: 80px;
             object-fit: contain;
             margin-bottom: 0.5rem;
-            filter: grayscale(0%);
             transition: filter 0.3s ease;
-        }
-
-        .partner-item:hover img {
-            filter: grayscale(0%);
         }
 
         .partner-item a {
@@ -571,6 +515,151 @@
             color: #097684;
         }
 
+        /* ===== MOBILE BOTTOM SHEET ===== */
+        @media (max-width: 900px) {
+            .section-heading { font-size: 2rem; letter-spacing: 3px; }
+            .section-title { font-size: 1.6rem; padding-left: 1rem; border-left-width: 4px; }
+            .section-description { font-size: 0.95rem; }
+            .partners-carousel { gap: 1rem; }
+            .partner-item { flex: 0 0 120px; }
+            .hero-slideshow { height: 250px; border-radius: 16px; }
+            .spacer { height: 30px; }
+            .community-page { padding: 5rem 1rem 2rem; }
+            .section-description ul { margin-left: 1.2rem; }
+            .section-description li { font-size: 0.9rem; }
+            
+            /* Make sections clickable on mobile */
+            .content-section {
+                cursor: pointer;
+                background: #fcfaf8;
+                border-radius: 16px;
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                border: 1px solid #e2ddd6;
+                transition: all 0.2s ease;
+            }
+            
+            .content-section:active {
+                background: #f5f2ef;
+                transform: scale(0.99);
+            }
+            
+            .section-description p {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            .section-description ul {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        /* Bottom Sheet */
+        .community-bottom-sheet {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-radius: 24px 24px 0 0;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 1.2rem 1.2rem 1.5rem;
+        }
+        
+        .community-bottom-sheet.active {
+            transform: translateY(0);
+        }
+        
+        .community-bottom-sheet::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background: #cbd5e0;
+            border-radius: 4px;
+        }
+        
+        .sheet-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 16px;
+            margin-bottom: 0.8rem;
+            color: #2c2b2a;
+            border-left: 4px solid #097684;
+            padding-left: 1rem;
+        }
+        
+        .sheet-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #4a433b;
+            margin-bottom: 1.5rem;
+        }
+        
+        .sheet-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .sheet-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sheet-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sheet-close {
+            width: 100%;
+            padding: 12px;
+            background: none;
+            border: none;
+            border-top: 1px solid #e2ddd6;
+            color: #097684;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        
+        .sheet-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+        }
+        
+        .sheet-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0s 0s;
+        }
+        
+        body.sheet-open {
+            overflow: hidden;
+        }
+
         /* ===== BACK TO TOP ===== */
         .back-to-top {
             display: flex;
@@ -580,38 +669,26 @@
         
         .back-to-top a {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: #097684;
             border-radius: 50%;
             color: white;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(9, 118, 132, 0.3);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
         
         .back-to-top a:hover {
             background: #065a66;
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(9, 118, 132, 0.4);
         }
         
         .back-to-top a i {
             font-size: 1.2rem;
             animation: bounce 2s ease-in-out infinite;
-        }
-        
-        .back-to-top a i:first-child {
-            margin-bottom: -6px;
-        }
-        
-        .back-to-top a i:last-child {
-            margin-top: -6px;
         }
         
         @keyframes bounce {
@@ -620,12 +697,12 @@
             60% { transform: translateY(-4px); }
         }
 
-        /* ===== FOOTER STYLES ===== */
+        /* ===== FOOTER ===== */
         .footer {
             background: #1f2a2e;
             color: #ddd;
             padding: 3rem 2rem 1rem;
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
         
         .footer-content {
@@ -637,31 +714,10 @@
             gap: 2rem;
         }
         
-        .footer-col {
-            flex: 1 1 200px;
-        }
-        
-        .footer-logo img {
-            max-width: 200px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-        
-        .footer h4 {
-            color: #fff;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-        
-        .footer a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-        
+        .footer-col { flex: 1 1 200px; }
+        .footer-logo img { max-width: 200px; height: auto; margin-bottom: 1rem; }
+        .footer h4 { color: #fff; font-weight: 400; margin-bottom: 1rem; letter-spacing: 1px; }
+        .footer a { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5rem; font-size: 0.95rem; }
         .footer a:hover { color: #097684; }
         
         .social-icons {
@@ -680,7 +736,6 @@
             justify-content: center;
             color: white;
             font-size: 1.2rem;
-            transition: 0.2s;
         }
         
         .social-icons a:hover { background: #097684; }
@@ -703,32 +758,25 @@
             gap: 0.5rem;
         }
         
-        .payment-icons img {
-            height: 28px;
+        .payment-icons img { height: 28px; }
+
+        @media (max-width: 600px) {
+            .hero-slideshow { height: 200px; }
+            .social-icons { justify-content: center; }
+            .partner-item { flex: 0 0 100px; }
+            .partner-item img { max-width: 80px; max-height: 60px; }
+            .partner-item a span { font-size: 0.75rem; }
         }
 
-        @media (max-width: 900px) {
-            .section-heading { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .partners-carousel { gap: 1rem; }
-            .partner-item { flex: 0 0 120px; }
-            .hero-slideshow { height: 350px; }
-        }
-        
-        @media (max-width: 600px) {
-            .hero-slideshow { height: 250px; }
-            .community-page { padding: 5rem 1rem 2rem; }
-        }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
-    <!-- Navigation (from rooms page) -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="../../index.html">
-                <div class="logo">
-                <img src="../../images/logo.png" alt="Sonitori Logo">
-                </div>
+                <div class="logo"><img src="../../images/logo.png" alt="Sonitori Logo"></div>
             </a>
             <div class="nav-links">
                 <a href="../../index.html">Home</a>
@@ -746,7 +794,6 @@
                 </div>
                 <a href="../../contact-us/index.html">Contact Us</a>
             </div>
-            <!-- desktop book now button -->
             <button class="desktop-book-btn" id="desktopBookBtn">Book Now</button>
             <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
         </div>
@@ -756,22 +803,15 @@
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-sidebar" id="mobileSidebar">
         <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-circle-xmark"></i></button>
-        
-        <div class="sidebar-logo">
-            <img src="../../images/logo.png" alt="Sonitori Logo">
-        </div>
-        
+        <div class="sidebar-logo"><img src="../../images/logo.png" alt="Sonitori Logo"></div>
         <div class="sidebar-links">
             <a href="../../index.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="../../rooms/index.html"><i class="fa-solid fa-bed"></i> Rooms</a>
             <a href="../../event/index.html"><i class="fa-regular fa-calendar"></i> Events</a>
             <a href="../../gallery/index.html"><i class="fa-regular fa-images"></i> Gallery</a>
-            
             <div class="mobile-dropdown">
                 <button class="dropdown-toggle-mobile open" id="aboutDropdownToggle">
-                    <span class="dropdown-icon-group">
-                        <i class="fa-regular fa-address-card"></i> About Us
-                    </span>
+                    <span class="dropdown-icon-group"><i class="fa-regular fa-address-card"></i> About Us</span>
                     <i class="fa-solid fa-angle-down arrow-icon"></i>
                 </button>
                 <div class="dropdown-menu-mobile show" id="aboutMobileMenu">
@@ -783,9 +823,7 @@
                     </div>
                 </div>
             </div>
-
             <a href="../../contact-us/index.html"><i class="fa-regular fa-envelope"></i> Contact Us</a>
-            
             <div class="sidebar-social">
                 <h4>FOLLOW US</h4>
                 <div class="social-icons">
@@ -809,29 +847,32 @@
             <h3>Select dates</h3>
             <button class="close-popup" id="closePopupBtn"><i class="fa-solid fa-circle-xmark"></i></button>
         </div>
-        
-        <div class="calendar-container" id="calendarContainer">
-            <!-- dynamic JS will fill two months -->
-        </div>
-        
+        <div class="calendar-container" id="calendarContainer"></div>
         <div class="popup-footer">
-            <div class="night-count">
-                <span id="nightsValue">0</span> nights
-            </div>
+            <div class="night-count"><span id="nightsValue">0</span> nights</div>
             <button class="search-btn" id="searchDatesBtn" disabled>Search</button>
         </div>
     </div>
 
+    <!-- Mobile bottom sheet overlay -->
+    <div class="sheet-overlay" id="sheetOverlay"></div>
+    
+    <!-- Mobile bottom sheet for content -->
+    <div class="community-bottom-sheet" id="communityBottomSheet">
+        <h3 class="sheet-title" id="sheetTitle"></h3>
+        <div class="sheet-content" id="sheetContent"></div>
+        <button class="sheet-close" id="sheetCloseBtn">Close</button>
+    </div>
+
     <main class="community-page">
-        <!-- hero slideshow section -->
+        <!-- hero slideshow with local images -->
         <div class="hero-slideshow" id="heroSlideshow"></div>
         <div class="spacer"></div>
 
-        <!-- main COMMUNITY heading -->
         <div class="section-heading" id="mainHeading">Community</div>
 
         <!-- SECTION 1: Engage, contribute, educate -->
-        <div class="content-section" id="section1">
+        <div class="content-section" id="section1" data-title="Engage, contribute, educate" data-content="<p>The management and staff at Sonitori's hotel and resort are not only part of the community they live and work in but strive to be positive, supportive members of their community, dedicated to contributing to the sustainable development of Cambodia and its people. We actively encourage our staff to better themselves, their families and engage in humanitarian projects in our community.</p>">
             <h2 class="section-title">Engage, contribute, educate</h2>
             <div class="section-description">
                 <p>The management and staff at Sonitori's hotel and resort are not only part of the community they live and work in but strive to be positive, supportive members of their community, dedicated to contributing to the sustainable development of Cambodia and its people. We actively encourage our staff to better themselves, their families and engage in humanitarian projects in our community.</p>
@@ -839,7 +880,7 @@
         </div>
 
         <!-- SECTION 2: Scholarship programs -->
-        <div class="content-section" id="section2">
+        <div class="content-section" id="section2" data-title="Scholarship programs for staff and families" data-content="<p>Education is the key to breaking the poverty cycle and improving lives but for many of the Sonitori staff and families, higher education was previously out of reach. We are proud to say that through our scholarship program many of our staff and their children have now been enrolled or reintegrated into school. From kindergarten to university, they are studying subjects such as; law, tourism, business, finance, accounting, IT and English. A few of our team members are even studying for their Masters degrees.</p><p>We are very proud of them and their continued efforts to grow!</p>">
             <h2 class="section-title">Scholarship programs for staff and families</h2>
             <div class="section-description">
                 <p>Education is the key to breaking the poverty cycle and improving lives but for many of the Sonitori staff and families, higher education was previously out of reach. We are proud to say that through our scholarship program many of our staff and their children have now been enrolled or reintegrated into school. From kindergarten to university, they are studying subjects such as; law, tourism, business, finance, accounting, IT and English. A few of our team members are even studying for their Masters degrees.</p>
@@ -848,7 +889,7 @@
         </div>
 
         <!-- SECTION 3: Environmental Mission -->
-        <div class="content-section" id="section3">
+        <div class="content-section" id="section3" data-title="Environmental Mission" data-content="<p>Cambodia is a country with many challenges in the past and even now. A lot of people have hardly the means to survive, electricity is scarce and expensive and even clean water is not available everywhere. We try as a hotel and guest in this country, not to add to the existing problems but to be a part of the solution. That's why we strive to be as clean and as limited as possible in the use of energy and potential pollutions. Together with our staff we strive to make a difference, by:</p><ul><li>Using organic local fruits and vegetables in our kitchen and bar</li><li>Recycling our cooking oil to return and transform into bio-diesel for the generator</li><li>Use accessories made from recycled plastic bags</li><li>Garbage bags, take-away meal boxes and straws made from compostable sugar cane residue</li><li>Joining on a regular base the 'city clean-up' events</li><li>Promoting the usage of reusable aluminum water bottles instead of plastic ones which can be refilled for free at the water stations in our hotels</li><li>Using Solar panels to pre-heat the hot water</li></ul><p>We hope you will support our efforts to minimize our impact on this beautiful society.</p>">
             <h2 class="section-title">Environmental Mission</h2>
             <div class="section-description">
                 <p>Cambodia is a country with many challenges in the past and even now. A lot of people have hardly the means to survive, electricity is scarce and expensive and even clean water is not available everywhere. We try as a hotel and guest in this country, not to add to the existing problems but to be a part of the solution. That's why we strive to be as clean and as limited as possible in the use of energy and potential pollutions. Together with our staff we strive to make a difference, by:</p>
@@ -873,105 +914,102 @@
                 <p>Here some of our long-standing community partnerships:</p>
             </div>
 
-            <!-- Partners carousel/grid -->
+            <!-- Partners carousel/grid with local images -->
             <div class="partners-carousel">
                 <div class="partner-item">
                     <a href="https://thinkchildsafe.org" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/ChildSafe-Movement.webp" alt="ChildSafe Movement" loading="lazy">
+                        <img src="../../images/ChildSafe-Movement.webp" alt="ChildSafe Movement" loading="lazy">
                         <span>ChildSafe Movement</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://khmerstudies.org" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/CKS-Full-Logo-for-Website-2.svg" alt="Center for Khmer Studies" loading="lazy">
+                        <img src="../../images/CKS-Full-Logo-for-Website-2.webp" alt="Center for Khmer Studies" loading="lazy">
                         <span>Center for Khmer Studies</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://concertcambodia.org" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/concert-logo.webp" alt="ConCERT Cambodia" loading="lazy">
+                        <img src="../../images/concert-logo.webp" alt="ConCERT Cambodia" loading="lazy">
                         <span>ConCERT, Cambodia</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://www.greengeckoproject.org/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/gglogo.png" alt="Green Gecko Project" loading="lazy">
+                        <img src="../../images/gglogo.webp" alt="Green Gecko Project" loading="lazy">
                         <span>The Green Gecko Project</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="http://www.silkscreenprintinglab.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/logo-for-website2.png" alt="Silk Screen Printing Lab" loading="lazy">
+                        <img src="../../images/logo-for-website2.webp" alt="Silk Screen Printing Lab" loading="lazy">
                         <span>Silk Screen Printing Lab</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://thislife.ngo/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/logo-this-life-cambodia.png" alt="This Life Cambodia" loading="lazy">
+                        <img src="../../images/logo-this-life-cambodia.webp" alt="This Life Cambodia" loading="lazy">
                         <span>This Life Cambodia</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://www.plasticfreesea.co/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/PFC-logo-color.png" alt="Plastic Free Cambodia" loading="lazy">
+                        <img src="../../images/PFC-logo-color.webp" alt="Plastic Free Cambodia" loading="lazy">
                         <span>Plastic Free Cambodia</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://www.salabai.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/SB-logo-2021-official-khmer-white-scaled.png" alt="Sala Bai Hotel School" loading="lazy">
+                        <img src="../../images/SB-logo-2021-official-khmer-white-scaled.webp" alt="Sala Bai Hotel School" loading="lazy">
                         <span>Sala Bai Hotel School</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://www.spoonscambodia.org/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/SPOONS_Logo.png" alt="Spoons Cambodia" loading="lazy">
+                        <img src="../../images/SPOONS_Logo.webp" alt="Spoons Cambodia" loading="lazy">
                         <span>Spoons Cambodia (EGBOK)</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://wrccambodia.org/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/wrc_logo_w360px1.webp" alt="Women's Resource Center" loading="lazy">
+                        <img src="../../images/wrc_logo_w360px1.webp" alt="Women's Resource Center" loading="lazy">
                         <span>Women's Resource Center</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://cambodia.wcs.org/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/wcs_logotype_0-scaled-1.jpg" alt="Wildlife Conservation Society" loading="lazy">
+                        <img src="../../images/wcs_logotype_0-scaled-1.webp" alt="Wildlife Conservation Society" loading="lazy">
                         <span>Wildlife Conservation Society</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://onlyoneplanetkh.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/only.webp" alt="Only One Planet" loading="lazy">
+                        <img src="../../images/only.webp" alt="Only One Planet" loading="lazy">
                         <span>Only One Planet</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://refilltheworld.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/refill-not-landfill-high-res_orig.jpg" alt="Refill Not Landfill" loading="lazy">
+                        <img src="../../images/refill-not-landfill-high-res_orig.webp" alt="Refill Not Landfill" loading="lazy">
                         <span>Refill Not Landfill</span>
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="https://web.facebook.com/giantpuppetproject" target="_blank" rel="noopener noreferrer">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2026/02/Giant-Puppet-Project-Siem-Reap.jpg" alt="Giant Puppet Project" loading="lazy">
+                        <img src="../../images/Giant-Puppet-Project-Siem-Reap.webp" alt="Giant Puppet Project" loading="lazy">
                         <span>Giant Puppet Project</span>
                     </a>
                 </div>
             </div>
         </div>
-
-        
     </main>
 
     <!-- back to top -->
-        <div class="back-to-top">
-            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
-                <i class="fa-solid fa-chevron-up"></i>
-                <i class="fa-solid fa-chevron-up"></i>
-            </a>
-        </div>
+    <div class="back-to-top">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -1004,8 +1042,8 @@
         <div class="footer-bottom">
             <div class="payment-icons">
                 <span>Pay way :</span>
-                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
-                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+                <img src="../../images/visa-card.webp" alt="visa">
+                <img src="../../images/master.webp" alt="mastercard">
             </div>
             <div>Copyright © Sonitori Phnom Penh</div>
         </div>
@@ -1013,13 +1051,13 @@
 
     <script>
         (function() {
-            // hero slideshow images
+            // Hero slideshow with local images
             const heroImages = [
-                'https://rambutanphnompenh.com/wp-content/uploads/2026/02/629893305_907396372157138_6233182403072246871_n.jpg',
-                'https://rambutanphnompenh.com/wp-content/uploads/2026/02/629915524_1178086287735216_5290234593719179986_n.jpg',
-                'https://rambutanphnompenh.com/wp-content/uploads/2026/02/632713270_1578421867107602_7202185901117564219_n.jpg',
-                'https://rambutanphnompenh.com/wp-content/uploads/2026/02/633004088_1600866851040505_2107471150450363726_n.jpg',
-                'https://rambutanphnompenh.com/wp-content/uploads/2025/03/dsc0380.jpg'
+                '../../images/629893305_907396372157138_6233182403072246871_n.webp',
+                '../../images/629915524_1178086287735216_5290234593719179986_n.webp',
+                '../../images/632713270_1578421867107602_7202185901117564219_n.webp',
+                '../../images/633004088_1600866851040505_2107471150450363726_n.webp',
+                '../../images/dsc0380.webp'
             ];
             let idx = 0;
             const hero = document.getElementById('heroSlideshow');
@@ -1031,7 +1069,63 @@
                 }, 5000);
             }
 
-            // ===== MOBILE SIDEBAR FUNCTIONALITY =====
+            // Mobile bottom sheet for content sections
+            const sheet = document.getElementById('communityBottomSheet');
+            const sheetOverlay = document.getElementById('sheetOverlay');
+            const sheetTitle = document.getElementById('sheetTitle');
+            const sheetContent = document.getElementById('sheetContent');
+            const sheetClose = document.getElementById('sheetCloseBtn');
+            const isMobile = window.innerWidth <= 900;
+            
+            function closeSheet() {
+                if (sheet) sheet.classList.remove('active');
+                if (sheetOverlay) sheetOverlay.classList.remove('active');
+                document.body.classList.remove('sheet-open');
+            }
+            
+            function openSheet(title, content) {
+                if (sheetTitle) sheetTitle.textContent = title;
+                if (sheetContent) sheetContent.innerHTML = content;
+                if (sheet) sheet.classList.add('active');
+                if (sheetOverlay) sheetOverlay.classList.add('active');
+                document.body.classList.add('sheet-open');
+            }
+            
+            if (sheetClose) sheetClose.addEventListener('click', closeSheet);
+            if (sheetOverlay) sheetOverlay.addEventListener('click', closeSheet);
+            
+            // Add click handlers to content sections on mobile (skip partners section)
+            if (isMobile) {
+                const contentSections = document.querySelectorAll('.content-section:not(.partners-section)');
+                contentSections.forEach(section => {
+                    const title = section.getAttribute('data-title');
+                    const content = section.getAttribute('data-content');
+                    if (title && content) {
+                        section.addEventListener('click', (e) => {
+                            if (e.target.closest('a')) return;
+                            openSheet(title, content);
+                        });
+                    }
+                });
+            }
+            
+            // Close sheet on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeSheet();
+            });
+            
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    if (window.innerWidth > 900) {
+                        closeSheet();
+                    }
+                }, 100);
+            });
+
+            // Mobile sidebar
             const mobileIcon = document.querySelector('.mobile-menu-icon');
             const sidebar = document.getElementById('mobileSidebar');
             const overlay = document.getElementById('mobileOverlay');
@@ -1055,7 +1149,6 @@
             if (closeSidebar) closeSidebar.addEventListener('click', closeMobileMenu);
             if (overlay) overlay.addEventListener('click', closeMobileMenu);
 
-            // SMOOTH DROPDOWN animation - keep open for About Us section
             if (dropdownToggle && aboutMobileMenu) {
                 dropdownToggle.classList.add('open');
                 aboutMobileMenu.classList.add('show');
@@ -1074,28 +1167,26 @@
             }
 
             window.addEventListener('resize', function() {
-                if (window.innerWidth > 900 && sidebar && sidebar.classList.contains('open')) {
-                    closeMobileMenu();
-                }
+                if (window.innerWidth > 900 && sidebar.classList.contains('open')) closeMobileMenu();
             });
 
-            // ===== BOOK NOW BUTTONS =====
+            // Booking popup
             function openBookingPopup() {
-                const overlay = document.getElementById('popupOverlay');
+                const popupOverlay = document.getElementById('popupOverlay');
                 const popup = document.getElementById('calendarPopup');
-                if (overlay && popup) {
-                    overlay.classList.add('active');
+                if (popupOverlay && popup) {
+                    popupOverlay.classList.add('active');
                     popup.classList.add('active');
                 }
             }
-
+            
             document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
             document.getElementById('mobileFixedBook')?.addEventListener('click', function(e) {
                 e.preventDefault();
                 openBookingPopup();
             });
 
-            // Scroll animations
+            // Scroll animation observer
             const animatedElements = [
                 document.getElementById('mainHeading'),
                 document.getElementById('section1'),
@@ -1111,10 +1202,7 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.2,
-                rootMargin: '0px 0px -50px 0px'
-            });
+            }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
 
             animatedElements.forEach(el => observer.observe(el));
         })();

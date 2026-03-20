@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../bookingsPopup/booking.css">
     <title>Rooms · Sonitori Phnom Penh</title>
@@ -12,20 +12,24 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
     background-color: #f5f3f0;
     color: #2c2b2a;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
     font-size: 1rem;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
 }
 
-/* ===== NAVIGATION (unchanged) ===== */
+body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* ===== NAVIGATION ===== */
 .navbar {
     position: fixed;
     top: 0;
@@ -75,7 +79,6 @@ body {
     border-bottom: 1px solid #097684;
     margin-bottom: -1px;
     pointer-events: none;
-    cursor: default;
 }
 
 .desktop-book-btn {
@@ -88,7 +91,6 @@ body {
     cursor: pointer;
     transition: 0.2s;
     font-size: 0.95rem;
-    letter-spacing: 0.5px;
 }
 
 .desktop-book-btn:hover {
@@ -104,7 +106,7 @@ body {
     cursor: pointer;
 }
 
-/* ===== MOBILE SIDEBAR (unchanged) ===== */
+/* ===== MOBILE SIDEBAR ===== */
 .mobile-sidebar {
     position: fixed;
     top: 0;
@@ -118,12 +120,9 @@ body {
     transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     padding: 3rem 0rem 2rem;
     overflow-y: auto;
-    border-left: none;
 }
 
-.mobile-sidebar.open {
-    right: 0;
-}
+.mobile-sidebar.open { right: 0; }
 
 .sidebar-logo {
     padding: 0 20px 20px 20px;
@@ -165,18 +164,17 @@ body {
     border-radius: 50%;
     display: flex;
     align-items: center;
+    padding: 0 !important;
     justify-content: center;
     color: #097684;
     font-size: 1.2rem;
     transition: all 0.3s ease;
-    padding: 0 !important;
 }
 
 .sidebar-social .social-icons a:hover {
     background: #097684;
     color: white;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(9,118,132,0.3);
 }
 
 .close-sidebar {
@@ -189,9 +187,7 @@ body {
     color: #097684;
     cursor: pointer;
     line-height: 1;
-    transition: transform 0.2s;
 }
-.close-sidebar:hover { transform: scale(1.1); }
 
 .mobile-sidebar .sidebar-links {
     display: flex;
@@ -201,9 +197,7 @@ body {
     padding: 0 0px 0 30px;
 }
 
-.mobile-sidebar .sidebar-links a {
-    padding-left: 20px;
-}
+.mobile-sidebar .sidebar-links a { padding-left: 20px; }
 
 .mobile-sidebar a, .dropdown-toggle-mobile {
     text-decoration: none;
@@ -219,8 +213,6 @@ body {
     width: 100%;
     cursor: pointer;
     text-align: left;
-    transition: background 0.2s, color 0.2s, padding-left 0.2s;
-    border-bottom: none;
 }
 
 .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
@@ -234,25 +226,25 @@ body {
     justify-content: space-between;
     padding: 0.9rem 20px;
 }
+
 .dropdown-toggle-mobile .dropdown-icon-group {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
+
 .dropdown-toggle-mobile .arrow-icon {
     font-size: 0.9rem;
     color: #7b6e61;
     transition: transform 0.3s ease;
 }
-.dropdown-toggle-mobile.open .arrow-icon {
-    transform: rotate(180deg);
-}
+
+.dropdown-toggle-mobile.open .arrow-icon { transform: rotate(180deg); }
 
 .mobile-sidebar a.active {
     color: #097684;
     font-weight: 500;
     background: rgba(9,118,132,0.08);
-    box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
     border-radius: 12px 0 0 12px;
     padding-left: 20px;
 }
@@ -264,9 +256,6 @@ body {
     visibility: hidden;
     transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
     margin-left: 2.6rem;
-    padding-left: 0.2rem;
-    background: transparent;
-    border-left: none;
 }
 
 .dropdown-menu-mobile.show {
@@ -276,35 +265,24 @@ body {
     transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
 }
 
-.dropdown-menu-mobile > div {
-    overflow: hidden;
-}
+.dropdown-menu-mobile > div { overflow: hidden; }
 
 .dropdown-menu-mobile a {
     padding: 0.7rem 0 0.7rem 0.2rem;
     font-size: 1.1rem;
     color: #4f4a44;
-    border-bottom: none;
-    transition: color 0.2s, padding-left 0.2s;
     display: flex;
     align-items: center;
     gap: 1rem;
 }
+
 .dropdown-menu-mobile a i {
     width: 1.4rem;
     font-size: 1rem;
     color: #097684;
 }
-.dropdown-menu-mobile a:hover {
-    color: #097684;
-    padding-left: 0.5rem;
-    background: none;
-}
 
-.mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
-    color: #097684;
-    background: rgba(9,118,132,0.04);
-}
+.dropdown-menu-mobile a:hover { color: #097684; }
 
 .mobile-overlay {
     position: fixed;
@@ -319,6 +297,7 @@ body {
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0s 0.4s;
 }
+
 .mobile-overlay.active {
     opacity: 1;
     visibility: visible;
@@ -333,42 +312,25 @@ body {
 
 .mobile-fixed-book {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 15px;
+    right: 15px;
     background: #097684;
     color: white;
     border: none;
-    border-radius: 60px;
-    padding: 1rem;
-    font-size: 0.9rem;
+    border-radius: 50px;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    letter-spacing: 1px;
     box-shadow: 0 10px 30px rgba(9,118,132,0.5);
     z-index: 1500;
     cursor: pointer;
-    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
     display: flex;
     align-items: center;
     gap: 8px;
-    white-space: nowrap;
     border: 2px solid rgba(255,255,255,0.2);
-    backdrop-filter: blur(2px);
-    width: auto;
-    max-width: calc(100% - 40px);
-}
-.mobile-fixed-book:active {
-    background: #065a66;
-    transform: scale(0.96);
-    box-shadow: 0 6px 20px rgba(9,118,132,0.6);
-}
-.mobile-fixed-book i {
-    font-size: 1rem;
-    padding-bottom: 1px;
 }
 
-@media (min-width: 901px) {
-    .mobile-fixed-book { display: none; }
-}
+@media (min-width: 901px) { .mobile-fixed-book { display: none; } }
 
 .dropdown {
     position: relative;
@@ -382,14 +344,8 @@ body {
     height: 50px;
 }
 
-.dropdown-arrow {
-    font-size: 0.7rem;
-    transition: transform 0.3s ease;
-}
-
-.dropdown:hover .dropdown-arrow {
-    transform: rotate(180deg);
-}
+.dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+.dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
 
 .dropdown-menu {
     position: absolute;
@@ -419,7 +375,6 @@ body {
     padding: 0.7rem 1.5rem;
     color: #3b3a38;
     font-size: 0.95rem;
-    transition: all 0.2s ease;
     white-space: nowrap;
 }
 
@@ -435,7 +390,6 @@ body {
     margin: 0 auto;
     padding: 6rem 1.5rem 1rem;
     background: #ffffff;
-    box-shadow: 0 0 40px rgba(0,0,0,0.02);
     border-radius: 0 0px 20px 20px;
 }
 
@@ -456,9 +410,7 @@ body {
     border-bottom: 1px solid #eee7e0;
     padding-bottom: 2.5rem;
 }
-.room-section:last-of-type {
-    border-bottom: none;
-}
+.room-section:last-of-type { border-bottom: none; }
 
 .room-card {
     display: flex;
@@ -468,11 +420,7 @@ body {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.02);
-    transition: box-shadow 0.3s;
     position: relative;
-}
-.room-card:hover {
-    box-shadow: 0 16px 32px -8px rgba(0,0,0,0.08);
 }
 
 .room-image {
@@ -492,9 +440,7 @@ body {
     transition: transform 0.3s ease-in-out;
     cursor: grab;
 }
-.carousel-track:active {
-    cursor: grabbing;
-}
+.carousel-track:active { cursor: grabbing; }
 
 .carousel-slide {
     flex: 0 0 100%;
@@ -508,7 +454,6 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    pointer-events: none;
 }
 
 .carousel-btn {
@@ -528,7 +473,7 @@ body {
     color: #3b342e;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     z-index: 15;
-    transition: opacity 0.2s, background 0.2s;
+    transition: opacity 0.2s;
     opacity: 0;
     pointer-events: none;
 }
@@ -536,16 +481,8 @@ body {
     opacity: 1;
     pointer-events: auto;
 }
-.carousel-btn:hover {
-    background: #ffffff;
-    color: #097684;
-}
-.prev-btn {
-    left: 12px;
-}
-.next-btn {
-    right: 12px;
-}
+.prev-btn { left: 12px; }
+.next-btn { right: 12px; }
 
 .carousel-dots {
     position: absolute;
@@ -559,7 +496,6 @@ body {
     padding: 5px;
     border-radius: 40px;
     backdrop-filter: blur(4px);
-    opacity: 1;
 }
 
 .dot {
@@ -569,15 +505,11 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 1px solid rgba(0,0,0,0.1);
 }
 .dot.active {
     width: 20px;
     background-color: #ffffff;
     border-radius: 20px;
-}
-.dot:hover {
-    background-color: rgba(255,255,255,0.9);
 }
 
 .room-description {
@@ -586,7 +518,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: opacity 0.2s;
 }
 
 .room-title {
@@ -632,7 +563,6 @@ body {
     border-bottom: 1px solid #d6cbbc;
     padding-bottom: 2px;
     width: fit-content;
-    transition: color 0.2s, border-color 0.2s;
     cursor: pointer;
     background: none;
     border-top: none;
@@ -640,12 +570,8 @@ body {
     border-right: none;
     font-size: 1rem;
 }
-.room-link:hover {
-    color: #065a66;
-    border-bottom-color: #065a66;
-}
 
-/* ===== COMPACT DETAIL PANEL ===== */
+/* ===== DETAIL PANEL - DESKTOP (slide from left) ===== */
 .detail-panel {
     position: absolute;
     top: 0;
@@ -669,10 +595,152 @@ body {
     transform: translateX(0);
 }
 
+/* ===== MOBILE BOTTOM SHEET STYLES (for mobile devices) ===== */
+@media (max-width: 900px) {
+    .detail-panel {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        max-height: 95vh;
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        border-radius: 24px 24px 0 0;
+        box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        padding: 1.2rem 1.2rem 1.5rem;
+        background: #ffffff;
+    }
+    
+    .detail-panel.active {
+        transform: translateY(0);
+    }
+    
+    /* Add drag handle indicator for mobile */
+    .detail-panel::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 4px;
+        background: #cbd5e0;
+        border-radius: 4px;
+        z-index: 5;
+    }
+    
+    /* Adjust panel content spacing for mobile - keep full content */
+    .panel-title {
+        font-size: 1.3rem;
+        margin-top: 12px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .panel-text {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
+    
+    .panel-amenities {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.5rem 0.8rem;
+        margin-bottom: 1rem;
+        max-height: 50vh;
+        overflow-y: auto;
+        padding-right: 0.5rem;
+    }
+    
+    .panel-amenities li {
+        font-size: 0.55rem !important;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+    
+    .panel-close {
+        position: sticky;
+        bottom: 0;
+        background: #ffffff;
+        padding: 12px 0 8px;
+        margin-top: 8px;
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid #e2ddd6;
+        border-bottom: none;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #097684;
+    }
+    
+    /* Add overlay when panel is open */
+    body.panel-open {
+        overflow: hidden;
+    }
+    
+    .panel-overlay-mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0s 0.3s;
+    }
+    
+    .panel-overlay-mobile.active {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.3s ease, visibility 0s 0s;
+    }
+    
+    /* Adjust carousel buttons for touch */
+    .carousel-btn {
+        opacity: 1;
+        pointer-events: auto;
+        width: 36px;
+        height: 36px;
+        background: rgba(0,0,0,0.6);
+        color: white;
+    }
+    
+    .room-description {
+        padding: 1rem 1rem 1.5rem 1rem;
+    }
+    
+    .room-title {
+        font-size: 1.5rem;
+        border-left-width: 4px;
+        padding-left: 0.8rem;
+    }
+    
+    .room-text {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .room-features {
+        gap: 0.8rem 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .room-features li {
+        font-size: 0.8rem;
+    }
+}
+
+/* Panel content styles (shared) */
 .panel-title {
     font-size: 1.3rem;
-    font-weight: 500;
-    margin-bottom: 0.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
     color: #2c2b2a;
     border-left: 4px solid #097684;
     padding-left: 0.8rem;
@@ -680,19 +748,18 @@ body {
 }
 
 .panel-text {
-    font-size: 1rem;
-    line-height: 1.3;
+    font-size: 0.95rem;
+    line-height: 1.4;
     color: #4a433b;
-    margin-bottom: 0.8rem;
-    padding-right: 0.3rem;
+    margin-bottom: 1rem;
 }
 
 .panel-amenities {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.2rem 0.8rem;
-    margin-bottom: 0.8rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem 0.8rem;
+    margin-bottom: 1rem;
     padding: 0.2rem 0;
 }
 
@@ -700,19 +767,16 @@ body {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: #5e554b;
     padding: 0.1rem 0;
     border-bottom: 1px dotted #e0d9d0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .panel-amenities i {
     color: #097684;
     width: 1rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     text-align: center;
     flex-shrink: 0;
 }
@@ -722,17 +786,12 @@ body {
     background: none;
     border: none;
     color: #097684;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     cursor: pointer;
     border-bottom: 1px solid #d6cbbc;
     padding-bottom: 2px;
-    margin-top: 0.2rem;
+    margin-top: 0.5rem;
     font-weight: 500;
-    flex-shrink: 0;
-}
-.panel-close:hover {
-    color: #065a66;
-    border-bottom-color: #065a66;
 }
 
 /* ===== BACK TO TOP ===== */
@@ -754,14 +813,11 @@ body {
     text-decoration: none;
     box-shadow: 0 4px 12px rgba(9, 118, 132, 0.3);
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
 .back-to-top a:hover {
     background: #065a66;
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(9, 118, 132, 0.4);
 }
 
 .back-to-top a i {
@@ -775,7 +831,7 @@ body {
     60% { transform: translateY(-4px); }
 }
 
-/* ===== FOOTER (unchanged) ===== */
+/* ===== FOOTER ===== */
 .footer {
     background: #1f2a2e;
     color: #ddd;
@@ -792,31 +848,10 @@ body {
     gap: 2rem;
 }
 
-.footer-col {
-    flex: 1 1 200px;
-}
-
-.footer-logo img {
-    max-width: 200px;
-    height: auto;
-    margin-bottom: 1rem;
-}
-
-.footer h4 {
-    color: #fff;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-}
-
-.footer a {
-    color: #ccc;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-}
-
+.footer-col { flex: 1 1 200px; }
+.footer-logo img { max-width: 200px; height: auto; margin-bottom: 1rem; }
+.footer h4 { color: #fff; font-weight: 400; margin-bottom: 1rem; letter-spacing: 1px; }
+.footer a { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5rem; font-size: 0.95rem; }
 .footer a:hover { color: #097684; }
 
 .social-icons {
@@ -835,7 +870,6 @@ body {
     justify-content: center;
     color: white;
     font-size: 1.2rem;
-    transition: 0.2s;
 }
 
 .social-icons a:hover { background: #097684; }
@@ -858,345 +892,16 @@ body {
     gap: 0.5rem;
 }
 
-.payment-icons img {
-    height: 28px;
+.payment-icons img { height: 28px; }
+
+@media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .rooms-main-heading { font-size: 1.8rem; letter-spacing: 3px; }
+    .room-card { gap: 0.5rem; }
+    .room-image { min-width: 100%; }
 }
 
-/* ===== MOBILE RESPONSIVE IMPROVEMENTS (navbar, sidebar, footer unchanged) ===== */
-
-/* Tablet devices (601px to 900px) */
-@media only screen and (min-width: 601px) and (max-width: 900px) {
-    .room-block {
-        padding: 6rem 1.5rem 1rem;
-    }
-
-    .rooms-main-heading {
-        font-size: 2.2rem;
-    }
-
-    .room-card {
-        gap: 1.5rem;
-    }
-
-    .room-description {
-        padding: 1.5rem 1.5rem 1.5rem 0;
-    }
-
-    .room-title {
-        font-size: 1.8rem;
-    }
-
-    .room-text {
-        font-size: 0.95rem;
-    }
-
-    .detail-panel {
-        padding: 1.2rem;
-    }
-
-    .panel-title {
-        font-size: 1.2rem;
-    }
-
-
-    .panel-amenities {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.2rem 0.6rem;
-    }
-
-    .panel-amenities li {
-        font-size: 0.65rem;
-    }
-}
-
-/* Small devices (600px and down) */
-@media only screen and (max-width: 600px) {
-    .room-block {
-        padding: 5rem 1rem 1rem;
-    }
-
-    .rooms-main-heading {
-        font-size: 1.8rem;
-        letter-spacing: 3px;
-        margin-bottom: 1.5rem;
-    }
-
-    .room-card {
-        gap: 1rem;
-        border-radius: 12px;
-    }
-
-    .room-description {
-        padding: 0 1rem 1.5rem 1rem;
-    }
-
-    .room-title {
-        font-size: 1.5rem;
-        margin-bottom: 0.8rem;
-        border-left-width: 4px;
-        padding-left: 0.8rem;
-    }
-
-    .room-text {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 1.2rem;
-    }
-
-    .room-features {
-        gap: 0.8rem 1.2rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .room-features li {
-        font-size: 0.8rem;
-        gap: 0.4rem;
-    }
-
-    .room-features i {
-        width: 1rem;
-        font-size: 0.9rem;
-    }
-
-    .room-link {
-        font-size: 0.9rem;
-    }
-
-    /* Carousel adjustments for mobile */
-    .carousel-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
-        opacity: 1;
-        pointer-events: auto;
-        background: rgba(255,255,255,0.95);
-    }
-
-    .carousel-dots {
-        bottom: 10px;
-        padding: 4px 8px;
-    }
-
-    .dot {
-        width: 6px;
-        height: 6px;
-    }
-
-    .dot.active {
-        width: 16px;
-    }
-
-    /* Detail panel mobile optimization */
-    .detail-panel {
-        padding: 0.8rem;
-    }
-
-    .panel-title {
-        font-size: 1.1rem;
-        padding-left: 0.6rem;
-        margin-bottom: 0.2rem;
-    }
-
-
-    .panel-amenities {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.1rem 0.3rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .panel-amenities li {
-        font-size: 0.6rem;
-        gap: 0.3rem;
-        padding: 0.05rem 0;
-    }
-
-    .panel-amenities i {
-        width: 0.8rem;
-        font-size: 0.65rem;
-    }
-
-    .panel-close {
-        font-size: 0.7rem;
-        margin-top: 0.1rem;
-    }
-
-    /* Mobile fixed book button adjustments */
-    .mobile-fixed-book {
-        padding: 0.8rem 1.2rem;
-        font-size: 0.8rem;
-        bottom: 15px;
-        right: 15px;
-        border-radius: 50px;
-    }
-
-    /* Back to top button */
-    .back-to-top {
-        margin: 2rem 0 1rem;
-    }
-
-    .back-to-top a {
-        width: 40px;
-        height: 40px;
-    }
-
-    .back-to-top a i {
-        font-size: 1.1rem;
-    }
-}
-
-/* Extra small devices (400px and down) */
-@media only screen and (max-width: 400px) {
-    .rooms-main-heading {
-        font-size: 1.5rem;
-        letter-spacing: 2px;
-    }
-
-    .room-title {
-        font-size: 1.3rem;
-    }
-
-    .room-text {
-        font-size: 0.8rem;
-    }
-
-    .room-features {
-        gap: 0.6rem 1rem;
-    }
-
-    .room-features li {
-        font-size: 0.7rem;
-    }
-
-    .detail-panel {
-        padding: 0.6rem;
-    }
-
-    .panel-title {
-        font-size: 1.2rem;
-    }
-
-    .panel-text {
-        font-size: 0.8rem;
-        padding-bottom: .5rem;
-    }
-
-    .panel-amenities {
-        grid-template-columns:  repeat(2, 1fr);
-        gap: 0.1rem;
-    }
-
-    .panel-amenities li {
-        font-size: 0.6rem;
-    }
-
-    .mobile-fixed-book {
-        padding: 0.7rem 1rem;
-        font-size: 0.75rem;
-        bottom: 10px;
-        right: 10px;
-    }
-
-    .mobile-fixed-book i {
-        font-size: 0.8rem;
-    }
-}
-
-/* Landscape mode optimization */
-@media only screen and (max-height: 500px) and (orientation: landscape) {
-    .room-card {
-        flex-direction: row;
-    }
-
-    .room-image {
-        min-width: 200px;
-    }
-
-    .detail-panel {
-        padding: 0.8rem;
-    }
-
-    .panel-amenities {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Touch-friendly improvements */
-@media (hover: none) and (pointer: coarse) {
-    .room-link,
-    .panel-close,
-    .carousel-btn,
-    .dot,
-    .mobile-menu-icon,
-    .close-sidebar,
-    .dropdown-toggle-mobile,
-    .sidebar-links a,
-    .social-icons a,
-    .footer a,
-    .back-to-top a {
-        cursor: pointer;
-        -webkit-tap-highlight-color: rgba(9, 118, 132, 0.2);
-    }
-
-    .room-card:hover {
-        box-shadow: 0 8px 24px rgba(0,0,0,0.02);
-    }
-
-    .room-link:hover,
-    .panel-close:hover {
-        color: #097684;
-        border-bottom-color: #d6cbbc;
-    }
-
-    .carousel-btn {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .desktop-book-btn:hover {
-        background: transparent;
-        color: #097684;
-    }
-}
-
-/* Fix for notched phones */
-@supports (padding: max(0px)) {
-    .room-block {
-        padding-left: max(1.5rem, env(safe-area-inset-left));
-        padding-right: max(1.5rem, env(safe-area-inset-right));
-    }
-
-    .mobile-fixed-book {
-        bottom: max(10px, env(safe-area-inset-bottom));
-        right: max(10px, env(safe-area-inset-right));
-    }
-}
-
-/* Smooth scrolling for the whole page */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Better touch scrolling for panels */
-.detail-panel,
-.panel-text,
-.panel-amenities {
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Prevent text size adjustment on orientation change */
-html {
-    -webkit-text-size-adjust: 100%;
-}
-
-/* Loading states for better UX */
-.carousel-slide img {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.carousel-slide img[loading="lazy"] {
-    opacity: 1;
-}
+html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
@@ -1204,9 +909,7 @@ html {
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="../index.html">
-                <div class="logo">
-                <img src="../images/logo.png" alt="Sonitori Logo">
-                </div>
+                <div class="logo"><img src="../images/logo.png" alt="Sonitori Logo"></div>
             </a>
             <div class="nav-links">
                 <a href="../index.html">Home</a>
@@ -1233,9 +936,7 @@ html {
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-sidebar" id="mobileSidebar">
         <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-circle-xmark"></i></button>
-        <div class="sidebar-logo">
-            <img src="../images/logo.png" alt="Sonitori Logo">
-        </div>
+        <div class="sidebar-logo"><img src="../images/logo.png" alt="Sonitori Logo"></div>
         <div class="sidebar-links">
             <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="" class="active"><i class="fa-solid fa-bed"></i> Rooms</a>
@@ -1243,9 +944,7 @@ html {
             <a href="../gallery/index.html"><i class="fa-regular fa-images"></i> Gallery</a>
             <div class="mobile-dropdown">
                 <button class="dropdown-toggle-mobile" id="aboutDropdownToggle">
-                    <span class="dropdown-icon-group">
-                        <i class="fa-regular fa-address-card"></i> About Us
-                    </span>
+                    <span class="dropdown-icon-group"><i class="fa-regular fa-address-card"></i> About Us</span>
                     <i class="fa-solid fa-angle-down arrow-icon"></i>
                 </button>
                 <div class="dropdown-menu-mobile" id="aboutMobileMenu">
@@ -1283,12 +982,13 @@ html {
         </div>
         <div class="calendar-container" id="calendarContainer"></div>
         <div class="popup-footer">
-            <div class="night-count">
-                <span id="nightsValue">0</span> nights
-            </div>
+            <div class="night-count"><span id="nightsValue">0</span> nights</div>
             <button class="search-btn" id="searchDatesBtn" disabled>Search</button>
         </div>
     </div>
+
+    <!-- Mobile panel overlay (for bottom sheet) -->
+    <div class="panel-overlay-mobile" id="panelOverlayMobile"></div>
 
     <div class="room-block">
         <div class="rooms-main-heading">ROOMS</div>
@@ -1298,12 +998,12 @@ html {
             <div class="room-card" id="card-standard">
                 <div class="room-image js-carousel">
                     <div class="carousel-track">
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-04.jpeg" alt="Standard main" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-05-13.39.51.jpeg" alt="Standard extra 1" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-09.jpg" alt="Standard extra 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Rambutan-PP-Low-04.webp" alt="Standard main" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Rambutan-PP-Low-05-13.39.51.webp" alt="Standard extra 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Rambutan-PP-Low-09.webp" alt="Standard extra 2" loading="lazy"></div>
                     </div>
-                    <button class="carousel-btn prev-btn" aria-label="Previous image"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="carousel-btn next-btn" aria-label="Next image"><i class="fa-solid fa-angle-right"></i></button>
+                    <button class="carousel-btn prev-btn"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="carousel-btn next-btn"><i class="fa-solid fa-angle-right"></i></button>
                     <div class="carousel-dots"></div>
                 </div>
                 <div class="room-description">
@@ -1345,7 +1045,7 @@ html {
                         <li><i class="fa-solid fa-pen"></i> Writing Desk</li>
                         <li><i class="fa-solid fa-soap"></i> Amenities</li>
                     </ul>
-                    <button class="panel-close close-panel">← close</button>
+                    <button class="panel-close close-panel">← Close</button>
                 </div>
             </div>
         </section>
@@ -1355,13 +1055,13 @@ html {
             <div class="room-card" id="card-garden">
                 <div class="room-image js-carousel">
                     <div class="carousel-track">
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Rambutan_Resort_PP_High_Res_06411-3.jpg" alt="Garden extra 3" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Photo-Rambutan-PP-16-1.jpg" alt="Garden main" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Photo-Rambutan-PP-23-1.jpg" alt="Garden extra 1" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Photo-Rambutan-PP-26-1.jpg" alt="Garden extra 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Rambutan_Resort_PP_High_Res_06411-3.webp" alt="Garden" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Photo-Rambutan-PP-16-1.webp" alt="Garden main" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Photo-Rambutan-PP-23-1.webp" alt="Garden extra" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Photo-Rambutan-PP-26-1.webp" alt="Garden extra" loading="lazy"></div>
                     </div>
-                    <button class="carousel-btn prev-btn" aria-label="Previous image"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="carousel-btn next-btn" aria-label="Next image"><i class="fa-solid fa-angle-right"></i></button>
+                    <button class="carousel-btn prev-btn"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="carousel-btn next-btn"><i class="fa-solid fa-angle-right"></i></button>
                     <div class="carousel-dots"></div>
                 </div>
                 <div class="room-description">
@@ -1407,7 +1107,7 @@ html {
                         <li><i class="fa-solid fa-pen"></i> Writing Desk</li>
                         <li><i class="fa-solid fa-soap"></i> Amenities</li>
                     </ul>
-                    <button class="panel-close close-panel">← close</button>
+                    <button class="panel-close close-panel">← Close</button>
                 </div>
             </div>
         </section>
@@ -1417,14 +1117,14 @@ html {
             <div class="room-card" id="card-pool">
                 <div class="room-image js-carousel">
                     <div class="carousel-track">
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-17.jpg" alt="Pool main" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Rambutan_Resort_PP_High_Res_06262-1.jpg" alt="Pool extra 1" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Rambutan-PP-Low-03.jpg" alt="Pool extra 2" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Rambutan-Resort-samjamphoto-34-scaled.jpg" alt="Pool extra 2" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screenshot-2018-12-23-at-14.46.30-1.jpeg" alt="Pool extra 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Rambutan-PP-Low-17.webp" alt="Pool main" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Rambutan_Resort_PP_High_Res_06262-1.webp" alt="Pool extra" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Rambutan-PP-Low-03.webp" alt="Pool extra" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Rambutan-Resort-samjamphoto-34-scaled.webp" alt="Pool extra" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Screenshot-2018-12-23-at-14.46.30-1.webp" alt="Pool extra" loading="lazy"></div>
                     </div>
-                    <button class="carousel-btn prev-btn" aria-label="Previous image"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="carousel-btn next-btn" aria-label="Next image"><i class="fa-solid fa-angle-right"></i></button>
+                    <button class="carousel-btn prev-btn"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="carousel-btn next-btn"><i class="fa-solid fa-angle-right"></i></button>
                     <div class="carousel-dots"></div>
                 </div>
                 <div class="room-description">
@@ -1466,7 +1166,7 @@ html {
                         <li><i class="fa-solid fa-pen"></i> Writing Desk</li>
                         <li><i class="fa-solid fa-droplet"></i> Daily Water</li>
                     </ul>
-                    <button class="panel-close close-panel">← close</button>
+                    <button class="panel-close close-panel">← Close</button>
                 </div>
             </div>
         </section>
@@ -1476,15 +1176,15 @@ html {
             <div class="room-card" id="card-penthouse">
                 <div class="room-image js-carousel">
                     <div class="carousel-track">
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Greg-Mo-Photo-Rambutan-PP-07.jpg" alt="Penthouse main" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screen-Shot-2018-12-20-at-8.25.13-PM-1-scaled.jpeg" alt="Penthouse extra 1" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screen-Shot-2018-12-20-at-8.24.36-PM-scaled.jpeg" alt="Penthouse extra 2" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screen-Shot-2018-12-22-at-12.02.58-PM-1-scaled.jpeg" alt="Penthouse extra 1" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Penthouse-3-scaled.jpeg" alt="Penthouse extra 2" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screenshot-2018-12-23-at-14.45.15-1.jpeg" alt="Penthouse extra 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Greg-Mo-Photo-Rambutan-PP-07.webp" alt="Penthouse main" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Screen-Shot-2018-12-20-at-8.25.13-PM-1-scaled.webp" alt="Penthouse" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Screen-Shot-2018-12-20-at-8.24.36-PM-scaled.webp" alt="Penthouse" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Screen-Shot-2018-12-22-at-12.02.58-PM-1-scaled.webp" alt="Penthouse" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Penthouse-3-scaled.webp" alt="Penthouse" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../images/Screenshot-2018-12-23-at-14.45.15-1.webp" alt="Penthouse" loading="lazy"></div>
                     </div>
-                    <button class="carousel-btn prev-btn" aria-label="Previous image"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="carousel-btn next-btn" aria-label="Next image"><i class="fa-solid fa-angle-right"></i></button>
+                    <button class="carousel-btn prev-btn"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="carousel-btn next-btn"><i class="fa-solid fa-angle-right"></i></button>
                     <div class="carousel-dots"></div>
                 </div>
                 <div class="room-description">
@@ -1493,7 +1193,7 @@ html {
                     <ul class="room-features">
                         <li><i class="fa-solid fa-leaf"></i> Eco-Friendly</li>
                         <li><i class="fa-solid fa-city"></i> Panoramic view</li>
-                        <li><i class="fa-solid fa-hot-tub"></i> Outdoor tub</li>
+                        <li><i class="fa-solid fa-hot-tub"></i> Outdoor Jacuzzi</li>
                         <li><i class="fa-solid fa-champagne-glasses"></i> Welcome drink</li>
                     </ul>
                     <button class="room-link view-detail-btn" data-room="penthouse">view details →</button>
@@ -1511,7 +1211,7 @@ html {
                         <li><i class="fa-solid fa-tree"></i> Outdoor Seating</li>
                         <li><i class="fa-regular fa-snowflake"></i> Air-Conditioning</li>
                         <li><i class="fa-solid fa-fan"></i> Fan</li>
-                        <li><i class="fa-solid fa-bed"></i> Queen Bed</li>
+                        <li><i class="fa-solid fa-bed"></i> King Bed</li>
                         <li><i class="fa-solid fa-wine-bottle"></i> Mini-Bar</li>
                         <li><i class="fa-solid fa-mug-hot"></i> Tea/Coffee</li>
                         <li><i class="fa-solid fa-wine-glass"></i> Glassware</li>
@@ -1527,15 +1227,14 @@ html {
                         <li><i class="fa-solid fa-chair"></i> Armchair</li>
                         <li><i class="fa-solid fa-person-walking"></i> Terrace</li>
                         <li><i class="fa-solid fa-lightbulb"></i> Ambient Light</li>
-                        <li><i class="fa-solid fa-hot-tub"></i> Outdoor tub</li>
+                        <li><i class="fa-solid fa-hot-tub"></i> Outdoor Jacuzzi</li>
                         <li><i class="fa-solid fa-pen"></i> Writing Desk</li>
                         <li><i class="fa-solid fa-soap"></i> Amenities</li>
                     </ul>
-                    <button class="panel-close close-panel">← close</button>
+                    <button class="panel-close close-panel">← Close</button>
                 </div>
             </div>
         </section>
-
     </div>
 
     <!-- back to top -->
@@ -1548,9 +1247,7 @@ html {
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-col footer-logo">
-                <img src="../images/Logo-white.png" alt="sonitori">
-            </div>
+            <div class="footer-col footer-logo"><img src="../images/Logo-white.png" alt="sonitori"></div>
             <div class="footer-col">
                 <h4>QUICK LINK</h4>
                 <a href="https://maps.app.goo.gl/A1VpfBTSutvgNhrm9">Map</a>
@@ -1560,7 +1257,7 @@ html {
             <div class="footer-col">
                 <h4>RESERVATION</h4>
                 <a href="tel:+855011355534">+855(0)11 355 534</a>
-                <a href="mailto:bookings@rambutanresort.com">bookings@rambutanresort.com</a>
+                <a href="mailto:bookings@sonitoriresort.com">bookings@sonitoriresort.com</a>
             </div>
             <div class="footer-col">
                 <h4>FOLLOW US</h4>
@@ -1576,8 +1273,8 @@ html {
         <div class="footer-bottom">
             <div class="payment-icons">
                 <span>Pay way :</span>
-                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
-                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+                <img src="../images/visa-card.webp" alt="visa">
+                <img src="../images/master.webp" alt="mastercard">
             </div>
             <div>Copyright © Sonitori</div>
         </div>
@@ -1585,18 +1282,17 @@ html {
 
     <script>
         (function() {
+            // Carousel initialization
             function initCarousel(container) {
                 const track = container.querySelector('.carousel-track');
                 const slides = Array.from(track.children);
                 const prevBtn = container.querySelector('.prev-btn');
                 const nextBtn = container.querySelector('.next-btn');
                 const dotsContainer = container.querySelector('.carousel-dots');
-                
                 if (!track || slides.length === 0) return;
 
                 let currentIndex = 0;
-                let startX = 0;
-                let isDragging = false;
+                let startX = 0, isDragging = false;
 
                 dotsContainer.innerHTML = '';
                 slides.forEach((_, idx) => {
@@ -1608,106 +1304,98 @@ html {
                 const dots = Array.from(dotsContainer.children);
 
                 function updateDots(index) {
-                    dots.forEach((dot, i) => {
-                        if (i === index) dot.classList.add('active');
-                        else dot.classList.remove('active');
-                    });
+                    dots.forEach((dot, i) => i === index ? dot.classList.add('active') : dot.classList.remove('active'));
                 }
 
                 function moveToSlide(index) {
                     if (index < 0) index = slides.length - 1;
                     if (index >= slides.length) index = 0;
                     currentIndex = index;
-                    const shift = -currentIndex * 100;
-                    track.style.transform = `translateX(${shift}%)`;
+                    track.style.transform = `translateX(${-currentIndex * 100}%)`;
                     updateDots(currentIndex);
                 }
 
-                prevBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    moveToSlide(currentIndex - 1);
-                });
-                nextBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    moveToSlide(currentIndex + 1);
-                });
+                prevBtn.addEventListener('click', (e) => { e.stopPropagation(); moveToSlide(currentIndex - 1); });
+                nextBtn.addEventListener('click', (e) => { e.stopPropagation(); moveToSlide(currentIndex + 1); });
+                dots.forEach(dot => dot.addEventListener('click', (e) => { e.stopPropagation(); moveToSlide(parseInt(dot.dataset.index)); }));
 
-                dots.forEach((dot) => {
-                    dot.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const idx = parseInt(dot.dataset.index);
-                        moveToSlide(idx);
-                    });
-                });
-
-                track.addEventListener('touchstart', (e) => {
-                    startX = e.touches[0].clientX;
-                    isDragging = true;
-                    track.style.transition = 'none';
-                }, { passive: true });
-
+                track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; isDragging = true; track.style.transition = 'none'; }, { passive: true });
                 track.addEventListener('touchmove', (e) => {
                     if (!isDragging) return;
-                    const currentX = e.touches[0].clientX;
-                    const diff = currentX - startX;
-                    const shiftPercent = (diff / container.offsetWidth) * 100;
-                    track.style.transform = `translateX(${-currentIndex * 100 + shiftPercent}%)`;
+                    const diff = e.touches[0].clientX - startX;
+                    track.style.transform = `translateX(${-currentIndex * 100 + (diff / container.offsetWidth) * 100}%)`;
                 }, { passive: true });
-
                 track.addEventListener('touchend', (e) => {
                     if (!isDragging) return;
                     isDragging = false;
                     track.style.transition = 'transform 0.3s ease-in-out';
-
-                    const endX = e.changedTouches[0].clientX;
-                    const diff = endX - startX;
-                    const threshold = container.offsetWidth * 0.2;
-
-                    if (Math.abs(diff) > threshold) {
-                        if (diff > 0) moveToSlide(currentIndex - 1);
-                        else moveToSlide(currentIndex + 1);
-                    } else {
-                        moveToSlide(currentIndex);
-                    }
+                    const diff = e.changedTouches[0].clientX - startX;
+                    if (Math.abs(diff) > container.offsetWidth * 0.2) moveToSlide(currentIndex + (diff > 0 ? -1 : 1));
+                    else moveToSlide(currentIndex);
                 });
-
                 track.addEventListener('dragstart', (e) => e.preventDefault());
                 moveToSlide(0);
             }
+            document.querySelectorAll('.js-carousel').forEach(c => initCarousel(c));
 
-            document.querySelectorAll('.js-carousel').forEach(carousel => {
-                initCarousel(carousel);
-            });
-
-            const viewButtons = document.querySelectorAll('.view-detail-btn');
-            const closeButtons = document.querySelectorAll('.close-panel');
-
-            function openPanel(roomId) {
-                document.querySelectorAll('.detail-panel.active').forEach(p => p.classList.remove('active'));
-                const targetPanel = document.getElementById(`panel-${roomId}`);
-                if (targetPanel) targetPanel.classList.add('active');
+            // Panel management with mobile bottom sheet support
+            const panelOverlay = document.getElementById('panelOverlayMobile');
+            
+            function closeAllPanels() {
+                document.querySelectorAll('.detail-panel.active').forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                if (panelOverlay) panelOverlay.classList.remove('active');
+                document.body.classList.remove('panel-open');
             }
-
-            viewButtons.forEach(btn => {
+            
+            function openPanel(panelId) {
+                closeAllPanels();
+                const targetPanel = document.getElementById(`panel-${panelId}`);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                    if (window.innerWidth <= 900) {
+                        if (panelOverlay) panelOverlay.classList.add('active');
+                        document.body.classList.add('panel-open');
+                    }
+                }
+            }
+            
+            document.querySelectorAll('.view-detail-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     openPanel(this.dataset.room);
                 });
             });
-
-            closeButtons.forEach(btn => {
+            
+            document.querySelectorAll('.close-panel').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    this.closest('.detail-panel').classList.remove('active');
+                    closeAllPanels();
                 });
             });
-
+            
+            if (panelOverlay) {
+                panelOverlay.addEventListener('click', closeAllPanels);
+            }
+            
+            // Close panel on escape key
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    document.querySelector('.detail-panel.active')?.classList.remove('active');
-                }
+                if (e.key === 'Escape') closeAllPanels();
+            });
+            
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    if (window.innerWidth > 900) {
+                        closeAllPanels();
+                    }
+                }, 100);
             });
 
+            // Mobile sidebar
             const mobileIcon = document.querySelector('.mobile-menu-icon');
             const sidebar = document.getElementById('mobileSidebar');
             const overlay = document.getElementById('mobileOverlay');
@@ -1715,59 +1403,33 @@ html {
             const dropdownToggle = document.getElementById('aboutDropdownToggle');
             const aboutMobileMenu = document.getElementById('aboutMobileMenu');
 
-            function openMobileMenu() {
-                sidebar.classList.add('open');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeMobileMenu() {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            mobileIcon.addEventListener('click', openMobileMenu);
-            closeSidebar.addEventListener('click', closeMobileMenu);
-            overlay.addEventListener('click', closeMobileMenu);
-
+            function openMobileMenu() { sidebar.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+            function closeMobileMenu() { sidebar.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+            
+            if (mobileIcon) mobileIcon.addEventListener('click', openMobileMenu);
+            if (closeSidebar) closeSidebar.addEventListener('click', closeMobileMenu);
+            if (overlay) overlay.addEventListener('click', closeMobileMenu);
+            
             if (dropdownToggle) {
                 dropdownToggle.addEventListener('click', function(e) {
                     e.preventDefault();
-                    e.stopPropagation();
                     this.classList.toggle('open');
-                    
-                    if (aboutMobileMenu.classList.contains('show')) {
-                        aboutMobileMenu.classList.remove('show');
-                    } else {
-                        aboutMobileMenu.classList.add('show');
-                    }
+                    aboutMobileMenu.classList.toggle('show');
                 });
-                
-                aboutMobileMenu.classList.remove('show');
             }
-
+            
             window.addEventListener('resize', function() {
-                if (window.innerWidth > 900 && sidebar.classList.contains('open')) {
-                    closeMobileMenu();
-                }
+                if (window.innerWidth > 900 && sidebar.classList.contains('open')) closeMobileMenu();
             });
-
+            
+            // Booking popup
             function openBookingPopup() {
-                const overlay = document.getElementById('popupOverlay');
+                const popupOverlay = document.getElementById('popupOverlay');
                 const popup = document.getElementById('calendarPopup');
-                if (overlay && popup) {
-                    overlay.classList.add('active');
-                    popup.classList.add('active');
-                }
+                if (popupOverlay && popup) { popupOverlay.classList.add('active'); popup.classList.add('active'); }
             }
-
             document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
-            document.getElementById('mobileFixedBook')?.addEventListener('click', function(e) {
-                e.preventDefault();
-                openBookingPopup();
-            });
-
+            document.getElementById('mobileFixedBook')?.addEventListener('click', openBookingPopup);
         })();
     </script>
     <script src="../bookingsPopup/booking.js"></script>

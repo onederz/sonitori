@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Sonitori Phnom Penh · Boutique LGBTQ+ Resort in Cambodia</title>
+    <link rel="icon" type="image/png" href="images/top-logo.png">
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Swiper CSS for sliders -->
@@ -36,398 +37,388 @@
     }
 
     /* ===== NAVIGATION ===== */
-    /* ===== NAVIGATION (original size) ===== */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 1.2rem 5%;
-    transition: all 0.3s ease;
-    background: transparent;
-}
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 1.2rem 5%;
+        transition: all 0.3s ease;
+        background: transparent;
+    }
 
-.navbar.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 18px rgba(0,0,0,0.03);
-    padding: 0.7rem 5%;
-    border-bottom: 1px solid #e2ddd6;
-}
+    .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+        padding: 0.7rem 5%;
+        border-bottom: 1px solid #e2ddd6;
+    }
 
-.nav-container {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .nav-container {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-.logo img {
-    height: 50px;
-    width: auto;
-    transition: 0.2s;
-}
+    .logo img {
+        height: 50px;
+        width: auto;
+        transition: 0.2s;
+    }
 
-.nav-links {
-    display: flex;
-    gap: 2.2rem;
-    align-items: center;
-    flex-wrap: wrap;
-}
+    .nav-links {
+        display: flex;
+        gap: 2.2rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 
-.nav-links a {
-    text-decoration: none;
-    color: white;
-    font-weight: 400;
-    font-size: 1rem;
-    letter-spacing: 0.3px;
-    transition: color 0.2s;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
-}
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        font-weight: 400;
+        font-size: 1rem;
+        letter-spacing: 0.3px;
+        transition: color 0.2s;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
 
-.navbar.scrolled .nav-links a {
-    color: #3b3a38;
-    text-shadow: none;
-}
+    .navbar.scrolled .nav-links a {
+        color: #3b3a38;
+        text-shadow: none;
+    }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
-.dropdown-trigger {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    height: 50px;
-}
+    .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        height: 50px;
+    }
 
-.dropdown-arrow {
-    font-size: 0.7rem;
-    transition: transform 0.3s ease;
-}
+    .dropdown-arrow {
+        font-size: 0.7rem;
+        transition: transform 0.3s ease;
+    }
 
-.dropdown:hover .dropdown-arrow {
-    transform: rotate(180deg);
-}
+    .dropdown:hover .dropdown-arrow {
+        transform: rotate(180deg);
+    }
 
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    min-width: 180px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    border: 1px solid #eae6e0;
-    border-radius: 8px;
-    padding: 0.5rem 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 1001;
-}
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        min-width: 180px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border: 1px solid #eae6e0;
+        border-radius: 8px;
+        padding: 0.5rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1001;
+    }
 
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
 
-.dropdown-menu a {
-    display: block;
-    padding: 0.7rem 1.5rem;
-    color: #3b3a38;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
+    .dropdown-menu a {
+        display: block;
+        padding: 0.7rem 1.5rem;
+        color: #3b3a38;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
 
-.dropdown-menu a:hover {
-    background: #f8f6f4;
-    color: #097684;
-    padding-left: 2rem;
-}
+    .dropdown-menu a:hover {
+        background: #f8f6f4;
+        color: #097684;
+        padding-left: 2rem;
+    }
 
-.desktop-book-btn {
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 0.5rem 2rem;
-    border-radius: 40px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-}
+    .desktop-book-btn {
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        padding: 0.5rem 2rem;
+        border-radius: 40px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+    }
 
-.navbar.scrolled .desktop-book-btn {
-    border-color: #097684;
-    color: #097684;
-    background: transparent;
-}
+    .navbar.scrolled .desktop-book-btn {
+        border-color: #097684;
+        color: #097684;
+        background: transparent;
+    }
 
-.desktop-book-btn:hover {
-    background: #097684;
-    border-color: #097684;
-    color: white !important;
-}
+    .desktop-book-btn:hover {
+        background: #097684;
+        border-color: #097684;
+        color: white !important;
+    }
 
-.mobile-menu-icon {
-    display: none;
-    font-size: 1.8rem;
-    color: white;
-    cursor: pointer;
-}
+    .mobile-menu-icon {
+        display: none;
+        font-size: 1.8rem;
+        color: white;
+        cursor: pointer;
+    }
 
-.navbar.scrolled .mobile-menu-icon {
-    color: #4a4540;
-}
+    .navbar.scrolled .mobile-menu-icon {
+        color: #4a4540;
+    }
 
-@media (max-width: 900px) {
-    .nav-links { display: none; }
-    .mobile-menu-icon { display: block; }
-    .desktop-book-btn { display: none; }
-}
+    @media (max-width: 900px) {
+        .nav-links { display: none; }
+        .mobile-menu-icon { display: block; }
+        .desktop-book-btn { display: none; }
+    }
 
     /* ===== MOBILE SIDEBAR ===== */
-    /* ===== MOBILE SIDEBAR – smooth, shadow popup style, icons on left, no borders ===== */
-        .mobile-sidebar {
-            position: fixed;
-            top: 0;
-            right: -100%;              /* start fully hidden */
-            width: 90%;
-            max-width: 350px;
-            height: 100vh;
-            background: #ffffff;
-            z-index: 2000;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3); /* deeper shadow like popup */
-            transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* smoother curve */
-            padding: 3rem 0rem 2rem;
-            overflow-y: auto;
-            border-left: none;          /* no border */
-        }
+    .mobile-sidebar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 90%;
+        max-width: 350px;
+        height: 100vh;
+        background: #ffffff;
+        z-index: 2000;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        padding: 3rem 0rem 2rem;
+        overflow-y: auto;
+        border-left: none;
+    }
 
-        .mobile-sidebar.open {
-            right: 0;
-        }
+    .mobile-sidebar.open {
+        right: 0;
+    }
 
-        /* Sidebar logo styling */
-.sidebar-logo {
-    padding: 0 20px 20px 20px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
+    .sidebar-logo {
+        padding: 0 20px 20px 20px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
 
-.sidebar-logo img {
-    height: 45px;
-    width: auto;
-    filter: brightness(0.9);
-}
+    .sidebar-logo img {
+        height: 45px;
+        width: auto;
+        filter: brightness(0.9);
+    }
 
-/* Sidebar social media styling */
-.sidebar-social {
-    margin-top: 30px;
-    padding: 20px 0 0 20px;
-    border-top: 1px solid rgba(0,0,0,0.05);
-}
+    .sidebar-social {
+        margin-top: 30px;
+        padding: 20px 0 0 20px;
+        border-top: 1px solid rgba(0,0,0,0.05);
+    }
 
-.sidebar-social h4 {
-    color: #3b3a38;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
+    .sidebar-social h4 {
+        color: #3b3a38;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
 
-.sidebar-social .social-icons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
+    .sidebar-social .social-icons {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
 
-.sidebar-social .social-icons a {
-    width: 40px;
-    height: 40px;
-    background: rgba(9,118,132,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #097684;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    padding: 0 !important;
-}
+    .sidebar-social .social-icons a {
+        width: 40px;
+        height: 40px;
+        background: rgba(9,118,132,0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #097684;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        padding: 0 !important;
+    }
 
-.sidebar-social .social-icons a:hover {
-    background: #097684;
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(9,118,132,0.3);
-}
+    .sidebar-social .social-icons a:hover {
+        background: #097684;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(9,118,132,0.3);
+    }
 
-        .close-sidebar {
-            position: absolute;
-            top: 1rem;
-            right: 1.2rem;
-            font-size: 2rem;
-            background: none;
-            border: none;
+    .close-sidebar {
+        position: absolute;
+        top: 1rem;
+        right: 1.2rem;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        color: #097684;
+        cursor: pointer;
+        line-height: 1;
+        transition: transform 0.2s;
+    }
+    .close-sidebar:hover { transform: scale(1.1); }
+
+    .mobile-sidebar .sidebar-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding: 0 0px 0 30px;
+    }
+
+    .mobile-sidebar .sidebar-links a {
+        padding-left: 20px;
+    }
+
+    .mobile-sidebar a, .dropdown-toggle-mobile {
+        text-decoration: none;
+        font-size: 1rem;
+        color: #3b3a38;
+        font-weight: 400;
+        padding: 0.9rem 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: none;
+        border: none;
+        width: 100%;
+        cursor: pointer;
+        text-align: left;
+        transition: background 0.2s, color 0.2s, padding-left 0.2s;
+        border-bottom: none;
+    }
+
+    .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
+        width: 1.6rem;
+        font-size: 1rem;
+        color: #097684;
+        text-align: center;
+    }
+
+    .dropdown-toggle-mobile {
+        justify-content: space-between;
+        padding: 0.9rem 20px;
+    }
+    .dropdown-toggle-mobile .dropdown-icon-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .dropdown-toggle-mobile .arrow-icon {
+        font-size: 0.9rem;
+        color: #7b6e61;
+        transition: transform 0.3s ease;
+    }
+    .dropdown-toggle-mobile.open .arrow-icon {
+        transform: rotate(180deg);
+    }
+
+    .mobile-sidebar a.active {
             color: #097684;
-            cursor: pointer;
-            line-height: 1;
-            transition: transform 0.2s;
-        }
-        .close-sidebar:hover { transform: scale(1.1); }
-
-        .mobile-sidebar .sidebar-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            padding: 0 0px 0 30px;
-        }
-
-        .mobile-sidebar .sidebar-links a {
+            font-weight: 500;
+            background: rgba(9,118,132,0.08);
+            border-radius: 12px 0 0 12px;
             padding-left: 20px;
         }
 
-        /* base link style with left icon */
-        .mobile-sidebar a, .dropdown-toggle-mobile {
-            text-decoration: none;
-            font-size: 1rem;
-            color: #3b3a38;
-            font-weight: 400;
-            padding: 0.9rem 0;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: none;
-            border: none;
-            width: 100%;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s, color 0.2s, padding-left 0.2s;
-            border-bottom: none;   /* no bottom border */
-            
-        }
+    .dropdown-menu-mobile {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        visibility: hidden;
+        transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
+        margin-left: 2.6rem;
+        padding-left: 0.2rem;
+        background: transparent;
+        border-left: none;
+    }
 
-        /* add icon via pseudo or explicit — using fixed icon set */
-        .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
-            width: 1.6rem;
-            font-size: 1rem;
-            color: #097684;
-            text-align: center;
-        }
+    .dropdown-menu-mobile.show {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        visibility: visible;
+        transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
+    }
 
-        .dropdown-toggle-mobile {
-            justify-content: space-between;
-            padding: 0.9rem 20px;
-        }
-        .dropdown-toggle-mobile .dropdown-icon-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .dropdown-toggle-mobile .arrow-icon {
-            font-size: 0.9rem;
-            color: #7b6e61;
-            transition: transform 0.3s ease;
-        }
-        .dropdown-toggle-mobile.open .arrow-icon {
-            transform: rotate(180deg);
-        }
+    .dropdown-menu-mobile > div {
+        overflow: hidden;
+    }
 
-        .mobile-sidebar a.active {
-    color: #097684;
-    font-weight: 500;
-    background: rgba(9,118,132,0.08);
-    box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
-    border-radius: 12px 0 0 12px;
-    padding-left: 20px;
-}
+    .dropdown-menu-mobile a {
+        padding: 0.7rem 0 0.7rem 0.2rem;
+        font-size: 1.1rem;
+        color: #4f4a44;
+        border-bottom: none;
+        transition: color 0.2s, padding-left 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .dropdown-menu-mobile a i {
+        width: 1.4rem;
+        font-size: 1rem;
+        color: #097684;
+    }
+    .dropdown-menu-mobile a:hover {
+        color: #097684;
+        padding-left: 0.5rem;
+        background: none;
+    }
 
-        /* dropdown menu container – animated */
-        .dropdown-menu-mobile {
-            display: grid;
-            grid-template-rows: 0fr;
-            opacity: 0;
-            visibility: hidden;
-            transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
-            margin-left: 2.6rem;   /* align under icon+text */
-            padding-left: 0.2rem;
-            background: transparent;
-            border-left: none;
-        }
+    .mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
+        color: #097684;
+        background: rgba(9,118,132,0.04);
+    }
 
-        .dropdown-menu-mobile.show {
-            grid-template-rows: 1fr;
-            opacity: 1;
-            visibility: visible;
-            transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
-        }
+    .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0s 0.4s;
+    }
+    .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.4s ease, visibility 0s 0s;
+    }
 
-        .dropdown-menu-mobile > div {
-            overflow: hidden;
-        }
+    @media (max-width: 900px) {
+        .nav-links { display: none; }
+        .mobile-menu-icon { display: block; }
+        .desktop-book-btn { display: none; }
+    }
 
-        .dropdown-menu-mobile a {
-            padding: 0.7rem 0 0.7rem 0.2rem;
-            font-size: 1.1rem;
-            color: #4f4a44;
-            border-bottom: none;
-            transition: color 0.2s, padding-left 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .dropdown-menu-mobile a i {
-            width: 1.4rem;
-            font-size: 1rem;
-            color: #097684;
-        }
-        .dropdown-menu-mobile a:hover {
-            color: #097684;
-            padding-left: 0.5rem;
-            background: none;
-        }
-
-        .mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
-            color: #097684;
-            background: rgba(9,118,132,0.04);
-        }
-
-        .mobile-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);  /* darker overlay for popup feel */
-            backdrop-filter: blur(2px);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0s 0.4s;
-        }
-        .mobile-overlay.active {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.4s ease, visibility 0s 0s;
-        }
-
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .mobile-menu-icon { display: block; }
-            .desktop-book-btn { display: none; } /* hide desktop button on mobile */
-        }
-
-    /* ===== FIXED BOTTOM BOOK BUTTON ===== */
     .mobile-fixed-book {
         position: fixed;
         bottom: 15px;
@@ -527,20 +518,18 @@
         margin-right: auto;
     }
 
-    /* Left-aligned section title for specific section */
-.section-title-left {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-    color: #3e3a35;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #097684;
-    padding-bottom: 0.5rem;
-    width: fit-content;
-    /* Remove auto margins that cause centering */
-    margin-left: 0;
-    margin-right: 0;
-}
+    .section-title-left {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 300;
+        margin-bottom: 1.5rem;
+        color: #3e3a35;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #097684;
+        padding-bottom: 0.5rem;
+        width: fit-content;
+        margin-left: 0;
+        margin-right: 0;
+    }
 
     .grid-2 {
         display: grid;
@@ -674,118 +663,105 @@
         }
     }
 
-    /* ===== FEATURED GRID with hover effect ===== */
-.feature-wrapper {
-    padding: 0 5% 1.5rem;
-}
+    /* ===== FEATURED GRID ===== */
+    .feature-wrapper {
+        padding: 0 5% 1.5rem;
+    }
 
-.featured-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-    margin: 0 auto;
-    max-width: 1200px;
-}
+    .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
 
-.feature-card {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.4s ease;
-}
+    .feature-card {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.4s ease;
+    }
 
-.feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(145deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 80%);
-    z-index: 1;
-    transition: opacity 0.4s ease;
-}
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(145deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 80%);
+        z-index: 1;
+        transition: opacity 0.4s ease;
+    }
 
-.feature-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 1;
-}
+    .feature-card h3 {
+        position: relative;
+        z-index: 2;
+        font-size: 1.5rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        margin-bottom: 0.5rem;
+        padding: 0 0.5rem;
+        transition: transform 0.4s ease;
+    }
 
-.feature-card:hover::after {
-    opacity: 1;
-}
+    .feature-card:hover h3 {
+        transform: translateY(-10px);
+    }
 
-.feature-card h3 {
-    position: relative;
-    z-index: 2;
-    font-size: 1.5rem;
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    margin-bottom: 0.5rem;
-    padding: 0 0.5rem;
-    transition: transform 0.4s ease;
-}
+    .discover-link {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(4px);
+        color: #097684;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.5rem 1.2rem;
+        border-radius: 40px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.5);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.4s ease;
+    }
 
-.feature-card:hover h3 {
-    transform: translateY(-10px);
-}
+    .feature-card:hover .discover-link {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-.discover-link {
-    position: relative;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(4px);
-    color: #097684;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.5rem 1.2rem;
-    border-radius: 40px;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    border: 1px solid rgba(255,255,255,0.5);
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.4s ease;
-}
+    .discover-link i {
+        font-size: 0.7rem;
+        transition: transform 0.2s ease;
+    }
 
-.feature-card:hover .discover-link {
-    opacity: 1;
-    transform: translateY(0);
-}
+    .discover-link:hover i {
+        transform: translateX(5px);
+    }
 
-.discover-link i {
-    font-size: 0.7rem;
-    transition: transform 0.2s ease;
-}
-
-.discover-link:hover i {
-    transform: translateX(5px);
-}
-
-.discover-link:hover {
-    background: #ffffff;
-    color: #065a66;
-    box-shadow: 0 6px 16px rgba(9,118,132,0.3);
-}
+    .discover-link:hover {
+        background: #ffffff;
+        color: #065a66;
+        box-shadow: 0 6px 16px rgba(9,118,132,0.3);
+    }
 
     @media (max-width: 768px) {
         .featured-grid {
@@ -1225,114 +1201,113 @@
         animation: bounce 2s ease-in-out infinite;
     }
 
-    /* ===== FOOTER (original size) ===== */
-.footer {
-    background: #1f2a2e;
-    color: #ddd;
-    padding: 3rem 5% 1.5rem;
-    margin-top: 2rem;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-    max-width: 1300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.footer-logo img {
-    max-width: 200px;
-    height: auto;
-    margin-bottom: 1rem;
-}
-
-.footer h4 {
-    color: #fff;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-}
-
-.footer a {
-    color: #ccc;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-}
-
-.footer a:hover { color: #097684; }
-
-.social-icons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.social-icons a {
-    background: rgba(255,255,255,0.1);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
-    transition: 0.2s;
-}
-
-.social-icons a:hover { background: #097684; }
-
-.footer-bottom {
-    max-width: 1300px;
-    margin: 2rem auto 0;
-    padding-top: 1.5rem;
-    border-top: 1px solid #3a4549;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    font-size: 0.9rem;
-    color: #9a9187;
-}
-
-.payment-icons {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.payment-icons img {
-    height: 28px;
-}
-
-@media (max-width: 600px) {
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
+    /* ===== FOOTER ===== */
+    .footer {
+        background: #1f2a2e;
+        color: #ddd;
+        padding: 3rem 5% 1.5rem;
+        margin-top: 2rem;
     }
-}
 
-@media (max-width: 350px) {
     .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
     }
-    
+
+    .footer-logo img {
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .footer h4 {
+        color: #fff;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+    }
+
+    .footer a {
+        color: #ccc;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .footer a:hover { color: #097684; }
+
     .social-icons {
-        justify-content: center;
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
     }
-}
+
+    .social-icons a {
+        background: rgba(255,255,255,0.1);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        transition: 0.2s;
+    }
+
+    .social-icons a:hover { background: #097684; }
+
+    .footer-bottom {
+        max-width: 1300px;
+        margin: 2rem auto 0;
+        padding-top: 1.5rem;
+        border-top: 1px solid #3a4549;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.9rem;
+        color: #9a9187;
+    }
+
+    .payment-icons {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .payment-icons img {
+        height: 28px;
+    }
 
     @media (max-width: 600px) {
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 350px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
         
+        .social-icons {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 600px) {
         .hero {
             min-height: 400px;
         }
@@ -1343,7 +1318,6 @@
     }
 
     @media (max-width: 350px) {
-        
         .social-icons {
             justify-content: center;
         }
@@ -1352,16 +1326,15 @@
             font-size: 1.2rem;
         }
     }
-</style>
+    </style>
 </head>
 <body>
 
-<!-- Navigation (sticky, transparent becomes light) -->
+<!-- Navigation -->
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <a href="index.html">
         <div class="logo">
-            <!-- Logo that changes on scroll -->
             <img src="images/Logo-white.png" alt="Sonitori Logo" id="navbarLogo">
         </div>
         </a>
@@ -1381,7 +1354,6 @@
             </div>
             <a href="contact-us/index.html">Contact Us</a>
         </div>
-        <!-- desktop book now button -->
         <button class="desktop-book-btn" id="desktopBookBtn">Book Now</button>
         <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
     </div>
@@ -1441,7 +1413,6 @@
 <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline>
         <source src="images/hotel-top-page.mp4" type="video/mp4">
-        <!-- fallback image if video missing -->
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -1450,18 +1421,14 @@
     </div>
 </section>
 
-<!-- Popup overlay + calendar (from external booking.css) -->
+<!-- Popup overlay + calendar -->
 <div class="popup-overlay" id="popupOverlay"></div>
 <div class="calendar-popup" id="calendarPopup">
     <div class="popup-header">
         <h3>Select dates</h3>
         <button class="close-popup" id="closePopupBtn"><i class="fa-solid fa-circle-xmark"></i></button>
     </div>
-    
-    <div class="calendar-container" id="calendarContainer">
-        <!-- dynamic JS will fill two months -->
-    </div>
-    
+    <div class="calendar-container" id="calendarContainer"></div>
     <div class="popup-footer">
         <div class="night-count">
             <span id="nightsValue">0</span> nights
@@ -1472,9 +1439,8 @@
 
 <div class="container">
     <div class="grid-2">
-        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/screenshot-2018-12-23-at-14-41-37.jpeg" alt="Sonitori resort">
+        <img src="images/screenshot-2018-12-23-at-14-41-37.webp" alt="Sonitori resort">
         <div>
-            <!-- Change from section-title to section-title-left -->
             <h2 class="section-title-left">Sonitori Resort</h2>
             <p style="font-size:1.2rem; color:#4a4540;">The Sonitori Resort in Phnom Penh is an urban oasis located in the elegant BKK1 business center of Phnom Penh. in a city environment.
 The Resort is designed in a modern Asian style with all luxuries and the addition of locally crafted furniture, modular terrazzo surfaces, vibrant Asian art, Cambodian crafted silks, secluded balconies, alfresco private stone bathtubs.
@@ -1487,27 +1453,21 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
 <!-- FEATURED SPECIALS -->
 <div class="feature-wrapper">
     <h2 class="section-title">Featured Specials</h2>
-
-    <!-- container with responsive aspect ratio -->
     <div class="aspect-ratio-container">
         <div class="featured-grid">
-            <!-- Spa - links to spa detail on feature page -->
-            <a href="featured/index.html#spa" class="feature-card" style="background-image: url('https://rambutanphnompenh.com/wp-content/uploads/2025/03/compressed_image_7-scaled-e1752572386437.jpg');">
+            <a href="featured/index.html#spa" class="feature-card" style="background-image: url('images/compressed_image_7-scaled-e1752572386437.webp');">
                 <h3>Spa</h3>
                 <span class="discover-link">Discover <i class="fa-solid fa-arrow-right"></i></span>
             </a>
-            <!-- Dining - links to restaurant detail on feature page -->
-            <a href="featured/index.html#restaurant" class="feature-card" style="background-image: url('https://rambutanphnompenh.com/wp-content/uploads/2025/07/DSC06407-scaled-e1752572236159.jpeg');">
+            <a href="featured/index.html#restaurant" class="feature-card" style="background-image: url('images/DSC06407-scaled-e1752572236159.webp');">
                 <h3>Dining</h3>
                 <span class="discover-link">Discover <i class="fa-solid fa-arrow-right"></i></span>
             </a>
-            <!-- Pool - links to pool detail on feature page -->
-            <a href="featured/index.html#pool" class="feature-card" style="background-image: url('https://rambutanphnompenh.com/wp-content/uploads/2025/07/DSC06394-1-scaled.jpg');">
+            <a href="featured/index.html#pool" class="feature-card" style="background-image: url('images/DSC06394-1-scaled.webp');">
                 <h3>Pool</h3>
                 <span class="discover-link">Discover <i class="fa-solid fa-arrow-right"></i></span>
             </a>
-            <!-- Activities - links to services detail on feature page -->
-            <a href="activitie/index.html" class="feature-card" style="background-image: url('https://rambutanphnompenh.com/wp-content/uploads/2025/07/Phnom-Penh-Activies_Page_01-1-scaled-e1752642350415.jpg');">
+            <a href="activitie/index.html" class="feature-card" style="background-image: url('images/Phnom-Penh-Activies_Page_01-1-scaled-e1752642350415.webp');">
                 <h3>Activities</h3>
                 <span class="discover-link">Discover <i class="fa-solid fa-arrow-right"></i></span>
             </a>
@@ -1517,70 +1477,56 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
 
 <!-- Amenities -->
 <div class="amenities-container">
-        <!-- unified box with title + amenities -->
-        <div class="amenities-split-box">
-            <div class="amenities-title">
-                <h2>What Sonitori offers</h2>
+    <div class="amenities-split-box">
+        <div class="amenities-title">
+            <h2>What Sonitori offers</h2>
+        </div>
+        <div class="amenities-flex">
+            <div class="amenity-item">
+                <img src="images/download.png" alt="">
+                <h4>Room Service</h4>
+                <p>In-room dining and services.</p>
             </div>
-            <div class="amenities-flex">
-                    <div class="amenity-item">
-                        <img src="images/download.png" alt="">
-                        <h4>Room Service</h4>
-                        <p>In-room dining and services.</p>
-                    </div>
-                    <div class="amenity-item">
-                        <img src="images/download-1.png" alt="">
-                        <h4>Free Wi‑Fi</h4>
-                        <p>Internet access for guests.</p>
-                    </div>
-                    <div class="amenity-item">
-                        <img src="images/download-2.png" alt="">
-                        <h4>Parking</h4>
-                        <p>Guest vehicle parking.</p>
-                    </div>
-
-                    <div class="amenity-item">
-                        <img src="images/download-3.png" alt="">
-                        <h4>Pick up/drop</h4>
-                        <p>Indicates airport transfer services for guests.</p>
-                    </div>
-                    <div class="amenity-item">
-                        <img src="images/download-4.png" alt="">
-                        <h4>Activities Service</h4>
-                        <p>In-room dining and services.</p>
-                    </div>
-
+            <div class="amenity-item">
+                <img src="images/download-1.png" alt="">
+                <h4>Free Wi‑Fi</h4>
+                <p>Internet access for guests.</p>
+            </div>
+            <div class="amenity-item">
+                <img src="images/download-2.png" alt="">
+                <h4>Parking</h4>
+                <p>Guest vehicle parking.</p>
+            </div>
+            <div class="amenity-item">
+                <img src="images/download-3.png" alt="">
+                <h4>Pick up/drop</h4>
+                <p>Indicates airport transfer services for guests.</p>
+            </div>
+            <div class="amenity-item">
+                <img src="images/download-4.png" alt="">
+                <h4>Activities Service</h4>
+                <p>In-room dining and services.</p>
             </div>
         </div>
     </div>
+</div>
 
-<!-- ===== WHY CHOOSE US SECTION WITH IMAGE SLIDER ON LEFT ===== -->
+<!-- WHY CHOOSE US -->
 <div class="container">  
     <div class="slider-section">
-        <!-- Image Slider on the left -->
         <div class="slider-container">
             <div class="swiper why-choose-swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/IMG_1759-1024x650.jpg" alt="Sonitori Pool">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/comu3-1024x683.jpg" alt="Sonitori Garden">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/compressed_image_7-scaled-e1752572386437.jpg" alt="Sonitori Spa">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/07/DSC06407-scaled-e1752572236159.jpeg" alt="Sonitori Restaurant">
-                    </div>
+                    <div class="swiper-slide"><img src="images/IMG_1759-1024x650.webp" alt="Sonitori Pool"></div>
+                    <div class="swiper-slide"><img src="images/comu3-1024x683.webp" alt="Sonitori Garden"></div>
+                    <div class="swiper-slide"><img src="images/compressed_image_7-scaled-e1752572386437.webp" alt="Sonitori Spa"></div>
+                    <div class="swiper-slide"><img src="images/DSC06407-scaled-e1752572236159.webp" alt="Sonitori Restaurant"></div>
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
         </div>
-        
-        <!-- Content on the right -->
         <div class="slider-content">
             <h3>Why Choose Us</h3>
             <p>Discover one of Cambodia's top-rated boutique hotels, with beautifully designed rooms, lush tropical gardens, and a saltwater pool. Located in the heart of Phnom Penh, Sonitori Hotel offers eco-conscious hospitality, authentic Khmer charm, and a warm, LGBTQ+ inclusive atmosphere perfect for travelers seeking comfort, culture, and connection.</p>
@@ -1589,30 +1535,20 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
     </div>
 </div>
 
-<!-- ===== SMILES AT SONITORI SECTION WITH IMAGE SLIDER ON RIGHT ===== -->
+<!-- SMILES AT SONITORI -->
 <div class="container">
-    
     <div class="slider-section reverse">
-        <!-- Content on the left (with rtl direction, this appears on the right visually) -->
         <div class="slider-content smile-rs">
             <h3>Smiles at Sonitori</h3>
             <p>At Sonitori Hotel, every smile reflects our commitment to genuine hospitality. From our friendly staff to our thoughtfully designed spaces, we create a welcoming atmosphere where guests feel truly at home. With personalized service, local charm, and attention to detail, your stay will be as warm as it is unforgettable.</p>
             <a href="/gallery" class="btn">View Gallery <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        
-        <!-- Image Slider on the right -->
         <div class="slider-container">
             <div class="swiper smiles-swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/bar-1resize-1.jpg" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Screenshot-2018-12-23-at-14.50.40.jpeg" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Rambutan_Resort_PP_High_Res_06411-scaled.jpg" alt="">
-                    </div>
+                    <div class="swiper-slide"><img src="images/bar-1resize-1.webp" alt=""></div>
+                    <div class="swiper-slide"><img src="images/Screenshot-2018-12-23-at-14.50.40.webp" alt=""></div>
+                    <div class="swiper-slide"><img src="images/Rambutan_Resort_PP_High_Res_06411-scaled.webp" alt=""></div>
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next"></div>
@@ -1626,44 +1562,44 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
 <div class="room-container">
     <h2 class="section-title">Our Accommodation</h2>
     <div class="rooms-grid">
-        <a href="rooms/index.html#standard-room" class="room-card" style="text-decoration: none;">
-            <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/4_standard-room.jpeg" alt="Standard Room">
+        <a href="rooms/index.html#standard-room" class="room-card">
+            <img src="images/Greg-Mo-Rambutan-PP-Low-04.webp" alt="Standard Room">
             <div class="room-info">
                 <h3>Standard Room</h3>
-                <div class="room-icon" style="display: flex; gap: 10px;">
+                <div class="room-icon">
                     <div><i class="fa-solid fa-expand"></i> 28 m²</div>
                     <div><i class="fa-solid fa-bed"></i> 1 bed</div>
                     <div><i class="fa-solid fa-shower"></i> Bathroom</div>
                 </div>
             </div>
         </a>
-        <a href="rooms/index.html#deluxe-garden" class="room-card" style="text-decoration: none;">
-            <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Deluxe-garden.jpeg" alt="Deluxe Garden">
+        <a href="rooms/index.html#deluxe-garden" class="room-card">
+            <img src="images/Rambutan_Resort_PP_High_Res_06411-3.webp" alt="Deluxe Garden">
             <div class="room-info">
                 <h3>Deluxe Garden</h3>
-                <div class="room-icon" style="display: flex; gap: 10px;">
+                <div class="room-icon">
                     <div><i class="fa-solid fa-expand"></i> 35 m²</div>
                     <div><i class="fa-solid fa-bed"></i> 1 bed</div>
                     <div><i class="fa-solid fa-shower"></i> Bathroom</div>
                 </div>
             </div>
         </a>
-        <a href="rooms/index.html#deluxe-pool" class="room-card" style="text-decoration: none;">
-            <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/02/3_deluxe-pool.jpeg" alt="Deluxe Pool">
+        <a href="rooms/index.html#deluxe-pool" class="room-card">
+            <img src="images/Greg-Mo-Rambutan-PP-Low-17.webp" alt="Deluxe Pool">
             <div class="room-info">
                 <h3>Deluxe Pool</h3>
-                <div class="room-icon" style="display: flex; gap: 10px;">
+                <div class="room-icon">
                     <div><i class="fa-solid fa-expand"></i> 35 m²</div>
                     <div><i class="fa-solid fa-bed"></i> 1 bed</div>
                     <div><i class="fa-solid fa-shower"></i> Bathroom</div>
                 </div>
             </div>
         </a>
-        <a href="rooms/index.html#penthouse" class="room-card" style="text-decoration: none;">
-            <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/03/Penhouse.jpeg" alt="Penthouse">
+        <a href="rooms/index.html#penthouse" class="room-card">
+            <img src="images/Greg-Mo-Photo-Rambutan-PP-07.webp" alt="Penthouse">
             <div class="room-info">
                 <h3>Penthouse Suite</h3>
-                <div class="room-icon" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <div class="room-icon" style="flex-wrap: wrap;">
                     <div><i class="fa-solid fa-expand"></i> 70 m²</div>
                     <div><i class="fa-solid fa-bed"></i> 1 king bed</div>
                     <div><i class="fa-solid fa-shower"></i> Bathroom</div>
@@ -1674,192 +1610,63 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
     </div>
 </div>
 
-<!-- ===== GUEST REVIEWS SECTION ===== -->
+<!-- GUEST REVIEWS -->
 <div class="container">
     <h2 class="section-title">What Our Guests Say</h2>
     <div class="reviews-grid">
         <div class="review-card">
-            <div class="review-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
+            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             <p class="review-text">"Absolutely stunning property! The salt-water pool is incredible, and the staff went above and beyond to make our stay special. The garden views from our room were magical."</p>
             <div class="review-author">
                 <img class="review-author-img" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
-                <div class="review-author-info">
-                    <h4>Sarah Johnson</h4>
-                    <p>London, UK</p>
-                </div>
+                <div class="review-author-info"><h4>Sarah Johnson</h4><p>London, UK</p></div>
             </div>
-            <div class="review-tripadvisor">
-                <span class="tripadvisor-logo"><i class="fab fa-tripadvisor"></i> Tripadvisor</span>
-                <span class="review-date">March 2025</span>
-            </div>
+            <div class="review-tripadvisor"><span class="tripadvisor-logo"><i class="fab fa-tripadvisor"></i> Tripadvisor</span><span class="review-date">March 2025</span></div>
         </div>
-        
         <div class="review-card">
-            <div class="review-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
+            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             <p class="review-text">"A hidden gem in the heart of Phnom Penh. The private stone bathtub on our balcony was pure bliss. The restaurant serves amazing Khmer cuisine. We'll definitely return!"</p>
             <div class="review-author">
                 <img class="review-author-img" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
-                <div class="review-author-info">
-                    <h4>Michael Chen</h4>
-                    <p>Singapore</p>
-                </div>
+                <div class="review-author-info"><h4>Michael Chen</h4><p>Singapore</p></div>
             </div>
-            <div class="review-tripadvisor">
-                <span class="tripadvisor-logo"><i class="fab fa-tripadvisor"></i> Tripadvisor</span>
-                <span class="review-date">February 2025</span>
-            </div>
+            <div class="review-tripadvisor"><span class="tripadvisor-logo"><i class="fab fa-tripadvisor"></i> Tripadvisor</span><span class="review-date">February 2025</span></div>
         </div>
-        
         <div class="review-card">
-            <div class="review-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
+            <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             <p class="review-text">"The most LGBTQ+ friendly hotel in Phnom Penh! We felt completely welcomed and safe. The staff treated us like family. The pool area is paradise. Can't recommend enough!"</p>
             <div class="review-author">
                 <img class="review-author-img" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma and Lisa">
-                <div class="review-author-info">
-                    <h4>Emma & Lisa</h4>
-                    <p>San Francisco, USA</p>
-                </div>
+                <div class="review-author-info"><h4>Emma & Lisa</h4><p>San Francisco, USA</p></div>
             </div>
-            <div class="review-tripadvisor">
-                <span class="tripadvisor-logo"><i class="fab fa-tripadvisor"></i> Tripadvisor</span>
-                <span class="review-date">January 2025</span>
-            </div>
+            <div class="review-tripadvisor"><span class="tripadvisor-logo"><i class="fab fa-tripadvisor"></i> Tripadvisor</span><span class="review-date">January 2025</span></div>
         </div>
     </div>
 </div>
 
-<!-- ===== MAP & NEARBY SECTION (LEFT/RIGHT LAYOUT) ===== -->
+<!-- MAP & NEARBY -->
 <div class="maps-container">
     <h2 class="section-title">Find Us Here</h2>
-    
     <div class="map-nearby-section">
-        <!-- Google Maps on the left -->
         <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3909.09509298204!2d104.92297400000001!3d11.545036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109512716059b95%3A0x57a659bc51027d0!2sRambutan%20Resort%20-%20Phnom%20Penh!5e0!3m2!1sen!2skh!4v1773813007033!5m2!1sen!2skh" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        
-        <!-- Nearby Places on the right -->
         <div class="nearby-places">
             <h3>Nearby Places</h3>
             <p style="color: #6b6762; margin-bottom: 1.5rem;">The hotel is close to popular sites and vibrant areas, allowing guests to easily experience the charm of Cambodia's culture and landmarks.</p>
-            
             <div class="nearby-grid">
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>Gym</h4>
-                        <p class="distance">100 meter</p>
-                    </div>
-                </div>
-                
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fa-solid fa-city"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>City Center</h4>
-                        <p class="distance">100 meter</p>
-                    </div>
-                </div>
-                
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fa-solid fa-archway"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>Tuol Sleng Genocide Museum</h4>
-                        <p class="distance">1 kilometer</p>
-                    </div>
-                </div>
-                
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fa-solid fa-money-check-dollar"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>Bank</h4>
-                        <p class="distance">1 kilometer</p>
-                    </div>
-                </div>
-                
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fa-solid fa-store"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>Russian Market</h4>
-                        <p class="distance">1 kilometer</p>
-                    </div>
-                </div>
-                
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fa-solid fa-place-of-worship"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>Royal Palace</h4>
-                        <p class="distance">2 kilometer</p>
-                    </div>
-                </div>
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fa-solid fa-mosque"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>National Museum of Cambodia</h4>
-                        <p class="distance">2 kilometer</p>
-                    </div>
-                </div>
-                
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fa-solid fa-water"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>Mekong River</h4>
-                        <p class="distance">3 kilometer</p>
-                    </div>
-                </div>
-                
-                <div class="nearby-item">
-                    <div class="nearby-icon">
-                        <i class="fas fa-plane"></i>
-                    </div>
-                    <div class="nearby-info">
-                        <h4>Phnom Penh International Airport</h4>
-                        <p class="distance">10 kilometer</p>
-                    </div>
-                </div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fas fa-dumbbell"></i></div><div class="nearby-info"><h4>Gym</h4><p class="distance">100 meter</p></div></div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fa-solid fa-city"></i></div><div class="nearby-info"><h4>City Center</h4><p class="distance">100 meter</p></div></div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fa-solid fa-archway"></i></div><div class="nearby-info"><h4>Tuol Sleng Genocide Museum</h4><p class="distance">1 kilometer</p></div></div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fa-solid fa-money-check-dollar"></i></div><div class="nearby-info"><h4>Bank</h4><p class="distance">1 kilometer</p></div></div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fa-solid fa-store"></i></div><div class="nearby-info"><h4>Russian Market</h4><p class="distance">1 kilometer</p></div></div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fa-solid fa-place-of-worship"></i></div><div class="nearby-info"><h4>Royal Palace</h4><p class="distance">2 kilometer</p></div></div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fa-solid fa-mosque"></i></div><div class="nearby-info"><h4>National Museum of Cambodia</h4><p class="distance">2 kilometer</p></div></div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fa-solid fa-water"></i></div><div class="nearby-info"><h4>Mekong River</h4><p class="distance">3 kilometer</p></div></div>
+                <div class="nearby-item"><div class="nearby-icon"><i class="fas fa-plane"></i></div><div class="nearby-info"><h4>Phnom Penh International Airport</h4><p class="distance">10 kilometer</p></div></div>
             </div>
-            
-            <div class="location-info" style="margin-top: 1.5rem; grid-template-columns: 1fr;">
-                <div class="location-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>Address</h4>
-                        <p>Street 57, BKK1, Phnom Penh, Cambodia</p>
-                    </div>
-                </div>
+            <div class="location-info" style="margin-top: 1.5rem;">
+                <div class="location-item"><i class="fas fa-map-marker-alt"></i><div><h4>Address</h4><p>Street 57, BKK1, Phnom Penh, Cambodia</p></div></div>
             </div>
         </div>
     </div>
@@ -1873,7 +1680,7 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
     </a>
 </div>
 
-<!-- footer -->
+<!-- footer with local payment icons -->
 <footer class="footer">
     <div class="footer-grid">
         <div class="footer-logo"><img src="images/Logo-white.png" style="width:200px;" alt="Sonitori"></div>
@@ -1895,15 +1702,15 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-youtube"></i></a>
                 <a href="#"><i class="fab fa-google"></i></a>
-                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                <a href="#"><img src="images/tripadvisor-logo.webp" alt="" width="25px"></a>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
         <div class="payment-icons">
             <span>Pay way :</span>
-            <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
-            <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+            <img src="images/visa-card.webp" alt="visa">
+            <img src="images/master.webp" alt="mastercard">
         </div>
         <div>Copyright © Sonitori</div>
     </div>
@@ -1912,30 +1719,24 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- JavaScript (nav scroll & logo switching, mobile sidebar, sliders) -->
 <script>
     (function() {
-        // ========== STICKY NAV & LOGO SWITCHING ==========
         const navbar = document.getElementById('navbar');
         const navbarLogo = document.getElementById('navbarLogo');
         
         function updateNavbar() {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
-                // Switch to dark logo
                 if (navbarLogo) navbarLogo.src = 'images/logo.png';
             } else {
                 navbar.classList.remove('scrolled');
-                // Switch to white logo
-                if (navbarLogo) navbarLogo.src = 'images/Logo-white.png';
+                if (navbarLogo) navbarLogo.src = 'images/logo-white.png';
             }
         }
         
         window.addEventListener('scroll', updateNavbar);
-        // Call once on page load to set initial state
         updateNavbar();
 
-        // ========== MOBILE SIDEBAR ==========
         const mobileIcon = document.querySelector('.mobile-menu-icon');
         const sidebar = document.getElementById('mobileSidebar');
         const overlay = document.getElementById('mobileOverlay');
@@ -1959,21 +1760,13 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
         if (closeSidebar) closeSidebar.addEventListener('click', closeMobileMenu);
         if (overlay) overlay.addEventListener('click', closeMobileMenu);
 
-        // SMOOTH DROPDOWN animation
         if (dropdownToggle && aboutMobileMenu) {
             dropdownToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 this.classList.toggle('open');
-                
-                if (aboutMobileMenu.classList.contains('show')) {
-                    aboutMobileMenu.classList.remove('show');
-                } else {
-                    aboutMobileMenu.classList.add('show');
-                }
+                aboutMobileMenu.classList.toggle('show');
             });
-            
-            // start closed
             aboutMobileMenu.classList.remove('show');
         }
 
@@ -1983,44 +1776,33 @@ Sonitori Resort – Phnom Penh caters for the independent traveler who wants som
             }
         });
 
-        // ========== INITIALIZE SWIPER SLIDERS ==========
-        // Why Choose Us Slider
-        const whyChooseSwiper = new Swiper('.why-choose-swiper', {
+        new Swiper('.why-choose-swiper', {
             loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         });
 
-        // Smiles at Sonitori Slider
-        const smilesSwiper = new Swiper('.smiles-swiper', {
+        new Swiper('.smiles-swiper', {
             loop: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+            autoplay: { delay: 3500, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         });
 
+        function openBookingPopup() {
+            const popupOverlay = document.getElementById('popupOverlay');
+            const popup = document.getElementById('calendarPopup');
+            if (popupOverlay && popup) {
+                popupOverlay.classList.add('active');
+                popup.classList.add('active');
+            }
+        }
+
+        document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
+        document.getElementById('mobileFixedBook')?.addEventListener('click', openBookingPopup);
     })();
 </script>
-<!-- Booking Popup JavaScript -->
 <script src="bookingsPopup/booking.js"></script>
 </body>
 </html>

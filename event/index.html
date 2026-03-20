@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Events · Sonitori Phnom Penh | Retreats & Group Stays</title>
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,20 +13,24 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
 
         body {
             background-color: #f5f3f0;
             color: #2c2b2a;
-            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
             font-size: 1rem;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale
         }
 
-        /* ===== NAVIGATION (from rooms page) ===== */
+        body.no-scroll {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+
+        /* ===== NAVIGATION ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -76,10 +80,8 @@
             border-bottom: 1px solid #097684;
             margin-bottom: -1px;
             pointer-events: none;
-            cursor: default;
         }
         
-        /* desktop book now button */
         .desktop-book-btn {
             background: transparent;
             border: 1px solid #097684;
@@ -90,7 +92,6 @@
             cursor: pointer;
             transition: 0.2s;
             font-size: 0.95rem;
-            letter-spacing: 0.5px;
         }
 
         .desktop-book-btn:hover {
@@ -120,12 +121,9 @@
             transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             padding: 3rem 0rem 2rem;
             overflow-y: auto;
-            border-left: none;
         }
 
-        .mobile-sidebar.open {
-            right: 0;
-        }
+        .mobile-sidebar.open { right: 0; }
 
         .sidebar-logo {
             padding: 0 20px 20px 20px;
@@ -168,17 +166,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 !important;
             color: #097684;
             font-size: 1.2rem;
             transition: all 0.3s ease;
-            padding: 0 !important;
         }
 
         .sidebar-social .social-icons a:hover {
             background: #097684;
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(9,118,132,0.3);
         }
 
         .close-sidebar {
@@ -190,10 +187,7 @@
             border: none;
             color: #097684;
             cursor: pointer;
-            line-height: 1;
-            transition: transform 0.2s;
         }
-        .close-sidebar:hover { transform: scale(1.1); }
 
         .mobile-sidebar .sidebar-links {
             display: flex;
@@ -203,9 +197,7 @@
             padding: 0 0px 0 30px;
         }
 
-        .mobile-sidebar .sidebar-links a {
-            padding-left: 20px;
-        }
+        .mobile-sidebar .sidebar-links a { padding-left: 20px; }
 
         .mobile-sidebar a, .dropdown-toggle-mobile {
             text-decoration: none;
@@ -221,8 +213,6 @@
             width: 100%;
             cursor: pointer;
             text-align: left;
-            transition: background 0.2s, color 0.2s, padding-left 0.2s;
-            border-bottom: none;
         }
 
         .mobile-sidebar a i, .dropdown-toggle-mobile i:first-child {
@@ -236,25 +226,25 @@
             justify-content: space-between;
             padding: 0.9rem 20px;
         }
+
         .dropdown-toggle-mobile .dropdown-icon-group {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+
         .dropdown-toggle-mobile .arrow-icon {
             font-size: 0.9rem;
             color: #7b6e61;
             transition: transform 0.3s ease;
         }
-        .dropdown-toggle-mobile.open .arrow-icon {
-            transform: rotate(180deg);
-        }
+
+        .dropdown-toggle-mobile.open .arrow-icon { transform: rotate(180deg); }
 
         .mobile-sidebar a.active {
             color: #097684;
             font-weight: 500;
             background: rgba(9,118,132,0.08);
-            box-shadow: 0 4px 12px rgba(9, 118, 132, 0.2), 0 2px 4px rgba(0,0,0,0.05);
             border-radius: 12px 0 0 12px;
             padding-left: 20px;
         }
@@ -266,9 +256,6 @@
             visibility: hidden;
             transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0.4s;
             margin-left: 2.6rem;
-            padding-left: 0.2rem;
-            background: transparent;
-            border-left: none;
         }
 
         .dropdown-menu-mobile.show {
@@ -278,35 +265,24 @@
             transition: grid-template-rows 0.4s ease, opacity 0.3s ease, visibility 0s 0s;
         }
 
-        .dropdown-menu-mobile > div {
-            overflow: hidden;
-        }
+        .dropdown-menu-mobile > div { overflow: hidden; }
 
         .dropdown-menu-mobile a {
             padding: 0.7rem 0 0.7rem 0.2rem;
             font-size: 1.1rem;
             color: #4f4a44;
-            border-bottom: none;
-            transition: color 0.2s, padding-left 0.2s;
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+
         .dropdown-menu-mobile a i {
             width: 1.4rem;
             font-size: 1rem;
             color: #097684;
         }
-        .dropdown-menu-mobile a:hover {
-            color: #097684;
-            padding-left: 0.5rem;
-            background: none;
-        }
 
-        .mobile-sidebar a:hover, .dropdown-toggle-mobile:hover {
-            color: #097684;
-            background: rgba(9,118,132,0.04);
-        }
+        .dropdown-menu-mobile a:hover { color: #097684; }
 
         .mobile-overlay {
             position: fixed;
@@ -321,46 +297,11 @@
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0s 0.4s;
         }
+
         .mobile-overlay.active {
             opacity: 1;
             visibility: visible;
             transition: opacity 0.4s ease, visibility 0s 0s;
-        }
-
-        /* ===== FIXED BOTTOM BOOK NOW BUTTON ===== */
-        .mobile-fixed-book {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background: #097684;
-            color: white;
-            border: none;
-            border-radius: 60px;
-            padding: 1rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
-            z-index: 1500;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            border: 2px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(2px);
-            width: auto;
-            max-width: calc(100% - 40px);
-        }
-        .mobile-fixed-book:active {
-            background: #065a66;
-            transform: scale(0.96);
-            box-shadow: 0 6px 20px rgba(9,118,132,0.6);
-        }
-        .mobile-fixed-book i {
-            font-size: 1rem;
-            padding-bottom: 1px;
         }
 
         @media (max-width: 900px) {
@@ -369,11 +310,28 @@
             .desktop-book-btn { display: none; }
         }
 
-        @media (min-width: 901px) {
-            .mobile-fixed-book { display: none; }
+        .mobile-fixed-book {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #097684;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(9,118,132,0.5);
+            z-index: 1500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
-        /* ===== DROPDOWN STYLES (desktop) ===== */
+        @media (min-width: 901px) { .mobile-fixed-book { display: none; } }
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -386,14 +344,8 @@
             height: 50px;
         }
 
-        .dropdown-arrow {
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
 
         .dropdown-menu {
             position: absolute;
@@ -423,7 +375,6 @@
             padding: 0.7rem 1.5rem;
             color: #3b3a38;
             font-size: 0.95rem;
-            transition: all 0.2s ease;
             white-space: nowrap;
         }
 
@@ -439,11 +390,10 @@
             margin: 0 auto;
             padding: 6rem 1.5rem 3rem;
             background: #ffffff;
-            box-shadow: 0 0 40px rgba(0,0,0,0.02);
             border-radius: 0 0px 20px 20px;
         }
 
-        /* ----- hero slideshow (background) ----- */
+        /* hero slideshow */
         .hero-slideshow {
             width: 100%;
             height: 500px;
@@ -453,16 +403,12 @@
             margin-bottom: 0;
             transition: background-image 1s ease;
             background-color: #ccc;
-            border-radius: 0;
+            border-radius: 20px;
             border: 1px solid #e2ddd6;
         }
 
-        /* spacer after hero */
-        .spacer {
-            height: 50px;
-        }
+        .spacer { height: 50px; }
 
-        /* headings and sections exactly like elementor */
         .section-heading {
             font-size: 3rem;
             font-weight: 300;
@@ -474,72 +420,29 @@
             margin: 2rem 0 3rem 0;
         }
 
-        /* ===== SCROLL ANIMATIONS ===== */
-        .event-row, .section-heading {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .event-row.visible, .section-heading.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Stagger children inside event row */
-        .event-row.visible .event-image-col {
-            animation: fadeInImage 1s ease forwards;
-        }
-        
-        .event-row.visible .event-text-col {
-            animation: fadeInText 1s ease forwards;
-        }
-
-        @keyframes fadeInImage {
-            0% { opacity: 0.6; transform: scale(0.98); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeInText {
-            0% { opacity: 0; transform: translateX(15px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Reverse row adjustment for text animation direction */
-        .event-row.reverse.visible .event-text-col {
-            animation: fadeInTextReverse 1s ease forwards;
-        }
-
-        @keyframes fadeInTextReverse {
-            0% { opacity: 0; transform: translateX(-15px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        /* event row (flex container) */
+        /* event row */
         .event-row {
             display: flex;
             gap: 2rem;
             margin-bottom: 4rem;
             align-items: stretch;
             background: transparent;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s, transform 0.8s;
-            will-change: transform, opacity;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        /* Slight lift on hover */
         .event-row:hover {
             transform: scale(1.01) translateY(-4px);
             box-shadow: 0 15px 30px rgba(9,118,132,0.05);
         }
 
-        /* left column: image with background slideshow */
         .event-image-col {
             flex: 1 1 50%;
             min-height: 400px;
             background-size: cover;
             background-position: center;
             background-color: #ddd6cc;
-            border-radius: 0;
+            border-radius: 16px;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             border: 1px solid #e2ddd6;
         }
@@ -548,7 +451,6 @@
             box-shadow: 0 10px 25px rgba(9,118,132,0.1);
         }
 
-        /* right column: text */
         .event-text-col {
             flex: 1 1 50%;
             padding: 0 1rem;
@@ -575,9 +477,162 @@
             margin-bottom: 1rem;
         }
 
-        /* reverse row for alternating layout */
-        .event-row.reverse {
-            flex-direction: row-reverse;
+        .event-row.reverse { flex-direction: row-reverse; }
+
+        /* ===== MOBILE BOTTOM SHEET FOR EVENT DETAILS ===== */
+        @media (max-width: 900px) {
+            .event-row {
+                cursor: pointer;
+                margin-bottom: 1.5rem;
+                border-radius: 16px;
+                overflow: hidden;
+                border: 1px solid #e2ddd6;
+                background: #fcfaf8;
+            }
+            
+            .event-row:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .event-image-col {
+                min-height: 200px;
+                border-radius: 0;
+            }
+            
+            .event-text-col {
+                padding: 1rem;
+            }
+            
+            .event-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+                padding-left: 1rem;
+                border-left-width: 4px;
+            }
+            
+            .event-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .event-description p {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 0;
+            }
+            
+            .event-row.reverse {
+                flex-direction: column;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+                letter-spacing: 3px;
+                margin: 1.5rem 0 2rem;
+            }
+            
+            .hero-slideshow {
+                height: 250px;
+                border-radius: 16px;
+            }
+            
+            .spacer {
+                height: 30px;
+            }
+            
+            .event-page {
+                padding: 5rem 1rem 2rem;
+            }
+        }
+
+        /* Event Bottom Sheet (mobile) */
+        .event-bottom-sheet {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-radius: 24px 24px 0 0;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 1.2rem 1.2rem 1.5rem;
+        }
+        
+        .event-bottom-sheet.active {
+            transform: translateY(0);
+        }
+        
+        .event-bottom-sheet::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background: #cbd5e0;
+            border-radius: 4px;
+        }
+        
+        .sheet-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 16px;
+            margin-bottom: 0.8rem;
+            color: #2c2b2a;
+            border-left: 4px solid #097684;
+            padding-left: 1rem;
+        }
+        
+        .sheet-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #4a433b;
+            margin-bottom: 1.5rem;
+        }
+        
+        .sheet-close {
+            width: 100%;
+            padding: 12px;
+            background: none;
+            border: none;
+            border-top: 1px solid #e2ddd6;
+            color: #097684;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        
+        .sheet-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+        }
+        
+        .sheet-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0s 0s;
+        }
+        
+        body.sheet-open {
+            overflow: hidden;
         }
 
         /* ===== BACK TO TOP ===== */
@@ -589,38 +644,26 @@
         
         .back-to-top a {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: #097684;
             border-radius: 50%;
             color: white;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(9, 118, 132, 0.3);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
         
         .back-to-top a:hover {
             background: #065a66;
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(9, 118, 132, 0.4);
         }
         
         .back-to-top a i {
             font-size: 1.2rem;
             animation: bounce 2s ease-in-out infinite;
-        }
-        
-        .back-to-top a i:first-child {
-            margin-bottom: -6px;
-        }
-        
-        .back-to-top a i:last-child {
-            margin-top: -6px;
         }
         
         @keyframes bounce {
@@ -629,12 +672,12 @@
             60% { transform: translateY(-4px); }
         }
 
-        /* ===== FOOTER STYLES ===== */
+        /* ===== FOOTER ===== */
         .footer {
             background: #1f2a2e;
             color: #ddd;
             padding: 3rem 2rem 1rem;
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
         
         .footer-content {
@@ -646,31 +689,10 @@
             gap: 2rem;
         }
         
-        .footer-col {
-            flex: 1 1 200px;
-        }
-        
-        .footer-logo img {
-            max-width: 200px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-        
-        .footer h4 {
-            color: #fff;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-        
-        .footer a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-        
+        .footer-col { flex: 1 1 200px; }
+        .footer-logo img { max-width: 200px; height: auto; margin-bottom: 1rem; }
+        .footer h4 { color: #fff; font-weight: 400; margin-bottom: 1rem; letter-spacing: 1px; }
+        .footer a { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5rem; font-size: 0.95rem; }
         .footer a:hover { color: #097684; }
         
         .social-icons {
@@ -689,7 +711,6 @@
             justify-content: center;
             color: white;
             font-size: 1.2rem;
-            transition: 0.2s;
         }
         
         .social-icons a:hover { background: #097684; }
@@ -712,34 +733,36 @@
             gap: 0.5rem;
         }
         
-        .payment-icons img {
-            height: 28px;
+        .payment-icons img { height: 28px; }
+
+        @media (max-width: 600px) {
+            .footer-bottom { flex-direction: column; text-align: center; gap: 1rem; }
+            .hero-slideshow { height: 200px; }
+            .event-image-col { min-height: 180px; }
+            .event-title { font-size: 1.3rem; }
         }
 
-        /* responsive */
-        @media (max-width: 900px) {
-            .event-row, .event-row.reverse {
-                flex-direction: column;
-            }
-            .section-heading { font-size: 2.5rem; }
-            .event-title { font-size: 2rem; }
-            .hero-slideshow { height: 350px; }
+        html { scroll-behavior: smooth; }
+        
+        /* Scroll animation */
+        .event-row, .section-heading {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
-        @media (max-width: 600px) {
-            .hero-slideshow { height: 250px; }
-            .event-page { padding: 5rem 1rem 2rem; }
+        .event-row.visible, .section-heading.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation (from rooms page) -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="../index.html">
-                <div class="logo">
-                <img src="../images/logo.png" alt="Sonitori Logo">
-                </div>
+                <div class="logo"><img src="../images/logo.png" alt="Sonitori Logo"></div>
             </a>
             <div class="nav-links">
                 <a href="../index.html">Home</a>
@@ -757,7 +780,6 @@
                 </div>
                 <a href="../contact-us/index.html">Contact Us</a>
             </div>
-            <!-- desktop book now button -->
             <button class="desktop-book-btn" id="desktopBookBtn">Book Now</button>
             <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
         </div>
@@ -767,22 +789,15 @@
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-sidebar" id="mobileSidebar">
         <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-circle-xmark"></i></button>
-        
-        <div class="sidebar-logo">
-            <img src="../images/logo.png" alt="Sonitori Logo">
-        </div>
-        
+        <div class="sidebar-logo"><img src="../images/logo.png" alt="Sonitori Logo"></div>
         <div class="sidebar-links">
             <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="../rooms/index.html"><i class="fa-solid fa-bed"></i> Rooms</a>
             <a href="" class="active"><i class="fa-regular fa-calendar"></i> Events</a>
             <a href="../gallery/index.html"><i class="fa-regular fa-images"></i> Gallery</a>
-            
             <div class="mobile-dropdown">
                 <button class="dropdown-toggle-mobile" id="aboutDropdownToggle">
-                    <span class="dropdown-icon-group">
-                        <i class="fa-regular fa-address-card"></i> About Us
-                    </span>
+                    <span class="dropdown-icon-group"><i class="fa-regular fa-address-card"></i> About Us</span>
                     <i class="fa-solid fa-angle-down arrow-icon"></i>
                 </button>
                 <div class="dropdown-menu-mobile" id="aboutMobileMenu">
@@ -794,9 +809,7 @@
                     </div>
                 </div>
             </div>
-
             <a href="../contact-us/index.html"><i class="fa-regular fa-envelope"></i> Contact Us</a>
-            
             <div class="sidebar-social">
                 <h4>FOLLOW US</h4>
                 <div class="social-icons">
@@ -820,30 +833,33 @@
             <h3>Select dates</h3>
             <button class="close-popup" id="closePopupBtn"><i class="fa-solid fa-circle-xmark"></i></button>
         </div>
-        
-        <div class="calendar-container" id="calendarContainer">
-            <!-- dynamic JS will fill two months -->
-        </div>
-        
+        <div class="calendar-container" id="calendarContainer"></div>
         <div class="popup-footer">
-            <div class="night-count">
-                <span id="nightsValue">0</span> nights
-            </div>
+            <div class="night-count"><span id="nightsValue">0</span> nights</div>
             <button class="search-btn" id="searchDatesBtn" disabled>Search</button>
         </div>
     </div>
 
+    <!-- Mobile bottom sheet overlay -->
+    <div class="sheet-overlay" id="sheetOverlay"></div>
+    
+    <!-- Mobile bottom sheet for event details -->
+    <div class="event-bottom-sheet" id="eventBottomSheet">
+        <h3 class="sheet-title" id="sheetTitle"></h3>
+        <div class="sheet-description" id="sheetDescription"></div>
+        <button class="sheet-close" id="sheetCloseBtn">Close</button>
+    </div>
+
     <main class="event-page">
-        <!-- hero slideshow section -->
+        <!-- hero slideshow -->
         <div class="hero-slideshow" id="heroSlideshow"></div>
         <div class="spacer"></div>
 
-        <!-- main EVENT heading -->
         <div class="section-heading" id="mainHeading">Event</div>
 
-        <!-- FIRST ROW: Special group events & retreats -->
-        <div class="event-row" id="row1">
-            <div class="event-image-col" style="background-image: url('https://rambutanphnompenh.com/wp-content/uploads/2025/03/20180303-Brendan-and-Sven-Portraits-Web-Size-117.jpg');"></div>
+        <!-- Event Rows with local images -->
+        <div class="event-row" id="row1" data-title="Special group events & retreats" data-description="Sonitori Hotel & Resort in Phnom Penh has extensive experience in organizing all types of events and customized activities for groups. From weddings to yoga, birthday or corporate retreats, family gatherings or even small conferences we let it happen exactly the way you want! We provide catering and can organize many other event related services such as the rental of sound systems, cultural or music performances, theme decorations, monks blessings, special lunches or dinners as well as fun activities like a tuktuk treasure hunt or a poolparty with Dj.">
+            <div class="event-image-col" style="background-image: url('../images/20180303-Brendan-and-Sven-Portraits-Web-Size-117.webp');"></div>
             <div class="event-text-col">
                 <h2 class="event-title">Special group events & retreats</h2>
                 <div class="event-description">
@@ -852,9 +868,8 @@
             </div>
         </div>
 
-        <!-- SECOND ROW: Pool party -->
-        <div class="event-row reverse" id="row2">
-            <div class="event-image-col" style="background-image: url('https://rambutanphnompenh.com/wp-content/uploads/2025/06/4event.jpeg');"></div>
+        <div class="event-row reverse" id="row2" data-title="Pool party" data-description="Splash into style at Sonitori's tropical pool party! Sip cocktails by the saltwater pool under swaying palms. Chill vibes, upbeat music, and a lush green backdrop. Meet travelers, dance barefoot, and toast to golden sunsets. Float, laugh, and lounge in an urban oasis. Where Phnom Penh meets paradise—one splash at a time. Tropical bites and signature drinks served all afternoon. Perfect for friends, solo adventurers, and sunset seekers. This is more than a party—it's a Sonitori experience.">
+            <div class="event-image-col" style="background-image: url('../images/4event.webp');"></div>
             <div class="event-text-col">
                 <h2 class="event-title">Pool party</h2>
                 <div class="event-description">
@@ -863,9 +878,8 @@
             </div>
         </div>
 
-        <!-- THIRD ROW: Catering Service -->
-        <div class="event-row" id="row3">
-            <div class="event-image-col" style="background-image: url('https://rambutanphnompenh.com/wp-content/uploads/2025/06/2event.jpeg'); background-position: center;"></div>
+        <div class="event-row" id="row3" data-title="Catering Service" data-description="We believe that every event should be a flawless and unforgettable experience. Our team is dedicated to handling every detail with precision, from planning and décor to seamless execution on the day of your event. A key part of any gathering is the dining experience, and our expert chefs craft exquisite menus tailored to your preferences. Whether you envision a lavish banquet, an elegant cocktail reception, or a customized dining experience, we ensure that every dish is prepared with the finest ingredients and presented to perfection. With our commitment to excellence, you can relax and enjoy your special occasion while we take care of the rest.">
+            <div class="event-image-col" style="background-image: url('../images/2event.webp');"></div>
             <div class="event-text-col">
                 <h2 class="event-title">Catering Service</h2>
                 <div class="event-description">
@@ -874,9 +888,8 @@
             </div>
         </div>
 
-        <!-- FOURTH ROW: Event Preparation -->
-        <div class="event-row reverse" id="row4">
-            <div class="event-image-col" style="background-image: url('https://rambutanphnompenh.com/wp-content/uploads/2025/06/3event.jpeg'); background-position: center;"></div>
+        <div class="event-row reverse" id="row4" data-title="Event Preparation" data-description="At Sonitori, we take pride in making your event truly special. Our dedicated team ensures that every detail is thoughtfully planned and seamlessly executed, so you can focus on enjoying the moment. With our expertise, elegant venues, and personalized service, we create a stress-free and memorable experience tailored to your needs. Whether it's an intimate gathering or a grand celebration, we are here to bring your vision to life with precision and care.">
+            <div class="event-image-col" style="background-image: url('../images/3event.webp');"></div>
             <div class="event-text-col">
                 <h2 class="event-title">Event Preparation</h2>
                 <div class="event-description">
@@ -886,13 +899,12 @@
         </div>
     </main>
 
-            <!-- back to top -->
-        <div class="back-to-top">
-            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
-                <i class="fa-solid fa-chevron-up"></i>
-                <i class="fa-solid fa-chevron-up"></i>
-            </a>
-        </div>
+    <!-- back to top -->
+    <div class="back-to-top">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -925,8 +937,8 @@
         <div class="footer-bottom">
             <div class="payment-icons">
                 <span>Pay way :</span>
-                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/visa-card.png" alt="visa">
-                <img src="https://rambutanphnompenh.com/wp-content/uploads/2025/06/master.png" alt="mastercard">
+                <img src="../images/visa-card.webp" alt="visa">
+                <img src="../images/master.webp" alt="mastercard">
             </div>
             <div>Copyright © Sonitori Phnom Penh</div>
         </div>
@@ -934,27 +946,82 @@
 
     <script>
         (function() {
-            // hero slideshow images
+            // Hero slideshow with local images
             const heroImages = [
-                'https://rambutanphnompenh.com/wp-content/uploads/2025/06/1event.jpeg',
-                'https://rambutanphnompenh.com/wp-content/uploads/2025/06/2event.jpeg',
-                'https://rambutanphnompenh.com/wp-content/uploads/2025/06/3event.jpeg',
-                'https://rambutanphnompenh.com/wp-content/uploads/2025/06/4event.jpeg',
-                'https://rambutanphnompenh.com/wp-content/uploads/2025/06/5event.jpeg'
+                '../images/1event.webp',
+                '../images/2event.webp',
+                '../images/3event.webp',
+                '../images/4event.webp',
+                '../images/5event.webp'
             ];
             let idx = 0;
             const hero = document.getElementById('heroSlideshow');
             if (hero) {
-                // set initial
                 hero.style.backgroundImage = `url('${heroImages[0]}')`;
-                // rotate every 5 seconds
                 setInterval(() => {
                     idx = (idx + 1) % heroImages.length;
                     hero.style.backgroundImage = `url('${heroImages[idx]}')`;
                 }, 5000);
             }
 
-            // ===== MOBILE SIDEBAR FUNCTIONALITY =====
+            // Mobile bottom sheet for events
+            const sheet = document.getElementById('eventBottomSheet');
+            const sheetOverlay = document.getElementById('sheetOverlay');
+            const sheetTitle = document.getElementById('sheetTitle');
+            const sheetDescription = document.getElementById('sheetDescription');
+            const sheetClose = document.getElementById('sheetCloseBtn');
+            const isMobile = window.innerWidth <= 900;
+            
+            function closeSheet() {
+                if (sheet) sheet.classList.remove('active');
+                if (sheetOverlay) sheetOverlay.classList.remove('active');
+                document.body.classList.remove('sheet-open');
+            }
+            
+            function openSheet(title, description) {
+                if (sheetTitle) sheetTitle.textContent = title;
+                if (sheetDescription) sheetDescription.innerHTML = description.replace(/\n/g, '<br>');
+                if (sheet) sheet.classList.add('active');
+                if (sheetOverlay) sheetOverlay.classList.add('active');
+                document.body.classList.add('sheet-open');
+            }
+            
+            if (sheetClose) sheetClose.addEventListener('click', closeSheet);
+            if (sheetOverlay) sheetOverlay.addEventListener('click', closeSheet);
+            
+            // Add click handlers to event rows on mobile
+            if (isMobile) {
+                const eventRows = document.querySelectorAll('.event-row');
+                eventRows.forEach(row => {
+                    const title = row.getAttribute('data-title');
+                    const description = row.getAttribute('data-description');
+                    if (title && description) {
+                        row.addEventListener('click', (e) => {
+                            // Don't trigger if clicking on a link inside
+                            if (e.target.closest('a')) return;
+                            openSheet(title, description);
+                        });
+                    }
+                });
+            }
+            
+            // Close sheet on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeSheet();
+            });
+            
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    if (window.innerWidth > 900) {
+                        closeSheet();
+                    }
+                }, 100);
+            });
+
+            // Mobile sidebar
             const mobileIcon = document.querySelector('.mobile-menu-icon');
             const sidebar = document.getElementById('mobileSidebar');
             const overlay = document.getElementById('mobileOverlay');
@@ -978,47 +1045,36 @@
             if (closeSidebar) closeSidebar.addEventListener('click', closeMobileMenu);
             if (overlay) overlay.addEventListener('click', closeMobileMenu);
 
-            // SMOOTH DROPDOWN animation
             if (dropdownToggle && aboutMobileMenu) {
                 dropdownToggle.addEventListener('click', function(e) {
                     e.preventDefault();
-                    e.stopPropagation();
                     this.classList.toggle('open');
-                    
-                    if (aboutMobileMenu.classList.contains('show')) {
-                        aboutMobileMenu.classList.remove('show');
-                    } else {
-                        aboutMobileMenu.classList.add('show');
-                    }
+                    aboutMobileMenu.classList.toggle('show');
                 });
-                
-                // start closed
                 aboutMobileMenu.classList.remove('show');
             }
 
             window.addEventListener('resize', function() {
-                if (window.innerWidth > 900 && sidebar && sidebar.classList.contains('open')) {
-                    closeMobileMenu();
-                }
+                if (window.innerWidth > 900 && sidebar.classList.contains('open')) closeMobileMenu();
             });
 
-            // ===== BOOK NOW BUTTONS =====
+            // Booking popup
             function openBookingPopup() {
-                const overlay = document.getElementById('popupOverlay');
+                const popupOverlay = document.getElementById('popupOverlay');
                 const popup = document.getElementById('calendarPopup');
-                if (overlay && popup) {
-                    overlay.classList.add('active');
+                if (popupOverlay && popup) {
+                    popupOverlay.classList.add('active');
                     popup.classList.add('active');
                 }
             }
-
+            
             document.getElementById('desktopBookBtn')?.addEventListener('click', openBookingPopup);
             document.getElementById('mobileFixedBook')?.addEventListener('click', function(e) {
                 e.preventDefault();
                 openBookingPopup();
             });
 
-            // ========== SCROLL ANIMATION ==========
+            // Scroll animation observer
             const animatedElements = [
                 document.getElementById('mainHeading'),
                 document.getElementById('row1'),
@@ -1034,10 +1090,7 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.2,
-                rootMargin: '0px 0px -50px 0px'
-            });
+            }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
 
             animatedElements.forEach(el => observer.observe(el));
         })();
